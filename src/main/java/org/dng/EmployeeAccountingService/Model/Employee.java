@@ -23,7 +23,7 @@ public class Employee {
     private Department department;
     private Employee boss;
     @NotNull
-    private LocalDate employmentDate;
+    private LocalDate recruitDate;
     private LocalDate dismissDate;
     @NotNull
     private int salary;

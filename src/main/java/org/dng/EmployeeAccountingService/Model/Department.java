@@ -5,4 +5,5 @@ package org.dng.EmployeeAccountingService.Model;
  */
 public class Department {
     private String Name;
+    private boolean deprecated;
 }
