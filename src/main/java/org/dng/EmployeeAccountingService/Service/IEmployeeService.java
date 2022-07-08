@@ -11,11 +11,11 @@ import java.util.Map;
 
 @Deprecated
 public interface IEmployeeService {
-    public static void recruitEmployee(Employee employee) {
-    };
+    static void recruitEmployee(Employee employee) {
+    }
 
-    public static void dismissEmployee(Employee employee, LocalDate dismissDate){};
-    public static void changeEmployee(Employee employee){};
+    static void dismissEmployee(Employee employee, LocalDate dismissDate){};
+    static void changeEmployee(Employee employee){}
 
 
 
@@ -30,9 +30,9 @@ public interface IEmployeeService {
                     .toList();
         }
         return null;
-    };//поиск сотрудника по фио
-    public static List<Employee> findEmployee(Department department){return null;}; //список сотрудников в отделе
-    public static List<Employee> findEmployee(Employee boss){return null;}; //список сотрудников по начальнику
-    public static List<Employee> findEmployee(int minSalary, int maxSalary){return null;}; //список сотрудников с зп в диапазоне
+    }//поиск сотрудника по фио
+    static List<Employee> findEmployee(Department department){return null;} //список сотрудников в отделе
+    static List<Employee> findEmployee(Employee boss){return null;} //список сотрудников по начальнику
+    static List<Employee> findEmployee(int minSalary, int maxSalary){return null;} //список сотрудников с зп в диапазоне
 
 }
