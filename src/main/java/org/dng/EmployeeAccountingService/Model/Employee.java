@@ -25,6 +25,7 @@ public class Employee {
     private Employee boss;
     @NotNull
     private LocalDate recruitDate;
+    private boolean dismissed;
     private LocalDate dismissDate;
     @NotNull
     private int salary;
@@ -93,6 +94,11 @@ public class Employee {
 
     public int getSalary() {
         return salary;
+    }
+
+    public void dismiss(LocalDate dismissDate){
+        dismissed = true;
+        this.dismissDate = dismissDate;
     }
 
     @Override

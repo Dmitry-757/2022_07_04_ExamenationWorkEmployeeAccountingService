@@ -9,11 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBaseCRUDException.java" afterDir="false" />
+    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="add test of duplicate record to BD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IEmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBaseCRUDException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBaseAddException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Model/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Model/EmployeeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -199,6 +201,14 @@
       <workItem from="1657143272581" duration="155000" />
       <workItem from="1657143443794" duration="1649000" />
     </task>
+    <task id="LOCAL-00001" summary="add test of duplicate record to BD">
+      <created>1657282763741</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657282763741</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,5 +225,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add test of duplicate record to BD" />
+    <option name="LAST_COMMIT_MESSAGE" value="add test of duplicate record to BD" />
   </component>
 </project>
