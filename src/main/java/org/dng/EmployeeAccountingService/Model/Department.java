@@ -5,10 +5,16 @@ package org.dng.EmployeeAccountingService.Model;
  */
 public class Department {
     private String Name;
+    private Employee boss;
     private boolean deprecated;
 
     public Department(String name) {
         Name = name;
+    }
+
+    public Department(String name, Employee boss) {
+        Name = name;
+        this.boss = boss;
     }
 
     public String getName() {
@@ -21,5 +27,9 @@ public class Department {
 
     public void setDeprecated(boolean deprecated) {
         this.deprecated = deprecated;
+    }
+
+    public void setBoss(Employee boss) {
+        this.boss = boss;
     }
 }
