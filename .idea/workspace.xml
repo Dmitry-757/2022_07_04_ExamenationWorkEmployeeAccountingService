@@ -9,8 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="make interface IEmployeeService deprecated">
+    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="add some meths">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/RecruitEmployee.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Job.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Sex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Sex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IDepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IDepartmentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IEmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Model/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Entities/EmployeeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +36,8 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -49,6 +64,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.37471265" />
@@ -58,17 +75,21 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.dng.EmployeeAccountingService.Model" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.dng.EmployeeAccountingService.Model" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.EmployeeTest.addDuplicatedEmployeeToDB">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.22">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -77,12 +98,12 @@
       <module name="2022_07_04_ExamenationWork" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.dng.EmployeeAccountingService.Model.*" />
+          <option name="PATTERN" value="org.dng.EmployeeAccountingService.Entities.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.dng.EmployeeAccountingService.Model" />
-      <option name="MAIN_CLASS_NAME" value="org.dng.EmployeeAccountingService.Model.EmployeeTest" />
+      <option name="PACKAGE_NAME" value="org.dng.EmployeeAccountingService.Entities" />
+      <option name="MAIN_CLASS_NAME" value="org.dng.EmployeeAccountingService.Entities.EmployeeTest" />
       <option name="METHOD_NAME" value="addDuplicatedEmployeeToDB" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -193,30 +214,18 @@
       <updated>1657139954279</updated>
       <workItem from="1657139955553" duration="3294000" />
       <workItem from="1657143272581" duration="155000" />
-      <workItem from="1657143443794" duration="1649000" />
+      <workItem from="1657143443794" duration="2469000" />
+      <workItem from="1657207863871" duration="7689000" />
+      <workItem from="1657308462473" duration="4051000" />
     </task>
-    <task id="LOCAL-00001" summary="add test of duplicate record to BD">
-      <created>1657282763741</created>
+    <task id="LOCAL-00001" summary="add service intrfaces">
+      <created>1657145430401</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1657282763741</updated>
+      <updated>1657145430401</updated>
     </task>
-    <task id="LOCAL-00002" summary="add body of meths in EmployeeService">
-      <created>1657287088153</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1657287088153</updated>
-    </task>
-    <task id="LOCAL-00003" summary="make interface IEmployeeService deprecated">
-      <created>1657287156020</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1657287156020</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,9 +244,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test of duplicate record to BD" />
-    <MESSAGE value="add body of meths in EmployeeService" />
-    <MESSAGE value="make interface IEmployeeService deprecated" />
-    <option name="LAST_COMMIT_MESSAGE" value="make interface IEmployeeService deprecated" />
+    <MESSAGE value="add service intrfaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="add service intrfaces" />
   </component>
 </project>

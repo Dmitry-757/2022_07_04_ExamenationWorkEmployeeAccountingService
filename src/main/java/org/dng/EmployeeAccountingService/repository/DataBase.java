@@ -1,6 +1,6 @@
 package org.dng.EmployeeAccountingService.repository;
 
-import org.dng.EmployeeAccountingService.Model.Employee;
+import org.dng.EmployeeAccountingService.Entities.Employee;
 
 import java.util.HashMap;
 
@@ -21,7 +21,8 @@ public class DataBase {
         return employeeHashMap;
     }
 
-    public static void add(Employee employee) throws Exception {
+//    public static void add(Employee employee) throws DataBaseAddException {
+    public static void add(Employee employee) {
         //сначала проверим нет ли уже такого
         if(employeeHashMap.containsKey(employee.getFullName())){ //самый быстрый поиск - ищем фио, если такого нет то дальше искать незачем
             //если фио нашлось - нужно проверить тот ли это объект (может однофамилец)
@@ -29,7 +30,8 @@ public class DataBase {
                     .stream()
                     .anyMatch(e -> e.getValue().equals(employee))
             ){
-                throw new DataBaseAddException("this employee is already present!");
+                //throw new DataBaseAddException("this employee is already present!");
+                System.out.println("this employee is already present!");
             }
 
         }

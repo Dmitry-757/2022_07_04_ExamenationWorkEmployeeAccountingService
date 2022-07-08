@@ -1,4 +1,4 @@
-package org.dng.EmployeeAccountingService.Model;
+package org.dng.EmployeeAccountingService.Entities;
 
 /**
  * Должность

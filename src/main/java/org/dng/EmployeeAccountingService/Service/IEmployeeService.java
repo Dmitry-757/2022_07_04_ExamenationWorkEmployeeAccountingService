@@ -1,7 +1,7 @@
 package org.dng.EmployeeAccountingService.Service;
 
-import org.dng.EmployeeAccountingService.Model.Department;
-import org.dng.EmployeeAccountingService.Model.Employee;
+import org.dng.EmployeeAccountingService.Entities.Department;
+import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.repository.DataBase;
 
 import java.time.LocalDate;

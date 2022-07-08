@@ -1,4 +1,4 @@
-package org.dng.EmployeeAccountingService.Model;
+package org.dng.EmployeeAccountingService.Entities;
 
 import org.dng.EmployeeAccountingService.repository.DataBase;
 import org.jetbrains.annotations.NotNull;
@@ -39,7 +39,8 @@ public class Employee {
                     Employee boss,
                     @NotNull LocalDate recruitDate,
                     LocalDate dismissDate,
-                    @NotNull int salary) throws Exception {
+//                    @NotNull int salary) throws Exception {
+                    @NotNull int salary) {
         this.id += DataBase.getMaxId();
         this.fullName = fullName;
         this.birthDate = birthDate;

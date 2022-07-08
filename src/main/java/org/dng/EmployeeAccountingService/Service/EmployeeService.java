@@ -1,9 +1,11 @@
 package org.dng.EmployeeAccountingService.Service;
 
-import org.dng.EmployeeAccountingService.Model.Department;
-import org.dng.EmployeeAccountingService.Model.Employee;
+import org.dng.EmployeeAccountingService.Entities.Department;
+import org.dng.EmployeeAccountingService.Entities.Employee;
+import org.dng.EmployeeAccountingService.Entities.Job;
+import org.dng.EmployeeAccountingService.Entities.Sex;
 import org.dng.EmployeeAccountingService.repository.DataBase;
-import org.dng.EmployeeAccountingService.repository.DataBaseAddException;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -15,12 +17,25 @@ import java.util.Map;
 //public class EmployeeService implements IEmployeeService{
 public class EmployeeService {
 
-    public static void dismissEmployee(Employee employee, LocalDate dismissDate) {
-        employee.dismiss(dismissDate);
+    public static void recruitEmployee(@NotNull String fullName,
+                                       LocalDate birthDate,
+                                       @NotNull
+                                       Sex sex,
+                                       String phoneNumber,
+                                       @NotNull Job job,
+                                       @NotNull Department department,
+                                       Employee boss,
+                                       @NotNull LocalDate recruitDate,
+                                       LocalDate dismissDate,
+                                       @NotNull int salary) {
+        new Employee(fullName, birthDate, sex, phoneNumber, job, department, boss, recruitDate, dismissDate, salary);
     }
 
     public static void changeEmployee(Employee employee) {
+    }
 
+    public static void dismissEmployee(Employee employee, LocalDate dismissDate) {
+        employee.dismiss(dismissDate);
     }
 
     public static List<Employee> findEmployee(String fullName) {
