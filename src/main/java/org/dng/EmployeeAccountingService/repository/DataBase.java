@@ -29,7 +29,7 @@ public class DataBase {
                     .stream()
                     .anyMatch(e -> e.getValue().equals(employee))
             ){
-                throw new Exception("this employee is already present!");
+                throw new DataBaseCRUDException("this employee is already present!");
             }
 
         }

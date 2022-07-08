@@ -38,7 +38,7 @@ public class Employee {
                     Employee boss,
                     @NotNull LocalDate recruitDate,
                     LocalDate dismissDate,
-                    @NotNull int salary) {
+                    @NotNull int salary) throws Exception {
         this.id += DataBase.getMaxId();
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -52,14 +52,7 @@ public class Employee {
         this.salary = salary;
 
         DataBase.setMaxId(this.id);
-    }
-
-    public void add() throws Exception{
-        try {
-            DataBase.add(this);
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
+        DataBase.add(this);
     }
 
     public String getFullName() {

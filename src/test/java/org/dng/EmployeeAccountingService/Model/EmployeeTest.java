@@ -1,6 +1,8 @@
 package org.dng.EmployeeAccountingService.Model;
 
 import org.dng.EmployeeAccountingService.repository.DataBase;
+import org.dng.EmployeeAccountingService.repository.DataBaseCRUDException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -13,7 +15,9 @@ class EmployeeTest {
     void addDuplicatedEmployeeToDB() {
         Job job = new Job("manager");
         Department department = new Department("Sale department");
-            Employee empl = new Employee("Pupkin Ivan Ivanovich",
+        Employee empl = null;
+        try {
+            empl = new Employee("Pupkin Ivan Ivanovich",
                     LocalDate.of(1970,6,1),
                     Sex.MALE,
                     "912-1234567",
@@ -21,14 +25,12 @@ class EmployeeTest {
                     LocalDate.of(2022,7,8),
                     null,
                     1000);
-
-        try {
-            empl.add();
-            empl.add();
-            DataBase.getEmployeeHashMap().entrySet().forEach(e -> System.out.println(e.getKey() +" => "+ e.getValue()));
         } catch (Exception e) {
-            DataBase.getEmployeeHashMap().entrySet().forEach(s -> System.out.println(s.getKey() +" => "+ s.getValue()));
             System.out.println(e.getMessage());
         }
+
+        final Employee empl2 = empl;
+        Assertions.assertThrows(DataBaseCRUDException.class, ()->DataBase.add(empl2),"Exception must be thrown!");
+        DataBase.getEmployeeHashMap().entrySet().forEach(s -> System.out.println(s.getKey() +" => "+ s.getValue()));
     }
 }
