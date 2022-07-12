@@ -1,20 +1,21 @@
 package org.dng.EmployeeAccountingService.Service;
 
 import org.dng.EmployeeAccountingService.Entities.Department;
+import org.dng.EmployeeAccountingService.Entities.Employee;
 
-public class DepartmentService implements IDepartmentService{
-    @Override
-    public void addDepartment(String name) {
+public class DepartmentService {
 
-    }
-
-    @Override
-    public void renameDepartment(Department department) {
+    public static void addDepartment(String name, Employee boss) {
 
     }
 
-    @Override
-    public void removeDepartment(Department department) {
+
+    public static void renameDepartment(Department department) {
+
+    }
+
+
+    public static void removeDepartment(Department department) {
 
     }
 }

@@ -4,7 +4,7 @@ import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Job;
 import org.dng.EmployeeAccountingService.Entities.Sex;
-import org.dng.EmployeeAccountingService.repository.DataBase;
+import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
@@ -39,7 +39,7 @@ public class EmployeeService {
     }
 
     public static List<Employee> findEmployee(String fullName) {
-        HashMap<String, Employee> employeeHashMap = DataBase.getEmployeeHashMap();
+        HashMap<String, Employee> employeeHashMap = EmployeeDataBase.getEmployeeHashMap();
         if(employeeHashMap.containsKey(fullName)){ //самый быстрый поиск - ищем фио, если такого нет то дальше искать незачем
             return employeeHashMap
                     .entrySet()
@@ -52,7 +52,7 @@ public class EmployeeService {
     }
 
     public static List<Employee> findEmployee(Department department) {
-        HashMap<String, Employee> employeeHashMap = DataBase.getEmployeeHashMap();
+        HashMap<String, Employee> employeeHashMap = EmployeeDataBase.getEmployeeHashMap();
         return employeeHashMap
                 .entrySet()
                 .stream()
@@ -62,7 +62,7 @@ public class EmployeeService {
     }
 
     public static List<Employee> findEmployee(Employee boss) {
-        HashMap<String, Employee> employeeHashMap = DataBase.getEmployeeHashMap();
+        HashMap<String, Employee> employeeHashMap = EmployeeDataBase.getEmployeeHashMap();
         return employeeHashMap
                 .entrySet()
                 .stream()
@@ -72,7 +72,7 @@ public class EmployeeService {
     }
 
     public static List<Employee> findEmployee(final int minSalary, final int maxSalary) {
-        HashMap<String, Employee> employeeHashMap = DataBase.getEmployeeHashMap();
+        HashMap<String, Employee> employeeHashMap = EmployeeDataBase.getEmployeeHashMap();
         return employeeHashMap
                 .entrySet()
                 .stream()

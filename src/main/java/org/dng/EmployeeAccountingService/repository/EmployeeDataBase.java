@@ -4,7 +4,7 @@ import org.dng.EmployeeAccountingService.Entities.Employee;
 
 import java.util.HashMap;
 
-public class DataBase {
+public class EmployeeDataBase {
     private static int maxId;
 
     private static HashMap<String, Employee> employeeHashMap = new HashMap<>();
@@ -14,7 +14,7 @@ public class DataBase {
     }
 
     public static void setMaxId(int maxId) {
-        DataBase.maxId = maxId;
+        EmployeeDataBase.maxId = maxId;
     }
 
     public static HashMap<String, Employee> getEmployeeHashMap() {
@@ -32,6 +32,7 @@ public class DataBase {
             ){
                 //throw new DataBaseAddException("this employee is already present!");
                 System.out.println("this employee is already present!");
+                return;
             }
 
         }

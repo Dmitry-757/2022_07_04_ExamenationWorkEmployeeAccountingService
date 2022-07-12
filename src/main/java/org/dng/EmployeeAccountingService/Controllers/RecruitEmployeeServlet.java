@@ -7,6 +7,8 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.dng.EmployeeAccountingService.Entities.Department;
+import org.dng.EmployeeAccountingService.repository.DepartmentDataBase;
 
 @WebServlet(name = "recruitServlet", value = "/recruit")
 public class RecruitEmployeeServlet extends HttpServlet {
@@ -16,11 +18,13 @@ public class RecruitEmployeeServlet extends HttpServlet {
 //    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        response.setContentType("text/html");
-//        PrintWriter out = response.getWriter();
-//        out.println("<html><body>");
-//        out.println("<h1>" + message + "</h1>");
-//        out.println("</body></html>");
+        Department department = new Department("Kontora");
+        List<Department> ld = DepartmentDataBase.findAll();
+        request.setAttribute("departments", ld);
+
+
+//        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/cars.jsp");
+//        dispatcher.forward(req, resp);
 
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/RecruitEmployee.jsp");
         dispatcher.forward(request, response);

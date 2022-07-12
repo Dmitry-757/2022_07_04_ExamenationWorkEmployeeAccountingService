@@ -1,6 +1,6 @@
 package org.dng.EmployeeAccountingService.Entities;
 
-import org.dng.EmployeeAccountingService.repository.DataBase;
+import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
@@ -41,7 +41,7 @@ public class Employee {
                     LocalDate dismissDate,
 //                    @NotNull int salary) throws Exception {
                     @NotNull int salary) {
-        this.id += DataBase.getMaxId();
+        this.id += EmployeeDataBase.getMaxId();
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.sex = sex;
@@ -53,8 +53,8 @@ public class Employee {
         this.dismissDate = dismissDate;
         this.salary = salary;
 
-        DataBase.setMaxId(this.id);
-        DataBase.add(this);
+        EmployeeDataBase.setMaxId(this.id);
+        EmployeeDataBase.add(this);
     }
 
     public String getFullName() {
