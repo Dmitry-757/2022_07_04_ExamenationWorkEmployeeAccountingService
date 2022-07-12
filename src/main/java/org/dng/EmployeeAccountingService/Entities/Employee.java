@@ -41,7 +41,6 @@ public class Employee {
                     LocalDate dismissDate,
 //                    @NotNull int salary) throws Exception {
                     @NotNull int salary) {
-        this.id += EmployeeDataBase.getMaxId();
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.sex = sex;
@@ -53,6 +52,7 @@ public class Employee {
         this.dismissDate = dismissDate;
         this.salary = salary;
 
+        this.id = EmployeeDataBase.getMaxId()+1;
         EmployeeDataBase.setMaxId(this.id);
         EmployeeDataBase.add(this);
     }

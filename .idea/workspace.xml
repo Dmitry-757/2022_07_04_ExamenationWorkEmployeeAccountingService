@@ -9,21 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="add some meths">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/RecruitEmployee.jsp" afterDir="false" />
+    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="add choice-list to jsp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Job.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Model/Sex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Sex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IDepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IDepartmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/IEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Model/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Entities/EmployeeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DepartmentDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DepartmentDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/RecruitEmployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/RecruitEmployee.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657145430401</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add choice-list to jsp">
+      <created>1657653007062</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657653007062</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +233,33 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add service intrfaces" />
-    <option name="LAST_COMMIT_MESSAGE" value="add service intrfaces" />
+    <MESSAGE value="add choice-list to jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="add choice-list to jsp" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/RecruitEmployee.jsp</url>
+          <line>17</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

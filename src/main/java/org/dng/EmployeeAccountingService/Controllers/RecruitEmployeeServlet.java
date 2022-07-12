@@ -18,7 +18,8 @@ public class RecruitEmployeeServlet extends HttpServlet {
 //    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Department department = new Department("Kontora");
+        Department d1 = new Department("Kontora");
+        Department d2 = new Department("Buh");
         List<Department> ld = DepartmentDataBase.findAll();
         request.setAttribute("departments", ld);
 
@@ -32,6 +33,28 @@ public class RecruitEmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Department> ld = DepartmentDataBase.findAll();
+        req.setAttribute("departments", ld);
+
+        //searching and processing of "selectDepartment" parameter
+        String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
+        if(selectDepartment != null) {
+            int id = Integer.parseInt(selectDepartment);
+            System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
+        }
+
+//        String[] selectDepartments = req.getParameterValues("selectDepartment");
+//        for (String d:selectDepartments) {
+//            System.out.println(d);
+//        }
+
+//        String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
+//        if(fullName != null) {
+//            System.out.println("fullName = "+ fullName);
+//        }
+
+        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/RecruitEmployee.jsp");//get jsp-maket context
+        dispatcher.forward(req, resp);//forward our data to jsp-page
 
         /*
         //searching and processing of "tax rate" parameter

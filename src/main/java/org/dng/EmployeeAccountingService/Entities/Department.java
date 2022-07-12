@@ -16,7 +16,7 @@ public class Department {
     public Department(String name) {
         Name = name;
 
-        this.id += DepartmentDataBase.getMaxId();
+        this.id = DepartmentDataBase.getMaxId()+1;
         DepartmentDataBase.setMaxId(this.id);
         DepartmentDataBase.add(this);
     }
@@ -25,7 +25,7 @@ public class Department {
         Name = name;
         this.boss = boss;
 
-        this.id += DepartmentDataBase.getMaxId();
+        this.id = DepartmentDataBase.getMaxId()+1;
         DepartmentDataBase.setMaxId(this.id);
         DepartmentDataBase.add(this);
     }
