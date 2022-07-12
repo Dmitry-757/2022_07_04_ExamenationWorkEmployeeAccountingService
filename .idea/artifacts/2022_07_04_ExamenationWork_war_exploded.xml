@@ -6,7 +6,6 @@
         <exploded>true</exploded>
         <module>2022_07_04_ExamenationWork</module>
         <packaging>war</packaging>
-        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
