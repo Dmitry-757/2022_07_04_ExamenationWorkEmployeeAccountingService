@@ -52,10 +52,15 @@ public class RecruitEmployeeServlet extends HttpServlet {
 //            System.out.println(d);
 //        }
 
-//        String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
-//        if(fullName != null) {
-//            System.out.println("fullName = "+ fullName);
-//        }
+        String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
+        if(fullName != null) {
+            System.out.println("fullName = "+ fullName);
+        }
+
+        String gender = req.getParameter("gender");//get selectDepartment parameter from http request
+        if(fullName != null) {
+            System.out.println("gender = "+ gender);
+        }
 
         RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");//get jsp-maket context
         dispatcher.forward(req, resp);//forward our data to jsp-page

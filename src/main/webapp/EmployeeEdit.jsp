@@ -74,13 +74,17 @@
     <br/>
 
     <div class="label">
+<%--        <label> Input gender of employee--%>
+<%--            &lt;%&ndash;                <select size="2" multiple name="sex[]">&ndash;%&gt;--%>
+<%--            <select name="sex[]">--%>
+<%--                &lt;%&ndash;                    <option disabled>Input sex of employee</option>&ndash;%&gt;--%>
+<%--                <option selected value="male">MALE</option>--%>
+<%--                <option value="female">FEMALE</option>--%>
+<%--            </select>--%>
+<%--        </label>--%>
         <label> Input gender of employee
-            <%--                <select size="2" multiple name="sex[]">--%>
-            <select name="sex[]">
-                <%--                    <option disabled>Input sex of employee</option>--%>
-                <option selected value="male">MALE</option>
-                <option value="female">FEMALE</option>
-            </select>
+            <input type="radio" value="male" checked name="gender"/>MALE
+            <input type="radio" value="female" name="gender"/>FEMALE
         </label>
     </div>
     <br/>

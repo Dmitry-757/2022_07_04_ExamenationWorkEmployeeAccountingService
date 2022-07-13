@@ -9,19 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="add property 'boss' to department">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/DepartmentServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/DepartmentEdit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="....">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DataBaseAddException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/AddDuplicatedObjException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DepartmentDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DepartmentDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/RecruitEmployee.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/EmployeeEdit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Entities/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Entities/EmployeeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/EmployeeEdit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/EmployeeEdit.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657287156020</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="....">
+      <created>1657712553932</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657712553932</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +251,7 @@
     <MESSAGE value="add test of duplicate record to BD" />
     <MESSAGE value="add body of meths in EmployeeService" />
     <MESSAGE value="make interface IEmployeeService deprecated" />
-    <option name="LAST_COMMIT_MESSAGE" value="make interface IEmployeeService deprecated" />
+    <MESSAGE value="...." />
+    <option name="LAST_COMMIT_MESSAGE" value="...." />
   </component>
 </project>
