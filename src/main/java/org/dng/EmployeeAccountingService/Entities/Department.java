@@ -9,20 +9,21 @@ import org.jetbrains.annotations.NotNull;
 public class Department {
     @NotNull
     private int id;
-    private String Name;
+    private String name;
     private Employee boss;
     private boolean deprecated;
 
-    public Department(String name) {
-        Name = name;
-
+    public Department(String name) throws AddDuplicatedObjException {
+        if(DepartmentDataBase.isExist(name))
+            throw new AddDuplicatedObjException("Department with such name is already existed!");
+        this.name = name;
         this.id = DepartmentDataBase.getMaxId()+1;
         DepartmentDataBase.setMaxId(this.id);
         DepartmentDataBase.add(this);
     }
 
     public Department(String name, Employee boss) {
-        Name = name;
+        this.name = name;
         this.boss = boss;
 
         this.id = DepartmentDataBase.getMaxId()+1;
@@ -31,7 +32,7 @@ public class Department {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public int getId() {
@@ -48,5 +49,9 @@ public class Department {
 
     public void setBoss(Employee boss) {
         this.boss = boss;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

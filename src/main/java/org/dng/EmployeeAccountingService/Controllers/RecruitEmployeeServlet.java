@@ -18,23 +18,27 @@ public class RecruitEmployeeServlet extends HttpServlet {
 //    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Department d1 = new Department("Kontora");
-        Department d2 = new Department("Buh");
+//        Department d1 = new Department("Kontora");
+//        Department d2 = new Department("Buh");
         List<Department> ld = DepartmentDataBase.findAll();
-        request.setAttribute("departments", ld);
+        if (ld.size()>0) {
+            request.setAttribute("departments", ld);
+        }
 
 
 //        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/cars.jsp");
 //        dispatcher.forward(req, resp);
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/RecruitEmployee.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Department> ld = DepartmentDataBase.findAll();
-        req.setAttribute("departments", ld);
+        if (ld.size()>0){
+            req.setAttribute("departments", ld);
+        }
 
         //searching and processing of "selectDepartment" parameter
         String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
@@ -53,7 +57,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
 //            System.out.println("fullName = "+ fullName);
 //        }
 
-        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/RecruitEmployee.jsp");//get jsp-maket context
+        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");//get jsp-maket context
         dispatcher.forward(req, resp);//forward our data to jsp-page
 
         /*

@@ -3,6 +3,6 @@ package org.dng.EmployeeAccountingService.Entities;
 /**
  * Пол
  */
-public enum Sex {
+public enum Gender {
     MALE, FEMALE
 }

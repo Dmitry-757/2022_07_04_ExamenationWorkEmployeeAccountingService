@@ -3,7 +3,7 @@ package org.dng.EmployeeAccountingService.Service;
 import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Job;
-import org.dng.EmployeeAccountingService.Entities.Sex;
+import org.dng.EmployeeAccountingService.Entities.Gender;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,7 +20,7 @@ public class EmployeeService {
     public static void recruitEmployee(@NotNull String fullName,
                                        LocalDate birthDate,
                                        @NotNull
-                                       Sex sex,
+                                               Gender sex,
                                        String phoneNumber,
                                        @NotNull Job job,
                                        @NotNull Department department,

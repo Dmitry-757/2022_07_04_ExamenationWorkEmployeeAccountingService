@@ -8,6 +8,9 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
+
+<a href="department">new department</a>
+<br>
 <a href="recruit">Recruit employee</a>
 </body>
 </html>

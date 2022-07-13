@@ -16,7 +16,7 @@ public class Employee {
     @NotNull
     private String fullName;
     private LocalDate birthDate;
-    private Sex sex;
+    private Gender sex;
     private String phoneNumber;
     @NotNull
     private Job job;
@@ -32,7 +32,7 @@ public class Employee {
 
     public Employee(@NotNull String fullName,
                     LocalDate birthDate,
-                    Sex sex,
+                    Gender sex,
                     String phoneNumber,
                     @NotNull Job job,
                     @NotNull Department department,
@@ -65,7 +65,7 @@ public class Employee {
         return birthDate;
     }
 
-    public Sex getSex() {
+    public Gender getSex() {
         return sex;
     }
 

@@ -3,7 +3,6 @@ package org.dng.EmployeeAccountingService.Entities;
 
 import org.dng.EmployeeAccountingService.Service.EmployeeService;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
-import org.dng.EmployeeAccountingService.repository.DataBaseAddException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -23,7 +22,7 @@ class EmployeeTest {
             department = new Department("Sale department");
             empl = new Employee("Pupkin Ivan Ivanovich",
                     LocalDate.of(1970, 6, 1),
-                    Sex.MALE,
+                    Gender.MALE,
                     "912-1234567",
                     job, department, null,
                     LocalDate.of(2022, 7, 8),
@@ -39,7 +38,7 @@ class EmployeeTest {
     void addDuplicatedEmployeeToDB() {
         final Employee empl2 = empl;
         EmployeeDataBase.getEmployeeHashMap().entrySet().forEach(s -> System.out.println(s.getKey() +" => "+ s.getValue()));
-        Assertions.assertThrows(DataBaseAddException.class, ()-> EmployeeDataBase.add(empl2),"Exception must be thrown!");
+        Assertions.assertThrows(AddDuplicatedObjException.class, ()-> EmployeeDataBase.add(empl2),"Exception must be thrown!");
     }
 
     @Test

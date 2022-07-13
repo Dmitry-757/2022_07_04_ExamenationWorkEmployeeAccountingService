@@ -23,12 +23,19 @@ public class DepartmentDataBase {
         return departmentHashMap;
     }
 
+    public static boolean isExist(String name){
+        return departmentHashMap.entrySet()
+                .stream()
+                .map(e -> e.getValue().getName())
+                .toList()
+                .contains(name);
+    }
+
     //    public static void add(Employee employee) throws DataBaseAddException {
     public static void add(Department department) {
-        //сначала проверим нет ли уже такого
+        //сначала проверим нет ли уже с таким id
         if (departmentHashMap.containsKey(department.getId())) {
-            //throw new DataBaseAddException("this employee is already present!");
-            System.out.println("this department is already present!");
+            System.out.println("department with such Id is already present!");
             return;
         }
         departmentHashMap.put(department.getId(),department);
