@@ -47,7 +47,18 @@ public class DepartmentDataBase {
                 .map(e -> e.getValue())
                 .toList();
     }
+
     public static Department getById(int id){
         return departmentHashMap.get(id);
     }
+
+    public static Department getByName(String name){
+        return departmentHashMap.entrySet()
+                .stream()
+                .filter(v-> v.getValue().getName().equals(name))
+                .map(e -> e.getValue())
+                .findFirst()
+                .get();
+    }
+
 }

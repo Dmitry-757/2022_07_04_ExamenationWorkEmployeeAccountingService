@@ -16,7 +16,7 @@ public class Employee {
     @NotNull
     private String fullName;
     private LocalDate birthDate;
-    private Gender sex;
+    private Gender gender;
     private String phoneNumber;
     @NotNull
     private Job job;
@@ -32,9 +32,9 @@ public class Employee {
 
     public Employee(@NotNull String fullName,
                     LocalDate birthDate,
-                    Gender sex,
+                    Gender gender,
                     String phoneNumber,
-                    @NotNull Job job,
+                    Job job,
                     @NotNull Department department,
                     Employee boss,
                     @NotNull LocalDate recruitDate,
@@ -43,7 +43,7 @@ public class Employee {
                     @NotNull int salary) {
         this.fullName = fullName;
         this.birthDate = birthDate;
-        this.sex = sex;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.job = job;
         this.department = department;
@@ -57,6 +57,10 @@ public class Employee {
         EmployeeDataBase.add(this);
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -65,8 +69,8 @@ public class Employee {
         return birthDate;
     }
 
-    public Gender getSex() {
-        return sex;
+    public Gender getGender() {
+        return gender;
     }
 
     public String getPhoneNumber() {
@@ -83,6 +87,13 @@ public class Employee {
 
     public Employee getBoss() {
         return boss;
+    }
+
+    public String getBossName() {
+        if(boss == null) {
+            return "";}
+
+        return boss.fullName;
     }
 
     public LocalDate getRecruitDate() {
@@ -113,5 +124,12 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public String getStatus() {
+        if (dismissed){
+            return "Dismissed";
+        }
+        return "in service";
     }
 }

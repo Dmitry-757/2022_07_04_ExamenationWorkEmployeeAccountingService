@@ -17,21 +17,22 @@ import java.util.Map;
 //public class EmployeeService implements IEmployeeService{
 public class EmployeeService {
 
-    public static void recruitEmployee(@NotNull String fullName,
+    public static void addEmployee(@NotNull String fullName,
                                        LocalDate birthDate,
                                        @NotNull
-                                               Gender sex,
+                                               Gender gender,
                                        String phoneNumber,
-                                       @NotNull Job job,
+                                       Job job,
                                        @NotNull Department department,
                                        Employee boss,
                                        @NotNull LocalDate recruitDate,
                                        LocalDate dismissDate,
                                        @NotNull int salary) {
-        new Employee(fullName, birthDate, sex, phoneNumber, job, department, boss, recruitDate, dismissDate, salary);
+        new Employee(fullName, birthDate, gender, phoneNumber, job, department, boss, recruitDate, dismissDate, salary);
     }
 
     public static void changeEmployee(Employee employee) {
+        System.out.println("did not made yet");
     }
 
     public static void dismissEmployee(Employee employee, LocalDate dismissDate) {

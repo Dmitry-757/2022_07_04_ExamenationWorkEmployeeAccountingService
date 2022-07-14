@@ -27,16 +27,23 @@
     </style>
 </head>
 <body>
+<a style="font-size: x-large" href="/">main menu</a>
+<br>
+<br>
+<hr>
+<br>
+
 <form method="post">
 
     <label for="fullName"> Input full name of department
-        <input type="text" id="fullName" name="fullName">
+        <input style="margin-left: 10px;" type="text" id="fullName" name="fullName">
     </label>
 
     <br/>
     <input type="submit" value="save department">
 </form>
 
+<hr>
 <br>
 
 <table>
@@ -60,7 +67,7 @@
         }
     %>
 </table>
-<a href="/">begin</a>
+
 
 </body>
 </html>

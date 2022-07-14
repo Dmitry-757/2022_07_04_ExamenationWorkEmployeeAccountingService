@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Employee Accounting Service</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Employee Accounting Service" %>
 </h1>
 <br/>
 

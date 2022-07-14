@@ -15,7 +15,7 @@ public class Department {
 
     public Department(String name) throws AddDuplicatedObjException {
         if(DepartmentDataBase.isExist(name))
-            throw new AddDuplicatedObjException("Department with such name is already existed!");
+            throw new AddDuplicatedObjException("Department with such name is already exist!");
         this.name = name;
         this.id = DepartmentDataBase.getMaxId()+1;
         DepartmentDataBase.setMaxId(this.id);
@@ -37,6 +37,10 @@ public class Department {
 
     public int getId() {
         return id;
+    }
+
+    public Employee getBoss() {
+        return boss;
     }
 
     public boolean isDeprecated() {

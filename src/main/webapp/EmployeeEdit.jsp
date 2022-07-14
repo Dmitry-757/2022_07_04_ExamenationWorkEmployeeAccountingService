@@ -1,5 +1,6 @@
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Department" %>
 <%@ page import="java.util.List" %>
+<%@ page import="org.dng.EmployeeAccountingService.Entities.Employee" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -34,6 +35,11 @@
 </head>
 
 <body>
+
+<a style="font-size: x-large" href="/">main menu</a>
+<br>
+<hr>
+<br>
 <form method="post">
 
     <div class="label">
@@ -74,14 +80,6 @@
     <br/>
 
     <div class="label">
-<%--        <label> Input gender of employee--%>
-<%--            &lt;%&ndash;                <select size="2" multiple name="sex[]">&ndash;%&gt;--%>
-<%--            <select name="sex[]">--%>
-<%--                &lt;%&ndash;                    <option disabled>Input sex of employee</option>&ndash;%&gt;--%>
-<%--                <option selected value="male">MALE</option>--%>
-<%--                <option value="female">FEMALE</option>--%>
-<%--            </select>--%>
-<%--        </label>--%>
         <label> Input gender of employee
             <input type="radio" value="male" checked name="gender"/>MALE
             <input type="radio" value="female" name="gender"/>FEMALE
@@ -104,12 +102,12 @@
     </div>
     <br/>
 
-    <div class="label">
-        <label for="boss"> Input boss of employee
-            <input type="text" id="boss" name="department">
-        </label>
-    </div>
-    <br/>
+<%--    <div class="label">--%>
+<%--        <label for="boss"> Input boss of employee--%>
+<%--            <input type="text" id="boss" name="department">--%>
+<%--        </label>--%>
+<%--    </div>--%>
+<%--    <br/>--%>
 
     <div class="label">
         <label for="recruitDate"> Input recruitDate of recruiting
@@ -128,7 +126,60 @@
 
     <input type="submit" value="Recruit employee">
 </form>
+<%--<br>--%>
+<hr>
 
-<a href="/">begin</a>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Full name</th>
+        <th>Department</th>
+        <th>Birth date</th>
+        <th>Gender</th>
+        <th>Phone number</th>
+        <th>Job name</th>
+        <th>Boss</th>
+        <th>Date of recruiting</th>
+        <th>Salary size</th>
+        <th>Status</th>
+
+    </tr>
+
+    <% if (request.getAttribute("employees") != null) {
+        List<Employee> employees = (List<Employee>) request.getAttribute("employees");
+        for (Employee employee : employees) {
+    %>
+    <tr>
+        <td><%= employee.getId() %>
+        </td>
+        <td><%= employee.getFullName() %>
+        </td>
+        <td><%= employee.getDepartment().getName() %>
+        </td>
+        <td><%= employee.getBirthDate() %>
+        </td>
+        <td><%= employee.getGender() %>
+        </td>
+        <td><%= employee.getPhoneNumber() %>
+        </td>
+        <td><%= employee.getJob() %>
+        </td>
+        <td><%= employee.getBossName() %>
+        </td>
+        <td><%= employee.getRecruitDate() %>
+        </td>
+        <td><%= employee.getSalary() %>
+        </td>
+        <td><%= employee.getStatus() %>
+        </td>
+
+
+    </tr>
+    <%
+            }
+        }
+    %>
+</table>
+
 </body>
 </html>
