@@ -14,7 +14,11 @@ public class DepartmentService {
         }
     }
     public static void addDepartment(String name, Employee boss) {
-        new Department(name, boss);
+        try {
+            new Department(name, boss);
+        } catch (AddDuplicatedObjException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void setDepartmentBoss(Department department, Employee boss) {

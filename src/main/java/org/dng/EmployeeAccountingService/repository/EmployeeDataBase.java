@@ -1,6 +1,6 @@
 package org.dng.EmployeeAccountingService.repository;
 
-import org.dng.EmployeeAccountingService.Entities.Department;
+
 import org.dng.EmployeeAccountingService.Entities.Employee;
 
 import java.util.HashMap;

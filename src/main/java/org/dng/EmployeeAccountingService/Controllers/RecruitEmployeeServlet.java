@@ -12,9 +12,8 @@ import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Gender;
 import org.dng.EmployeeAccountingService.Entities.Job;
-import org.dng.EmployeeAccountingService.Service.DepartmentService;
 import org.dng.EmployeeAccountingService.Service.EmployeeService;
-import org.dng.EmployeeAccountingService.repository.DepartmentDataBase;
+import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +27,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 //        Department d1 = new Department("Kontora");
 //        Department d2 = new Department("Buh");
-        List<Department> ld = DepartmentDataBase.findAll();
+        List<Department> ld = DepartmentDataBase_old.findAll();
         if (ld.size()>0) {
             request.setAttribute("departments", ld);
         }
@@ -43,7 +42,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Department> ld = DepartmentDataBase.findAll();
+        List<Department> ld = DepartmentDataBase_old.findAll();
         if (ld.size()>0){
             req.setAttribute("departments", ld);
         }
@@ -95,7 +94,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
         String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
         if(selectDepartment != null) {
             int id = Integer.parseInt(selectDepartment);
-            department = DepartmentDataBase.getById(id);
+            department = DepartmentDataBase_old.getById(id);
             //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
             boss = department.getBoss();
         }

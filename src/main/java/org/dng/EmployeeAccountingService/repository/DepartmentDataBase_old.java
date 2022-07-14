@@ -5,20 +5,22 @@ import org.dng.EmployeeAccountingService.Entities.Department;
 import java.util.HashMap;
 import java.util.List;
 
-public class DepartmentDataBase extends DataBaseAbstract<Department>{
-//    private static int maxId;
-//    private static HashMap<Integer, Department> departmentHashMap = new HashMap<>();
+public class DepartmentDataBase_old {
+    private static int maxId;
 
-//    public static int getMaxId() {
-//        return maxId;
-//    }
-//    public static void setMaxId(int maxId) {
-//        DepartmentDataBase.maxId = maxId;
-//    }
+    private static HashMap<Integer, Department> departmentHashMap = new HashMap<>();
+
+    public static int getMaxId() {
+        return maxId;
+    }
+
+    public static void setMaxId(int maxId) {
+        DepartmentDataBase_old.maxId = maxId;
+    }
 
 
-    public boolean isExist(String name){
-        return entityHashMap.entrySet()
+    public static boolean isExist(String name){
+        return departmentHashMap.entrySet()
                 .stream()
                 .map(e -> e.getValue().getName())
                 .toList()
@@ -26,28 +28,28 @@ public class DepartmentDataBase extends DataBaseAbstract<Department>{
     }
 
     //    public static void add(Employee employee) throws DataBaseAddException {
-    public void add(Department department) {
+    public static void add(Department department) {
         //сначала проверим нет ли уже с таким id
-        if (entityHashMap.containsKey(department.getId())) {
+        if (departmentHashMap.containsKey(department.getId())) {
             System.out.println("department with such Id is already present!");
             return;
         }
-        entityHashMap.put(department.getId(),department);
+        departmentHashMap.put(department.getId(),department);
     }
 
-    public List<Department> findAll() {
-        return entityHashMap.entrySet()
+    public static List<Department> findAll() {
+        return departmentHashMap.entrySet()
                 .stream()
                 .map(e -> e.getValue())
                 .toList();
     }
 
-    public Department getById(int id){
-        return entityHashMap.get(id);
+    public static Department getById(int id){
+        return departmentHashMap.get(id);
     }
 
-    public Department getByName(String name){
-        return entityHashMap.entrySet()
+    public static Department getByName(String name){
+        return departmentHashMap.entrySet()
                 .stream()
                 .filter(v-> v.getValue().getName().equals(name))
                 .map(e -> e.getValue())

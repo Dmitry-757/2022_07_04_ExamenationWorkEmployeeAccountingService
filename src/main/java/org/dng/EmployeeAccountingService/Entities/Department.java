@@ -1,6 +1,9 @@
 package org.dng.EmployeeAccountingService.Entities;
 
-import org.dng.EmployeeAccountingService.repository.DepartmentDataBase;
+import org.dng.EmployeeAccountingService.AppContext;
+import org.dng.EmployeeAccountingService.MyServletContext;
+import org.dng.EmployeeAccountingService.repository.DataBaseAbstract;
+import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -14,21 +17,24 @@ public class Department {
     private boolean deprecated;
 
     public Department(String name) throws AddDuplicatedObjException {
-        if(DepartmentDataBase.isExist(name))
+        if(AppContext.getDepartmentDataBase().isExist(name))
             throw new AddDuplicatedObjException("Department with such name is already exist!");
         this.name = name;
-        this.id = DepartmentDataBase.getMaxId()+1;
-        DepartmentDataBase.setMaxId(this.id);
-        DepartmentDataBase.add(this);
+        this.id = AppContext.getDepartmentDataBase().getMaxId()+1;
+        AppContext.getDepartmentDataBase().setMaxId(this.id);
+        AppContext.getDepartmentDataBase().add(this);
     }
 
-    public Department(String name, Employee boss) {
+    public Department(String name, Employee boss) throws AddDuplicatedObjException {
+        if(AppContext.getDepartmentDataBase().isExist(name))
+            throw new AddDuplicatedObjException("Department with such name is already exist!");
+
         this.name = name;
         this.boss = boss;
 
-        this.id = DepartmentDataBase.getMaxId()+1;
-        DepartmentDataBase.setMaxId(this.id);
-        DepartmentDataBase.add(this);
+        this.id = AppContext.getDepartmentDataBase().getMaxId()+1;
+        AppContext.getDepartmentDataBase().setMaxId(this.id);
+        AppContext.getDepartmentDataBase().add(this);
     }
 
     public String getName() {
