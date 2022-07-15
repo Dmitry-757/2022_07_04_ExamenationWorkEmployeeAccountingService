@@ -130,7 +130,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
             assert gender != null;
             assert department != null;
             assert recruitDate != null;
-            AppContext.getEmployeeService().addEmployee(fullName,
+            AppContext.getEmployeeService().add(fullName,
                     inn,
                     birthDate,
                     gender,

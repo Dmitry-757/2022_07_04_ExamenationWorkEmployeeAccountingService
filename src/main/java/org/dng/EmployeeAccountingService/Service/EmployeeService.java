@@ -17,7 +17,7 @@ import java.util.Map;
 //public class EmployeeService implements IEmployeeService{
 public class EmployeeService {
 
-    public void addEmployee(@NotNull String fullName,
+    public void add(@NotNull String fullName,
                                        int inn,
                                        LocalDate birthDate,
                                        @NotNull
