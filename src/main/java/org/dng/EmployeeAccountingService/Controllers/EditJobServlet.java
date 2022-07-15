@@ -36,12 +36,23 @@ public class EditJobServlet extends HttpServlet {
             }
         }
 
+        //String[] numChecked = request.getParameterValues("checkedJobs");//get array parameters from http request
+        String numChecked = request.getParameter("checkedJob");//get parameter from http request
+        if(numChecked != null) {
+            if (numChecked.length() > 0) {
+                Job job = AppContext.getJobDataBase().getById(Integer.parseInt(numChecked));
+                System.out.println(job.getName());
+            }
+        }
+
+
+
         List<Job> lj = AppContext.getJobDataBase().findAll();
         if (lj.size()>0){
             request.setAttribute("jobs", lj);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewJob.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EditJob.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -51,7 +51,7 @@
         <tr>
             <th>Name of Job</th>
             <th>Id </th>
-            <th>??? </th>
+            <th>Check for edit </th>
         </tr>
 
         <% if (request.getAttribute("jobs") != null) {
@@ -59,19 +59,20 @@
             int i = 0;
             for (Job job : jobs) {
                 i++;
+//                System.out.println("i="+i);
         %>
-        <tr>
-            <td><%= job.getName() %>
-            </td>
-            <td><%= job.getId() %>
-            </td>
-            <td align="middle">
-                <input type="radio"
-                       value=""+<%= i%>
-                       name="checked"
-                       >
-            </td>
-        </tr>
+                <tr>
+                    <td><%= job.getName() %>
+                    </td>
+                    <td><%= job.getId() %>
+                    </td>
+                    <td align="middle">
+                        <input type="radio"
+                               value=<%= i%>
+                               name="checkedJob"
+                               >
+                    </td>
+                </tr>
         <%
                 }
             }

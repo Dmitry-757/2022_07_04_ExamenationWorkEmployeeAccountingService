@@ -13,6 +13,8 @@
 <br>
 <a href="newjob">new job</a>
 <br>
+<a href="editjob">edit jobs list</a>
+<br>
 <a href="recruit">Recruit employee</a>
 </body>
 </html>
