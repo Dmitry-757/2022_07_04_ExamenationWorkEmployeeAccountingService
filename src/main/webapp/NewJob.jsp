@@ -46,30 +46,20 @@
 <hr>
 <br>
 
-<form method="post">
     <table>
         <tr>
             <th>Name of Job</th>
             <th>Id </th>
-            <th>??? </th>
         </tr>
 
         <% if (request.getAttribute("jobs") != null) {
             List<Job> jobs = (List<Job>) request.getAttribute("jobs");
-            int i = 0;
             for (Job job : jobs) {
-                i++;
         %>
         <tr>
             <td><%= job.getName() %>
             </td>
             <td><%= job.getId() %>
-            </td>
-            <td align="middle">
-                <input type="radio"
-                       value=""+<%= i%>
-                       name="checked"
-                       >
             </td>
         </tr>
         <%
@@ -77,10 +67,5 @@
             }
         %>
     </table>
-    <br>
-    <input type="submit" value="edit job">
-    <br>
-</form>
-
 </body>
 </html>

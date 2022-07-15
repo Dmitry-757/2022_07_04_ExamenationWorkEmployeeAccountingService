@@ -11,7 +11,7 @@
 
 <a href="department">new department</a>
 <br>
-<a href="job">new job</a>
+<a href="newjob">new job</a>
 <br>
 <a href="recruit">Recruit employee</a>
 </body>

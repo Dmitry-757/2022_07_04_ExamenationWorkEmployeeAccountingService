@@ -21,14 +21,8 @@ import org.jetbrains.annotations.NotNull;
 
 @WebServlet(name = "recruitServlet", value = "/recruit")
 public class RecruitEmployeeServlet extends HttpServlet {
-//    private String message;
-//    public void init() {
-//        message = "Hello World from servlet ;) !";
-//    }
 
     public void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
-//        Department d1 = new Department("Kontora");
-//        Department d2 = new Department("Buh");
         List<Department> ld = AppContext.getDepartmentDataBase().findAll();
         if (ld.size()>0){
             req.setAttribute("departments", ld);
@@ -43,10 +37,6 @@ public class RecruitEmployeeServlet extends HttpServlet {
         if (le.size()>0){
             req.setAttribute("employees", le);
         }
-
-
-//        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/cars.jsp");
-//        dispatcher.forward(req, resp);
 
         RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");
         dispatcher.forward(req, response);

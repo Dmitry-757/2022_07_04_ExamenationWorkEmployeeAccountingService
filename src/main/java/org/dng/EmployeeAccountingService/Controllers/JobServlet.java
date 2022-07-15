@@ -16,7 +16,7 @@ import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "JobServlet", value = "/job")
+@WebServlet(name = "JobServlet", value = "/newjob")
 public class JobServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,8 +25,7 @@ public class JobServlet extends HttpServlet {
             request.setAttribute("jobs", lj);
         }
 
-
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/JobEdit.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewJob.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -46,7 +45,7 @@ public class JobServlet extends HttpServlet {
         }
 
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/JobEdit.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewJob.jsp");
         dispatcher.forward(request, response);
     }
 }
