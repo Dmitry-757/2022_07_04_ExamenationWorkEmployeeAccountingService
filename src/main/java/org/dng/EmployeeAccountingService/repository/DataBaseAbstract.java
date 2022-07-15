@@ -1,7 +1,6 @@
 package org.dng.EmployeeAccountingService.repository;
 
 import java.util.HashMap;
-import java.util.List;
 
 public abstract class DataBaseAbstract<T> {
     protected int maxId;
@@ -16,15 +15,7 @@ public abstract class DataBaseAbstract<T> {
         maxId = maxId2;
     }
 
-
-    public abstract boolean isExist(String name);
-
-    public abstract void add(T entity);
-
-    public abstract List<T> findAll();
-
-    public abstract T getById(int id);
-
-    public abstract T getByName(String name);
-
+    public HashMap<Integer, T> getEntityHashMap() {
+        return entityHashMap;
+    }
 }

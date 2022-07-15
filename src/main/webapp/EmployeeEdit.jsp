@@ -69,6 +69,13 @@
     <br/>
 
     <div class="label">
+        <label for="inn"> Input INN of employee
+            <input type="number" id="inn" name="inn">
+        </label>
+    </div>
+    <br/>
+
+    <div class="label">
         <label for="birthDate"> Input birthDate of employee
             <input type="date" id="birthDate" name="birthDate">
         </label>
@@ -149,6 +156,7 @@
     <tr>
         <th>Id</th>
         <th>Full name</th>
+        <th>INN</th>
         <th>Department</th>
         <th>Birth date</th>
         <th>Gender</th>
@@ -169,6 +177,8 @@
         <td><%= employee.getId() %>
         </td>
         <td><%= employee.getFullName() %>
+        </td>
+        <td><%= employee.getInn() %>
         </td>
         <td><%= employee.getDepartment().getName() %>
         </td>

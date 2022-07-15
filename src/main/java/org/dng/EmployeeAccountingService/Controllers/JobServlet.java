@@ -7,11 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.dng.EmployeeAccountingService.AppContext;
-import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Job;
-import org.dng.EmployeeAccountingService.Service.DepartmentService;
-import org.dng.EmployeeAccountingService.Service.JobService;
-import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +16,7 @@ import java.util.List;
 public class JobServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Job> lj = AppContext.getJobDataBase().findAll();
+        List<Job> lj = AppContext.getJobService().findAll();
         if (lj.size()>0){
             request.setAttribute("jobs", lj);
         }
@@ -35,11 +31,11 @@ public class JobServlet extends HttpServlet {
         if(fullName != null) {
             System.out.println("fullName = "+ fullName);
             if (fullName.length()>0){
-                JobService.addJob(fullName);
+                AppContext.getJobService().add(fullName);
             }
         }
 
-        List<Job> lj = AppContext.getJobDataBase().findAll();
+        List<Job> lj = AppContext.getJobService().findAll();
         if (lj.size()>0){
             request.setAttribute("jobs", lj);
         }

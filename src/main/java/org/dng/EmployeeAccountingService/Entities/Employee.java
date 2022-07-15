@@ -1,5 +1,6 @@
 package org.dng.EmployeeAccountingService.Entities;
 
+import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,11 +13,13 @@ import java.util.Objects;
 public class Employee {
 
     @NotNull
-    private int id;
+    private final int id;
     @NotNull
-    private String fullName;
-    private LocalDate birthDate;
-    private Gender gender;
+    private final int inn;
+    @NotNull
+    private final String fullName;
+    private final LocalDate birthDate;
+    private final Gender gender;
     private String phoneNumber;
     @NotNull
     private Job job;
@@ -31,6 +34,7 @@ public class Employee {
     private int salary;
 
     public Employee(@NotNull String fullName,
+                    int inn,
                     LocalDate birthDate,
                     Gender gender,
                     String phoneNumber,
@@ -41,6 +45,7 @@ public class Employee {
                     LocalDate dismissDate,
 //                    @NotNull int salary) throws Exception {
                     @NotNull int salary) {
+        this.inn = inn;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.gender = gender;
@@ -52,13 +57,17 @@ public class Employee {
         this.dismissDate = dismissDate;
         this.salary = salary;
 
-        this.id = EmployeeDataBase.getMaxId()+1;
-        EmployeeDataBase.setMaxId(this.id);
-        EmployeeDataBase.add(this);
+        this.id = AppContext.getEmployeeDataBase().getMaxId()+1;
+        AppContext.getEmployeeDataBase().setMaxId(this.id);
+        AppContext.getEmployeeDataBase().put(this);
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getInn() {
+        return inn;
     }
 
     public String getFullName() {

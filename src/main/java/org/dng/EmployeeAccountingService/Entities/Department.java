@@ -1,9 +1,6 @@
 package org.dng.EmployeeAccountingService.Entities;
 
 import org.dng.EmployeeAccountingService.AppContext;
-import org.dng.EmployeeAccountingService.MyServletContext;
-import org.dng.EmployeeAccountingService.repository.DataBaseAbstract;
-import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -17,16 +14,16 @@ public class Department {
     private boolean deprecated;
 
     public Department(String name) throws AddDuplicatedObjException {
-        if(AppContext.getDepartmentDataBase().isExist(name))
+        if(AppContext.getDepartmentService().isExist(name))
             throw new AddDuplicatedObjException("Department with such name is already exist!");
         this.name = name;
         this.id = AppContext.getDepartmentDataBase().getMaxId()+1;
         AppContext.getDepartmentDataBase().setMaxId(this.id);
-        AppContext.getDepartmentDataBase().add(this);
+        AppContext.getDepartmentDataBase().put(this);
     }
 
     public Department(String name, Employee boss) throws AddDuplicatedObjException {
-        if(AppContext.getDepartmentDataBase().isExist(name))
+        if(AppContext.getDepartmentService().isExist(name))
             throw new AddDuplicatedObjException("Department with such name is already exist!");
 
         this.name = name;
@@ -34,7 +31,7 @@ public class Department {
 
         this.id = AppContext.getDepartmentDataBase().getMaxId()+1;
         AppContext.getDepartmentDataBase().setMaxId(this.id);
-        AppContext.getDepartmentDataBase().add(this);
+        AppContext.getDepartmentDataBase().put(this);
     }
 
     public String getName() {

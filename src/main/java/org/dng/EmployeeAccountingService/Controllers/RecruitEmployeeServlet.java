@@ -13,27 +13,23 @@ import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Gender;
 import org.dng.EmployeeAccountingService.Entities.Job;
-import org.dng.EmployeeAccountingService.Service.DepartmentService;
-import org.dng.EmployeeAccountingService.Service.EmployeeService;
-import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
-import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
 @WebServlet(name = "recruitServlet", value = "/recruit")
 public class RecruitEmployeeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
-        List<Department> ld = AppContext.getDepartmentDataBase().findAll();
+        List<Department> ld = AppContext.getDepartmentService().findAll();
         if (ld.size()>0){
             req.setAttribute("departments", ld);
         }
 
-        List<Job> lj = AppContext.getJobDataBase().findAll();
+        List<Job> lj = AppContext.getJobService().findAll();
         if (lj.size()>0){
             req.setAttribute("jobs", lj);
         }
 
-        List<Employee> le = EmployeeDataBase.findAll();
+        List<Employee> le = AppContext.getEmployeeService().findAll();
         if (le.size()>0){
             req.setAttribute("employees", le);
         }
@@ -44,12 +40,12 @@ public class RecruitEmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Department> ld = AppContext.getDepartmentDataBase().findAll();
+        List<Department> ld = AppContext.getDepartmentService().findAll();
         if (ld.size()>0){
             req.setAttribute("departments", ld);
         }
 
-        List<Job> lj = AppContext.getJobDataBase().findAll();
+        List<Job> lj = AppContext.getJobService().findAll();
         if (lj.size()>0){
             req.setAttribute("jobs", lj);
         }
@@ -63,6 +59,11 @@ public class RecruitEmployeeServlet extends HttpServlet {
         String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
         if(fullName != null) {
             System.out.println("fullName = "+ fullName);
+        }
+
+        @NotNull int inn = 0;
+        if(req.getParameter("inn")!=""){
+            inn = Integer.parseInt(req.getParameter("inn"));
         }
 
         @NotNull
@@ -101,7 +102,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
         String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
         if(selectDepartment != null) {
             int id = Integer.parseInt(selectDepartment);
-            department = AppContext.getDepartmentDataBase().getById(id);
+            department = AppContext.getDepartmentService().getById(id);
             //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
             boss = department.getBoss();
         }
@@ -110,7 +111,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
         String selectJob = req.getParameter("selectJob");//get selectJob parameter from http request <select name="selectJob">
         if(selectJob != null) {
             int id = Integer.parseInt(selectJob);
-            job = AppContext.getJobDataBase().getById(id);
+            job = AppContext.getJobService().getById(id);
         }
 
 
@@ -129,7 +130,8 @@ public class RecruitEmployeeServlet extends HttpServlet {
             assert gender != null;
             assert department != null;
             assert recruitDate != null;
-            EmployeeService.addEmployee(fullName,
+            AppContext.getEmployeeService().addEmployee(fullName,
+                    inn,
                     birthDate,
                     gender,
                     phoneNumber,
@@ -141,7 +143,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
                     salary);
         }
 
-        List<Employee> le = EmployeeDataBase.findAll();
+        List<Employee> le = AppContext.getEmployeeService().findAll();
         if (le.size()>0){
             req.setAttribute("employees", le);
         }

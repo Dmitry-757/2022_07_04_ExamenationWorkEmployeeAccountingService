@@ -5,9 +5,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.Entities.Department;
-import org.dng.EmployeeAccountingService.Service.DepartmentService;
-import org.dng.EmployeeAccountingService.Service.JobService;
-import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +13,7 @@ import java.util.List;
 public class DepartmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Department> ld = AppContext.getDepartmentDataBase().findAll();
+        List<Department> ld = AppContext.getDepartmentService().findAll();
         if (ld.size()>0){
             request.setAttribute("departments", ld);
         }
@@ -31,11 +28,11 @@ public class DepartmentServlet extends HttpServlet {
         if(fullName != null) {
             System.out.println("fullName = "+ fullName);
             if (fullName.length()>0){
-                DepartmentService.addDepartment(fullName);
+                AppContext.getDepartmentService().add(fullName);
             }
         }
 
-        List<Department> ld = AppContext.getDepartmentDataBase().findAll();
+        List<Department> ld = AppContext.getDepartmentService().findAll();
         if (ld.size()>0){
             request.setAttribute("departments", ld);
         }

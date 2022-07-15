@@ -35,8 +35,8 @@
 
 <form method="post">
 
-    <label for="fullName"> Input full name of job
-        <input style="margin-left: 10px;" type="text" id="fullName" name="fullName">
+    <label for="fullName"> Input full name of job <%= request.getAttribute("fullName")%>
+        <input style="margin-left: 10px;" type="text" id="fullName" name="fullName" value=<%= request.getAttribute("fullName")%>>
     </label>
 
     <br/>
