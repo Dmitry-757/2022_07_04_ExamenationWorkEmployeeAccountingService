@@ -8,10 +8,12 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Gender;
 import org.dng.EmployeeAccountingService.Entities.Job;
+import org.dng.EmployeeAccountingService.Service.DepartmentService;
 import org.dng.EmployeeAccountingService.Service.EmployeeService;
 import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
@@ -24,27 +26,42 @@ public class RecruitEmployeeServlet extends HttpServlet {
 //        message = "Hello World from servlet ;) !";
 //    }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
 //        Department d1 = new Department("Kontora");
 //        Department d2 = new Department("Buh");
-        List<Department> ld = DepartmentDataBase_old.findAll();
-        if (ld.size()>0) {
-            request.setAttribute("departments", ld);
+        List<Department> ld = AppContext.getDepartmentDataBase().findAll();
+        if (ld.size()>0){
+            req.setAttribute("departments", ld);
+        }
+
+        List<Job> lj = AppContext.getJobDataBase().findAll();
+        if (lj.size()>0){
+            req.setAttribute("jobs", lj);
+        }
+
+        List<Employee> le = EmployeeDataBase.findAll();
+        if (le.size()>0){
+            req.setAttribute("employees", le);
         }
 
 
 //        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/cars.jsp");
 //        dispatcher.forward(req, resp);
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");
-        dispatcher.forward(request, response);
+        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");
+        dispatcher.forward(req, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Department> ld = DepartmentDataBase_old.findAll();
+        List<Department> ld = AppContext.getDepartmentDataBase().findAll();
         if (ld.size()>0){
             req.setAttribute("departments", ld);
+        }
+
+        List<Job> lj = AppContext.getJobDataBase().findAll();
+        if (lj.size()>0){
+            req.setAttribute("jobs", lj);
         }
 
 
@@ -84,9 +101,9 @@ public class RecruitEmployeeServlet extends HttpServlet {
         }
 
         //@NotNull
-        Job job = null;
-        if(req.getParameter("job")!=""){
-        }
+//        Job job = null;
+//        if(req.getParameter("job")!=""){
+//        }
 
         //searching and processing of "selectDepartment" parameter
         @NotNull Department department = null;
@@ -94,9 +111,16 @@ public class RecruitEmployeeServlet extends HttpServlet {
         String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
         if(selectDepartment != null) {
             int id = Integer.parseInt(selectDepartment);
-            department = DepartmentDataBase_old.getById(id);
+            department = AppContext.getDepartmentDataBase().getById(id);
             //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
             boss = department.getBoss();
+        }
+
+        @NotNull Job job = null;
+        String selectJob = req.getParameter("selectJob");//get selectJob parameter from http request <select name="selectJob">
+        if(selectJob != null) {
+            int id = Integer.parseInt(selectJob);
+            job = AppContext.getJobDataBase().getById(id);
         }
 
 
@@ -111,17 +135,21 @@ public class RecruitEmployeeServlet extends HttpServlet {
             salary = Integer.parseInt(req.getParameter("salary"));
         }
 
-        EmployeeService.addEmployee(fullName,
-                 birthDate,
-                gender,
-                phoneNumber,
-                job,
-                department,
-                boss,
-                recruitDate,
-                dismissDate,
-        salary);
-
+        if (fullName.length()>0) {
+            assert gender != null;
+            assert department != null;
+            assert recruitDate != null;
+            EmployeeService.addEmployee(fullName,
+                    birthDate,
+                    gender,
+                    phoneNumber,
+                    job,
+                    department,
+                    boss,
+                    recruitDate,
+                    dismissDate,
+                    salary);
+        }
 
         List<Employee> le = EmployeeDataBase.findAll();
         if (le.size()>0){

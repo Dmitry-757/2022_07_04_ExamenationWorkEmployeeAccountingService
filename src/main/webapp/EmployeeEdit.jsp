@@ -1,6 +1,7 @@
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Department" %>
 <%@ page import="java.util.List" %>
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Employee" %>
+<%@ page import="org.dng.EmployeeAccountingService.Entities.Job" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -22,7 +23,7 @@
         /*td {*/
         /*    text-align: center;*/
         /*}*/
-        div .departmentsSelect{
+        div .Select{
             padding-: 10px 10px 10px 10px;
         }
         div .label{
@@ -45,14 +46,10 @@
     <div class="label">
         <label> Input department of employee
             <select name="selectDepartment">
-                <%--                                <option value="male">MALE</option>--%>
-                <%--                                <option value="female">FEMALE</option>--%>
-
-
                 <% if (request.getAttribute("departments") != null) {
                     List<Department> departments = (List<Department>) request.getAttribute("departments");
                     for (Department department : departments) { %>
-                        <div class="departmentsSelect">
+                        <div class="Select">
                             <option value=<%= department.getId() %>> <%= department.getName() %> </option>
                         </div>
                 <%
@@ -95,12 +92,31 @@
 
     <br/>
 
+<%--    <div class="label">--%>
+<%--        <label for="job"> Input job name of employee--%>
+<%--            <input type="text" id="job" name="job">--%>
+<%--        </label>--%>
+<%--    </div>--%>
+<%--    <br/>--%>
+
     <div class="label">
-        <label for="job"> Input job name of employee
-            <input type="text" id="job" name="job">
+        <label> Input job of employee
+            <select name="selectJob">
+                <% if (request.getAttribute("jobs") != null) {
+                    List<Job> jobs = (List<Job>) request.getAttribute("jobs");
+                    for (Job job : jobs) { %>
+                <div class="Select">
+                    <option value=<%= job.getId() %>> <%= job.getName() %> </option>
+                </div>
+                <%
+                        }
+                    }
+                %>
+            </select>
         </label>
     </div>
-    <br/>
+    <br>
+
 
 <%--    <div class="label">--%>
 <%--        <label for="boss"> Input boss of employee--%>
@@ -162,7 +178,7 @@
         </td>
         <td><%= employee.getPhoneNumber() %>
         </td>
-        <td><%= employee.getJob() %>
+        <td><%= employee.getJob().getName() %>
         </td>
         <td><%= employee.getBossName() %>
         </td>

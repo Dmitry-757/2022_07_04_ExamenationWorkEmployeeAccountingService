@@ -35,7 +35,9 @@ public class JobServlet extends HttpServlet {
         String fullName = request.getParameter("fullName");//get  parameter from http request
         if(fullName != null) {
             System.out.println("fullName = "+ fullName);
-            JobService.addJob(fullName);
+            if (fullName.length()>0){
+                JobService.addJob(fullName);
+            }
         }
 
         List<Job> lj = AppContext.getJobDataBase().findAll();
