@@ -7,17 +7,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.dng.EmployeeAccountingService.AppContext;
-import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Job;
-import org.dng.EmployeeAccountingService.Service.DepartmentService;
 import org.dng.EmployeeAccountingService.Service.JobService;
-import org.dng.EmployeeAccountingService.repository.DepartmentDataBase_old;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "JobServlet", value = "/newjob")
-public class JobServlet extends HttpServlet {
+@WebServlet(name = "EditJobServlet", value = "/editjob")
+public class EditJobServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Job> lj = AppContext.getJobDataBase().findAll();
@@ -25,7 +22,7 @@ public class JobServlet extends HttpServlet {
             request.setAttribute("jobs", lj);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewJob.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EditJob.jsp");
         dispatcher.forward(request, response);
     }
 
