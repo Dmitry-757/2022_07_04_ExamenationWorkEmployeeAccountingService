@@ -11,6 +11,8 @@
 
 <a href="department">new department</a>
 <br>
+<a href="editdepartment">edit departments list</a>
+<br>
 <a href="newjob">new job</a>
 <br>
 <a href="editjob">edit jobs list</a>
