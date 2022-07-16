@@ -10,19 +10,41 @@
             border: 2px solid rgb(200, 200, 200);
             letter-spacing: 1px;
             font-size: 0.8rem;
+            width: 100%;
         }
 
         td, th {
             border: 1px solid rgb(190, 190, 190);
             padding: 10px 20px;
+            width: 33%;
         }
 
         th {
             background-color: rgb(235, 235, 235);
+            /*width: 33%;*/
         }
 
         td {
             text-align: center;
+        }
+        .myTable{
+            overflow-y: auto;
+            height: 150px;
+            width: 460px;
+        }
+        .myTableHeader{
+            /*height: 200px;*/
+            width: 460px;
+        <%
+            int width=460;
+            if (request.getAttribute("jobs") != null) {
+                        List<Job> jobs = (List<Job>) request.getAttribute("jobs");
+                        if (jobs.size()>=4){
+                            width=445;
+                        }
+                }
+        %>
+            width: <%= width%>;
         }
     </style>
 </head>
@@ -47,13 +69,23 @@
 <hr>
 <br>
 
+<div class="myTableHeader">
+<table>
+    <tr>
+        <th>Name of Job</th>
+        <th>Id </th>
+        <th>Check for edit </th>
+    </tr>
+</table>
+</div>
 <form method="post">
+    <div class="myTable">
     <table>
-        <tr>
-            <th>Name of Job</th>
-            <th>Id </th>
-            <th>Check for edit </th>
-        </tr>
+<%--        <tr>--%>
+<%--            <th>Name of Job</th>--%>
+<%--            <th>Id </th>--%>
+<%--            <th>Check for edit </th>--%>
+<%--        </tr>--%>
 
         <% if (request.getAttribute("jobs") != null) {
             List<Job> jobs = (List<Job>) request.getAttribute("jobs");
@@ -79,6 +111,7 @@
             }
         %>
     </table>
+    </div>
     <br>
     <input type="submit" value="edit job">
     <br>
