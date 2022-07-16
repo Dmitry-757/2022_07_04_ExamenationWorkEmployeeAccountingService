@@ -1,6 +1,7 @@
 package org.dng.EmployeeAccountingService.repository;
 
 
+import org.dng.EmployeeAccountingService.Entities.AddDuplicatedObjException;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 
 
@@ -22,10 +23,10 @@ public class EmployeeDataBase extends DataBaseAbstract<Employee>{
 //    }
 
     //    public static void add(Employee employee) throws DataBaseAddException {
-    public void put(Employee entity) {
+    public void put(Employee entity) throws AddDuplicatedObjException {
         if (entityHashMap.containsKey(entity.getInn())) {
             System.out.println("job with such INN is already present!");
-            return;
+            throw new AddDuplicatedObjException("job with such INN is already present!");
         }
         entityHashMap.put(entity.getInn(), entity);
     }

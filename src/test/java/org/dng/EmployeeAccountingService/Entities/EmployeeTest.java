@@ -45,7 +45,7 @@ class EmployeeTest {
 
     @Test
     void findEmployeeTest(){
-        AppContext.getEmployeeService().findEmployee("Pupkin Ivan Ivanovich");
+        AppContext.getEmployeeService().getByName("Pupkin Ivan Ivanovich");
     }
 
 }

@@ -176,7 +176,7 @@
     <tr>
         <td><%= employee.getId() %>
         </td>
-        <td><%= employee.getFullName() %>
+        <td><%= employee.getName() %>
         </td>
         <td><%= employee.getInn() %>
         </td>

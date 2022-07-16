@@ -15,11 +15,11 @@ public class Employee {
     @NotNull
     private final int id;
     @NotNull
-    private final int inn;
+    private int inn;
     @NotNull
-    private final String fullName;
-    private final LocalDate birthDate;
-    private final Gender gender;
+    private String fullName;
+    private LocalDate birthDate;
+    private Gender gender;
     private String phoneNumber;
     @NotNull
     private Job job;
@@ -44,7 +44,7 @@ public class Employee {
                     @NotNull LocalDate recruitDate,
                     LocalDate dismissDate,
 //                    @NotNull int salary) throws Exception {
-                    @NotNull int salary) {
+                    @NotNull int salary) throws AddDuplicatedObjException {
         this.inn = inn;
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -70,7 +70,7 @@ public class Employee {
         return inn;
     }
 
-    public String getFullName() {
+    public String getName() {
         return fullName;
     }
 
@@ -117,6 +117,56 @@ public class Employee {
         return salary;
     }
 
+    public void setInn(int inn) {
+        this.inn = inn;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public void setBoss(Employee boss) {
+        this.boss = boss;
+    }
+
+    public void setRecruitDate(LocalDate recruitDate) {
+        this.recruitDate = recruitDate;
+    }
+
+    public void setDismissed(boolean dismissed) {
+        this.dismissed = dismissed;
+    }
+
+    public void setDismissDate(LocalDate dismissDate) {
+        this.dismissDate = dismissDate;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+
+
     public void dismiss(LocalDate dismissDate){
         dismissed = true;
         this.dismissDate = dismissDate;
@@ -127,7 +177,7 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id;
+        return inn == employee.inn;
     }
 
     @Override

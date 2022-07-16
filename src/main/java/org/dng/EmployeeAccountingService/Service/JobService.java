@@ -10,11 +10,17 @@ import java.util.List;
 public class JobService extends ServiceAbstract<Job>{
 
     @Override
-    public void add(String name) {
-        try {
-            new Job(name);
-        } catch (AddDuplicatedObjException e) {
-            System.out.println(e.getMessage());
+//    public void add(String name) {
+
+
+    public void add(Object ...args) {
+        if (args.length>0) {
+            String name = (String) args[0];
+            try {
+                new Job(name);
+            } catch (AddDuplicatedObjException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

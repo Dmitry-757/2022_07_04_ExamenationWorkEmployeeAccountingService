@@ -1,10 +1,7 @@
 package org.dng.EmployeeAccountingService.Service;
 
 import org.dng.EmployeeAccountingService.AppContext;
-import org.dng.EmployeeAccountingService.Entities.Department;
-import org.dng.EmployeeAccountingService.Entities.Employee;
-import org.dng.EmployeeAccountingService.Entities.Job;
-import org.dng.EmployeeAccountingService.Entities.Gender;
+import org.dng.EmployeeAccountingService.Entities.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
@@ -13,41 +10,116 @@ import java.util.List;
 import java.util.Map;
 
 
-
 //public class EmployeeService implements IEmployeeService{
-public class EmployeeService {
+public class EmployeeService extends ServiceAbstract<Employee> {
 
-    public void add(@NotNull String fullName,
-                                       int inn,
-                                       LocalDate birthDate,
-                                       @NotNull
-                                               Gender gender,
-                                       String phoneNumber,
-                                       Job job,
-                                       @NotNull Department department,
-                                       Employee boss,
-                                       @NotNull LocalDate recruitDate,
-                                       LocalDate dismissDate,
-                                       @NotNull int salary) {
-        new Employee(fullName, inn, birthDate, gender, phoneNumber, job, department, boss, recruitDate, dismissDate, salary);
+    //    public void add(@NotNull String fullName,
+//                                       int inn,
+//                                       LocalDate birthDate,
+//                                       @NotNull
+//                                               Gender gender,
+//                                       String phoneNumber,
+//                                       Job job,
+//                                       @NotNull Department department,
+//                                       Employee boss,
+//                                       @NotNull LocalDate recruitDate,
+//                                       LocalDate dismissDate,
+//                                       @NotNull int salary) {
+    @Override
+    public void add(Object... args) {
+        if (args.length == 11) {
+            @NotNull String fullName = (String) args[0];
+            int inn = (int) args[1];
+            LocalDate birthDate = (LocalDate) args[2];
+            @NotNull Gender gender = (Gender) args[3];
+            String phoneNumber = (String) args[4];
+            Job job = (Job) args[5];
+            @NotNull Department department = (Department) args[6];
+            Employee boss = (Employee) args[7];
+            @NotNull LocalDate recruitDate = (LocalDate) args[8];
+            LocalDate dismissDate = (LocalDate) args[9];
+            @NotNull int salary = (int) args[10];
+
+            try {
+                new Employee(fullName, inn, birthDate, gender, phoneNumber, job, department, boss, recruitDate, dismissDate, salary);
+            } catch (AddDuplicatedObjException e) {
+                e.printStackTrace();
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public void changeEmployee(Employee employee) {
-        System.out.println("did not made yet");
+    @Override
+    public void change(Employee entity, Object... args) {
+        if (args.length == 11) {
+            HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+            if (entityHashMap.containsKey(entity.getInn())) {
+                System.out.println("job with such INN is already present!");
+                try {
+                    throw new AddDuplicatedObjException("job with such INN is already present!");
+                } catch (AddDuplicatedObjException e) {
+                    e.printStackTrace();
+                    System.out.println(e.getMessage());
+                }
+            }
+
+
+            @NotNull String fullName = (String) args[0];
+            int inn = (int) args[1];
+            LocalDate birthDate = (LocalDate) args[2];
+            @NotNull Gender gender = (Gender) args[3];
+            String phoneNumber = (String) args[4];
+            Job job = (Job) args[5];
+            @NotNull Department department = (Department) args[6];
+            Employee boss = (Employee) args[7];
+            @NotNull LocalDate recruitDate = (LocalDate) args[8];
+            LocalDate dismissDate = (LocalDate) args[9];
+            @NotNull int salary = (int) args[10];
+
+            entity.setFullName(fullName);
+            entity.setInn(inn);
+            entity.setBirthDate(birthDate);
+            entity.setGender(gender);
+            entity.setPhoneNumber(phoneNumber);
+            entity.setJob(job);
+            entity.setDepartment(department);
+            entity.setBoss(boss);
+            entity.setRecruitDate(recruitDate);
+            entity.setDismissDate(dismissDate);
+            entity.setSalary(salary);
+        }
+
     }
+
+
 
     public void dismissEmployee(Employee employee, LocalDate dismissDate) {
         employee.dismiss(dismissDate);
     }
 
-    public List<Employee> findEmployee(String fullName) {
+    @Override
+    public boolean isExist(String name) {
         HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
-            return entityHashMap
-                    .entrySet()
-                    .stream()
-                    .filter(e -> e.getKey().equals(fullName))
-                    .map(Map.Entry::getValue)
-                    .toList();
+        return entityHashMap.entrySet()
+                .stream()
+                .map(e -> e.getValue().getName())
+                .toList()
+                .contains(name);
+    }
+
+
+    @Override
+    public Employee getByName(String fullName) {
+        HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+
+        return entityHashMap
+                .entrySet()
+                .stream()
+                .filter(v-> v.getValue().getName().equals(fullName))
+                .map(e -> e.getValue())
+                .findFirst()
+                .get();
+
     }
 
     public List<Employee> findEmployee(Department department) {
@@ -75,7 +147,7 @@ public class EmployeeService {
         return entityHashMap
                 .entrySet()
                 .stream()
-                .filter(e -> (minSalary <= e.getValue().getSalary())&&(e.getValue().getSalary()<=maxSalary) )
+                .filter(e -> (minSalary <= e.getValue().getSalary()) && (e.getValue().getSalary() <= maxSalary))
                 .map(Map.Entry::getValue)
                 .toList();
     }
@@ -87,6 +159,16 @@ public class EmployeeService {
                 .stream()
                 .map(e -> e.getValue())
                 .toList();
+    }
+
+    @Override
+    public Employee getById(int id) {
+        HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+        return entityHashMap.get(id);
+    }
+
+    public Employee getByInn(int inn) {
+        return null;
     }
 
 }
