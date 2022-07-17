@@ -13,8 +13,8 @@ import org.dng.EmployeeAccountingService.Entities.Job;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "EditDepartmentServlet", value = "/editdepartment")
-public class EditDepartmentServlet extends HttpServlet {
+@WebServlet(name = "DepartmentEditServlet", value = "/editdepartment")
+public class DepartmentEditServlet extends HttpServlet {
     private int editedEntityId = 0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class EditDepartmentServlet extends HttpServlet {
             request.setAttribute("entities", lst);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EditDepartment.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/DepartmentEdit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -60,7 +60,7 @@ public class EditDepartmentServlet extends HttpServlet {
             request.setAttribute("entities", lst);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EditDepartment.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/DepartmentEdit.jsp");
         dispatcher.forward(request, response);
     }
 }

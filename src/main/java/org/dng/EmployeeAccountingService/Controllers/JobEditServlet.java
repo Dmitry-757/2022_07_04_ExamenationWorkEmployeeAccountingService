@@ -12,8 +12,8 @@ import org.dng.EmployeeAccountingService.Entities.Job;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "EditJobServlet", value = "/editjob")
-public class EditJobServlet extends HttpServlet {
+@WebServlet(name = "JobEditServlet", value = "/editjob")
+public class JobEditServlet extends HttpServlet {
     private int editedEntityId = 0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class EditJobServlet extends HttpServlet {
             request.setAttribute("jobs", lj);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EditJob.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/JobEdit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -37,7 +37,7 @@ public class EditJobServlet extends HttpServlet {
                 System.out.println(job.getName());
                 editedEntityId = job.getId();
                 request.setAttribute("fullName", job.getName());
-                int a = 0;
+                //int a = 0;
             }
         }
 
@@ -59,7 +59,7 @@ public class EditJobServlet extends HttpServlet {
             request.setAttribute("jobs", lj);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/EditJob.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/JobEdit.jsp");
         dispatcher.forward(request, response);
     }
 }

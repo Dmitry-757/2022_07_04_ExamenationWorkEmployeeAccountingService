@@ -13,10 +13,18 @@
 <br>
 <a href="editdepartment">edit departments list</a>
 <br>
+<hr>
+<br>
 <a href="newjob">new job</a>
 <br>
 <a href="editjob">edit jobs list</a>
 <br>
+<hr>
+<br>
 <a href="recruit">Recruit employee</a>
+<br>
+<a href="editemployee">edit employees list</a>
+<br>
+
 </body>
 </html>

@@ -34,7 +34,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
             req.setAttribute("employees", le);
         }
 
-        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");
+        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeNew.jsp");
         dispatcher.forward(req, response);
     }
 
@@ -66,11 +66,11 @@ public class RecruitEmployeeServlet extends HttpServlet {
             inn = Integer.parseInt(req.getParameter("inn"));
         }
 
-        @NotNull
-        String strGender = req.getParameter("gender");//get selectDepartment parameter from http request
-        if(fullName != null) {
-            System.out.println("gender = "+ strGender);
-        }
+//        @NotNull
+//        String strGender = req.getParameter("gender");//get selectDepartment parameter from http request
+//        if(fullName != null) {
+//            System.out.println("gender = "+ strGender);
+//        }
 
         LocalDate birthDate = null;
         if(req.getParameter("birthDate")!=""){
@@ -91,10 +91,6 @@ public class RecruitEmployeeServlet extends HttpServlet {
             phoneNumber = req.getParameter("phoneNumber");
         }
 
-        //@NotNull
-//        Job job = null;
-//        if(req.getParameter("job")!=""){
-//        }
 
         //searching and processing of "selectDepartment" parameter
         @NotNull Department department = null;
@@ -148,7 +144,7 @@ public class RecruitEmployeeServlet extends HttpServlet {
             req.setAttribute("employees", le);
         }
 
-        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeEdit.jsp");//get jsp-maket context
+        RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeNew.jsp");//get jsp-maket context
         dispatcher.forward(req, resp);//forward our data to jsp-page
 
         /*

@@ -18,7 +18,7 @@ public class DepartmentServlet extends HttpServlet {
             request.setAttribute("departments", ld);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewDepartment.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/DepartmentNew.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -37,7 +37,7 @@ public class DepartmentServlet extends HttpServlet {
             request.setAttribute("departments", ld);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewDepartment.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/DepartmentNew.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -7,7 +7,8 @@ import org.dng.EmployeeAccountingService.Entities.Job;
 import java.util.HashMap;
 import java.util.List;
 
-public class JobService extends ServiceAbstract<Job>{
+//public class JobService extends ServiceAbstract<Job>{
+public class JobService implements ServiceI<Job> {
 
     @Override
 //    public void add(String name) {

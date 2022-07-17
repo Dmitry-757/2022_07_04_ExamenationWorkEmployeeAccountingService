@@ -8,7 +8,8 @@ import org.dng.EmployeeAccountingService.Entities.Department;
 import java.util.HashMap;
 import java.util.List;
 
-public class DepartmentService  extends ServiceAbstract<Department>{
+//public class DepartmentService  extends ServiceAbstract<Department>{
+public class DepartmentService  implements ServiceI<Department> {
 
     @Override
 //    public void add(String name) {

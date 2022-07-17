@@ -11,7 +11,8 @@ import java.util.Map;
 
 
 //public class EmployeeService implements IEmployeeService{
-public class EmployeeService extends ServiceAbstract<Employee> {
+//public class EmployeeService extends ServiceAbstract<Employee> {
+public class EmployeeService implements ServiceI<Employee> {
 
     //    public void add(@NotNull String fullName,
 //                                       int inn,
@@ -164,11 +165,20 @@ public class EmployeeService extends ServiceAbstract<Employee> {
     @Override
     public Employee getById(int id) {
         HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
-        return entityHashMap.get(id);
+        //return entityHashMap.get(id);
+        return entityHashMap
+                .entrySet()
+                .stream()
+                .filter(v-> (v.getValue().getId()==id))
+                .map(e -> e.getValue())
+                .findFirst()
+                .get();
+
     }
 
     public Employee getByInn(int inn) {
-        return null;
+        HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+        return entityHashMap.get(inn);
     }
 
 }

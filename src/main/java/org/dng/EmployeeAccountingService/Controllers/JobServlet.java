@@ -21,7 +21,7 @@ public class JobServlet extends HttpServlet {
             request.setAttribute("jobs", lj);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewJob.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/JobNew.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -40,7 +40,7 @@ public class JobServlet extends HttpServlet {
             request.setAttribute("jobs", lj);
         }
 
-        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/NewJob.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/JobNew.jsp");
         dispatcher.forward(request, response);
     }
 }

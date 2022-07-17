@@ -9,16 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="radio boxes in jsp - to choice gender">
+    <list default="true" id="0e4ea4bb-968f-4d63-9a36-8552d59e415e" name="Default Changelist" comment="continue sex with front-end (EditJob.jsp) (((">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/EmployeeEditServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/EmployeeEdit2.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/EmployeeNew.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/DepartmentServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/DepartmentServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/EditDepartmentServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/DepartmentEditServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/EditJobServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/JobEditServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/JobServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/JobServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/RecruitEmployeeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/DepartmentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DepartmentDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/DepartmentDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/EmployeeDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/repository/EmployeeDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/DepartmentEdit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DepartmentEdit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/JobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/JobService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/ServiceAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Service/ServiceI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/EditDepartment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DepartmentEdit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/EditJob.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/JobEdit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/EmployeeEdit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/EmployeeEdit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/NewDepartment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/DepartmentNew.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/NewJob.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/JobNew.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,13 +40,22 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="HTML File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -54,13 +72,14 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CarTax" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.37471265" />
@@ -70,8 +89,14 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.dng.EmployeeAccountingService.Model" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\my_projects\It-Step\2022_07_04_ExamenationWorkEmployeeAccountingService\src\main\webapp" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.dng.EmployeeAccountingService.Entities" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.dng.EmployeeAccountingService.Controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.0.22">
@@ -179,6 +204,18 @@
         </option>
       </method>
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.EmployeeTest.addDuplicatedEmployeeToDB" />
@@ -197,6 +234,8 @@
       <workItem from="1657143272581" duration="155000" />
       <workItem from="1657143443794" duration="1649000" />
       <workItem from="1657793509540" duration="7561000" />
+      <workItem from="1658052162476" duration="8744000" />
+      <workItem from="1658080932627" duration="11305000" />
     </task>
     <task id="LOCAL-00001" summary="add test of duplicate record to BD">
       <created>1657282763741</created>
@@ -233,7 +272,28 @@
       <option name="project" value="LOCAL" />
       <updated>1657718602322</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="make EmployeeService extends of AbstractService">
+      <created>1657996150865</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1657996150865</updated>
+    </task>
+    <task id="LOCAL-00007" summary="sex with front-end (((">
+      <created>1658005833351</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1658005833351</updated>
+    </task>
+    <task id="LOCAL-00008" summary="continue sex with front-end (EditJob.jsp) (((">
+      <created>1658008303970</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658008303970</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,12 +317,43 @@
     <MESSAGE value="make interface IEmployeeService deprecated" />
     <MESSAGE value="...." />
     <MESSAGE value="radio boxes in jsp - to choice gender" />
-    <option name="LAST_COMMIT_MESSAGE" value="radio boxes in jsp - to choice gender" />
+    <MESSAGE value="make EmployeeService extends of AbstractService" />
+    <MESSAGE value="sex with front-end (((" />
+    <MESSAGE value="continue sex with front-end (EditJob.jsp) (((" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue sex with front-end (EditJob.jsp) (((" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/dng/EmployeeAccountingService/Entities/EmployeeTest.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/DepartmentEditServlet.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/dng/EmployeeAccountingService/Controllers/DepartmentEditServlet.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/DepartmentEdit.jsp</url>
+          <line>76</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="employee" language="JSP" />
+        <watch expression="editedEntityId" language="JAVA" />
+        <watch expression="entity.getName()" language="JAVA" />
+        <watch expression="entity.getJob().getId()" language="JAVA" />
+        <watch expression="job.getId()" language="JSP" />
+        <watch expression="selected" language="JSP" />
       </configuration>
     </watches-manager>
   </component>

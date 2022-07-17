@@ -1,15 +1,10 @@
 package org.dng.EmployeeAccountingService.Service;
 
-import org.dng.EmployeeAccountingService.Entities.Department;
-import org.dng.EmployeeAccountingService.Entities.Employee;
-import org.dng.EmployeeAccountingService.Entities.Gender;
-import org.dng.EmployeeAccountingService.Entities.Job;
-import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public abstract class ServiceAbstract<T> {
+//public abstract class ServiceAbstract<T> {
+interface ServiceI<T> {
 
     public abstract boolean isExist(String name);
 
