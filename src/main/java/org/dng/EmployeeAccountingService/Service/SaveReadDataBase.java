@@ -127,14 +127,14 @@ public class SaveReadDataBase {
     }
 
     public static void saveDB(){
-        saveDBDepartment();
+//        saveDBDepartment();
         saveDBJob();
-        saveDBEmployee();
+//        saveDBEmployee();
     }
 
     public static void readDB(){
         readDBJob();
-        readDBDepartment();
-        readDBEmployee();
+//        readDBDepartment();
+//        readDBEmployee();
     }
 }
