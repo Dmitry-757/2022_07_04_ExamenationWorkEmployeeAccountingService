@@ -11,9 +11,9 @@ public abstract class DataBaseAbstract<T> {
         return maxId;
     }
 
-    public void setMaxId(int maxId2) {
-        maxId = maxId2;
-    }
+//    public void setMaxId(int maxId2) {
+//        maxId = maxId2;
+//    }
 
     public HashMap<Integer, T> getEntityHashMap() {
         return entityHashMap;
