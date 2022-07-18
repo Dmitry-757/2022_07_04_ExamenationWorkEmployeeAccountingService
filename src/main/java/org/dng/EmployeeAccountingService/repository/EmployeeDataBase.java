@@ -4,8 +4,11 @@ package org.dng.EmployeeAccountingService.repository;
 import org.dng.EmployeeAccountingService.Entities.AddDuplicatedObjException;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 
+import java.io.Serializable;
 
-public class EmployeeDataBase extends DataBaseAbstract<Employee>{
+
+public class EmployeeDataBase extends DataBaseAbstract<Employee> implements Serializable {
+    private static final long serialVersionUID = 3L;
 //    private static int maxId;
 //
 //    private static HashMap<String, Employee> employeeHashMap = new HashMap<>();

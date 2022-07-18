@@ -2,31 +2,11 @@ package org.dng.EmployeeAccountingService.repository;
 
 import org.dng.EmployeeAccountingService.Entities.Job;
 
-
-public class JobDataBase extends DataBaseAbstract<Job>{
-//    private  int maxId;
-//
-//    private static HashMap<Integer, Job> jobHashMap = new HashMap<>();
-
-//    public int getMaxId() {
-//        return maxId;
-//    }
-//
-//    public void setMaxId(int maxId) {
-//        JobDataBase.maxId = maxId;
-//    }
+import java.io.Serializable;
 
 
-//    public boolean isExist(String name){
-//        return entityHashMap.entrySet()
-//                .stream()
-//                .map(e -> e.getValue().getName())
-//                .toList()
-//                .contains(name);
-//    }
-
-
-
+public class JobDataBase extends DataBaseAbstract<Job> implements Serializable {
+    private static final long serialVersionUID = 1L;
     public void put(Job entity) {
         //сначала проверим нет ли уже с таким id
         if (entityHashMap.containsKey(entity.getId())) {
@@ -35,25 +15,4 @@ public class JobDataBase extends DataBaseAbstract<Job>{
         }
         entityHashMap.put(entity.getId(),entity);
     }
-
-//    public  List<Job> findAll() {
-//        return entityHashMap.entrySet()
-//                .stream()
-//                .map(e -> e.getValue())
-//                .toList();
-//    }
-//
-//    public Job getById(int id){
-//        return entityHashMap.get(id);
-//    }
-//
-//    public  Job getByName(String name){
-//        return entityHashMap.entrySet()
-//                .stream()
-//                .filter(v-> v.getValue().getName().equals(name))
-//                .map(e -> e.getValue())
-//                .findFirst()
-//                .get();
-//    }
-
 }

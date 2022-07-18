@@ -40,4 +40,22 @@ public class AppContext {
     public static EmployeeService getEmployeeService() {
         return employeeService;
     }
+
+
+    //**serialize/deserialize ***
+    public static final String fileNameDBDepartment = "\\Department.sav";
+    public static final String fileNameDBJob = "\\Job.sav";
+    public static final String fileNameDBEmployee = "\\Employee.sav";
+
+    public static void setDepartmentDataBase(DepartmentDataBase departmentDataBase) {
+        AppContext.departmentDataBase = departmentDataBase;
+    }
+
+    public static void setJobDataBase(JobDataBase jobDataBase) {
+        AppContext.jobDataBase = jobDataBase;
+    }
+
+    public static void setEmployeeDataBase(EmployeeDataBase employeeDataBase) {
+        AppContext.employeeDataBase = employeeDataBase;
+    }
 }
