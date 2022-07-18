@@ -43,9 +43,9 @@ public class AppContext {
 
 
     //**serialize/deserialize ***
-    public static final String fileNameDBDepartment = "\\Department.sav";
-    public static final String fileNameDBJob = "\\Job.sav";
-    public static final String fileNameDBEmployee = "\\Employee.sav";
+    public static final String fileNameDBDepartment = "d:\\Department.sav";
+    public static final String fileNameDBJob = "d:\\Job.sav";
+    public static final String fileNameDBEmployee = "d:\\Employee.sav";
 
     public static void setDepartmentDataBase(DepartmentDataBase departmentDataBase) {
         AppContext.departmentDataBase = departmentDataBase;

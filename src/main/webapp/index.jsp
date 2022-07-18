@@ -25,6 +25,9 @@
 <br>
 <a href="editemployee">edit employees list</a>
 <br>
+<hr>
+<br>
+<a href="SaveRead">save / read </a>
 
 </body>
 </html>

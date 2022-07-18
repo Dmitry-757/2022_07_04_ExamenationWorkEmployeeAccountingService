@@ -9,7 +9,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class SaveDataBase {
+public class SaveReadDataBase {
     private static void saveDBDepartment() {
         DepartmentDataBase dataBase = AppContext.getDepartmentDataBase();
         try (FileOutputStream fos = new FileOutputStream(AppContext.fileNameDBDepartment);
