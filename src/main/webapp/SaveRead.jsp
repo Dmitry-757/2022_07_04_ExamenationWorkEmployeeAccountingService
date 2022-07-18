@@ -13,11 +13,13 @@
 <body>
 
 <a style="font-size: x-large" href="/">main menu</a>
+<hr>
 <br>
 <form method="post">
-    <input type="submit" name="save" value="Save">
+    <input type="submit" name="save" value="Save condition">
     <br>
-    <input type="submit" name="read" value="Read">
+    <br>
+    <input type="submit" name="read" value="Read condition">
 </form>
 
 </body>
