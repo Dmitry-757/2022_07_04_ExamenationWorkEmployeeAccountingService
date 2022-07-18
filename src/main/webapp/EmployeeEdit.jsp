@@ -42,9 +42,10 @@
         function makeTableScroll() {
 
             // Constant retrieved from server-side via JSP
-            let maxRows = 5;
+            let maxRows = 1;
 
             let table = document.getElementById('myTable');
+            let tableWith = table.clientWidth;
             let wrapper = table.parentNode;
             let rowsInTable = table.rows.length;
             let height = 0;
@@ -53,14 +54,25 @@
                     height += table.rows[i].clientHeight;
                 }
                 wrapper.style.height = height + "px";
+
+                // let columnsNumber = table.rows[0].cells.length;
+                // for (let j = 0; j < columnsNumber; j++) {
+                //     table.rows[i].width = Math.floor(100/columnsNumber) + "%";
+                // }
             }
 
             if (rowsInTable > maxRows){
                 let tableH = document.getElementById('myTableHeader');
                 let wrapperH = tableH.parentNode;
                 // console.log(wrapperH.style.clientWidth);
-                // let newWidth = wrapperH.style.width - 30;
-                wrapperH.style.width = "442px";// !!! need to find (((
+                // let newWidth = (wrapperH.style.width - 30)+"px";
+                wrapperH.style.width = (tableWith-15)+"px";// !!! need to find (((
+
+                // let columnsNumber = tableH.rows[0].cells.length;
+                // for (let j = 0; j < columnsNumber; j++) {
+                //     tableH.rows[i].width = 100/columnsNumber + "%";
+                // }
+
             }
 
 
@@ -228,20 +240,35 @@
 <div class="scrollingTable">
     <table  id="myTableHeader">
         <tr>
-            <th>Id</th>
-            <th>Full name</th>
-            <th>INN</th>
-            <th>Department</th>
-            <th>Birth date</th>
-            <th>Gender</th>
-            <th>Phone number</th>
-            <th>Job name</th>
-            <th>Boss</th>
-            <th>Date of recruiting</th>
-            <th>Salary size</th>
-            <th>Status</th>
-            <th >Check for edit</th>
+            <th style="width: 5%">Id</th>
+            <th style="width: 15%">Full name</th>
+            <th style="width: 7%">INN</th>
+            <th style="width: 10%">Department</th>
+            <th style="width: 10%">Birth date</th>
+            <th style="width: 10%">Gender</th>
+            <th style="width: 5%">Phone number</th>
+            <th style="width: 10%">Job name</th>
+            <th style="width: 5%">Boss</th>
+            <th style="width: 5%">Date of recruiting</th>
+            <th style="width: 5%">Salary size</th>
+<%--            <th style="width: 5%">Status</th>--%>
+            <th style="width: 3%">Check for edit</th>
         </tr>
+<%--        <tr>--%>
+<%--            <th >Id</th>--%>
+<%--            <th>Full name</th>--%>
+<%--            <th >INN</th>--%>
+<%--            <th >Department</th>--%>
+<%--            <th>Birth date</th>--%>
+<%--            <th>Gender</th>--%>
+<%--            <th>Phone number</th>--%>
+<%--            <th>Job name</th>--%>
+<%--            <th>Boss</th>--%>
+<%--            <th>Date of recruiting</th>--%>
+<%--            <th>Salary size</th>--%>
+<%--            &lt;%&ndash;                <th>Status</th>&ndash;%&gt;--%>
+<%--            <th>Check for edit</th>--%>
+<%--        </tr>--%>
     </table>
 </div>
 
@@ -249,6 +276,21 @@
 <form method="post">
     <div class="scrollingTable">
         <table id="myTable">
+<%--            <tr>--%>
+<%--                <th >Id</th>--%>
+<%--                <th>Full name</th>--%>
+<%--                <th >INN</th>--%>
+<%--                <th >Department</th>--%>
+<%--                <th>Birth date</th>--%>
+<%--                <th>Gender</th>--%>
+<%--                <th>Phone number</th>--%>
+<%--                <th>Job name</th>--%>
+<%--                <th>Boss</th>--%>
+<%--                <th>Date of recruiting</th>--%>
+<%--                <th>Salary size</th>--%>
+<%--&lt;%&ndash;                <th>Status</th>&ndash;%&gt;--%>
+<%--                <th>Check for edit</th>--%>
+<%--            </tr>--%>
 
             <% if (request.getAttribute("entities") != null) {
                 List<Employee> entities = (List<Employee>) request.getAttribute("entities");
@@ -258,31 +300,31 @@
                     //                System.out.println("i="+i);
             %>
             <tr style="width: 460px">
-                <td><%= entity.getId() %>
+                <td style="width: 5%"><%= entity.getId() %>
                 </td>
-                <td><%= entity.getName() %>
+                <td style="width: 17%"><%= entity.getName() %>
                 </td>
-                <td><%= entity.getInn() %>
+                <td style="width: 7%"><%= entity.getInn() %>
                 </td>
-                <td><%= entity.getDepartment().getName() %>
+                <td style="width: 10%"><%= entity.getDepartment().getName() %>
                 </td>
-                <td><%= entity.getBirthDate() %>
+                <td style="width: 5%"><%= entity.getBirthDate() %>
                 </td>
-                <td><%= entity.getGender() %>
+                <td style="width: 8%"><%= entity.getGender() %>
                 </td>
-                <td><%= entity.getPhoneNumber() %>
+                <td style="width: 8%"><%= entity.getPhoneNumber() %>
                 </td>
-                <td><%= entity.getJob().getName() %>
+                <td style="width: 10%"><%= entity.getJob().getName() %>
                 </td>
-                <td><%= entity.getBossName() %>
+                <td style="width: 7%"><%= entity.getBossName() %>
                 </td>
-                <td><%= entity.getRecruitDate() %>
+                <td style="width: 3%"><%= entity.getRecruitDate() %>
                 </td>
-                <td><%= entity.getSalary() %>
+                <td style="width: 8%"><%= entity.getSalary() %>
                 </td>
-                <td><%= entity.getStatus() %>
-                </td>
-                <td>
+<%--                <td><%= entity.getStatus() %>--%>
+<%--                </td>--%>
+                <td style="width: 8%">
                     <input type="radio"
                            value=<%= i%>
                                    name="checkedEntity"
