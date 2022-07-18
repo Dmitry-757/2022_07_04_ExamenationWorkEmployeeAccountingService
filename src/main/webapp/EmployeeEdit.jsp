@@ -42,7 +42,7 @@
         function makeTableScroll() {
 
             // Constant retrieved from server-side via JSP
-            let maxRows = 1;
+            let maxRows = 3;
 
             let table = document.getElementById('myTable');
             let tableWith = table.clientWidth;

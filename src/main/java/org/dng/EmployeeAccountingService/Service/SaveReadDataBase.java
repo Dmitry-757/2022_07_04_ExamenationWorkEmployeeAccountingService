@@ -106,7 +106,8 @@ public class SaveReadDataBase {
     private static void readDBEmployee() {
         EmployeeDataBase dataBase = null;
         if (!Files.exists(Path.of(AppContext.fileNameDBEmployee))){
-            System.out.println("File with save was not found! Create new pet.");
+            System.out.println("File with save was not found! ");
+            return;
         }
 
         try(FileInputStream fis = new FileInputStream(AppContext.fileNameDBEmployee);
@@ -127,14 +128,14 @@ public class SaveReadDataBase {
     }
 
     public static void saveDB(){
-//        saveDBDepartment();
+        saveDBDepartment();
         saveDBJob();
-//        saveDBEmployee();
+        saveDBEmployee();
     }
 
     public static void readDB(){
         readDBJob();
-//        readDBDepartment();
-//        readDBEmployee();
+        readDBDepartment();
+        readDBEmployee();
     }
 }

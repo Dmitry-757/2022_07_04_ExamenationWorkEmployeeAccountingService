@@ -4,13 +4,16 @@ import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 /**
  * Сотрудник
  */
-public class Employee {
+public class Employee implements Serializable {
+    private static final long serialVersionUID = 8L;
+
 
     @NotNull
     private final int id;

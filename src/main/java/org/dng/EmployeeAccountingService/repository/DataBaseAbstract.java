@@ -1,8 +1,11 @@
 package org.dng.EmployeeAccountingService.repository;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public abstract class DataBaseAbstract<T> {
+public abstract class DataBaseAbstract<T> implements Serializable {
+    private static final long serialVersionUID = 5L;
+
     protected int maxId;
 
     protected HashMap<Integer, T> entityHashMap = new HashMap<>();

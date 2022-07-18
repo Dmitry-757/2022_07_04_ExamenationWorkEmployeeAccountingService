@@ -2,10 +2,14 @@ package org.dng.EmployeeAccountingService.Entities;
 
 import org.dng.EmployeeAccountingService.AppContext;
 
+import java.io.Serializable;
+
 /**
  * Должность
  */
-public class Job {
+public class Job implements Serializable {
+    private static final long serialVersionUID = 6L;
+
     private String name;
     private int id;
 

@@ -3,10 +3,14 @@ package org.dng.EmployeeAccountingService.Entities;
 import org.dng.EmployeeAccountingService.AppContext;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 /**
  * отдел
  */
-public class Department {
+public class Department implements Serializable {
+    private static final long serialVersionUID = 7L;
+
     @NotNull
     private int id;
     private String name;
