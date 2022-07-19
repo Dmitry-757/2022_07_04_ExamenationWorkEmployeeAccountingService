@@ -21,6 +21,8 @@ public class Employee implements Serializable {
     private int inn;
     @NotNull
     private String fullName;
+    private String email;
+    private String password;
     private LocalDate birthDate;
     private Gender gender;
     private String phoneNumber;
@@ -47,7 +49,10 @@ public class Employee implements Serializable {
                     @NotNull LocalDate recruitDate,
                     LocalDate dismissDate,
 //                    @NotNull int salary) throws Exception {
-                    @NotNull int salary) throws AddDuplicatedObjException {
+                    @NotNull int salary,
+                    String email,
+                    String password
+                    ) throws AddDuplicatedObjException {
         this.inn = inn;
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -59,6 +64,8 @@ public class Employee implements Serializable {
         this.recruitDate = recruitDate;
         this.dismissDate = dismissDate;
         this.salary = salary;
+        this.email = email;
+        this.password = password;
 
         this.id = AppContext.getEmployeeDataBase().getMaxId()+1;
         AppContext.getEmployeeDataBase().setMaxId(this.id);
@@ -75,6 +82,14 @@ public class Employee implements Serializable {
 
     public String getName() {
         return fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean testPassword(String pass) {
+        return password.equals(pass);
     }
 
     public LocalDate getBirthDate() {
@@ -168,7 +183,13 @@ public class Employee implements Serializable {
         this.salary = salary;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public void dismiss(LocalDate dismissDate){
         dismissed = true;

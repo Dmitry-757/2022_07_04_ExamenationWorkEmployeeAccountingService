@@ -28,7 +28,7 @@ public class EmployeeService implements ServiceI<Employee> {
 //                                       @NotNull int salary) {
     @Override
     public void add(Object... args) {
-        if (args.length == 11) {
+        if (args.length == 13) {
             @NotNull String fullName = (String) args[0];
             int inn = (int) args[1];
             LocalDate birthDate = (LocalDate) args[2];
@@ -40,9 +40,11 @@ public class EmployeeService implements ServiceI<Employee> {
             @NotNull LocalDate recruitDate = (LocalDate) args[8];
             LocalDate dismissDate = (LocalDate) args[9];
             @NotNull int salary = (int) args[10];
+            String email = (String)  args[11];
+            String pass = (String) args[12];
 
             try {
-                new Employee(fullName, inn, birthDate, gender, phoneNumber, job, department, boss, recruitDate, dismissDate, salary);
+                new Employee(fullName, inn, birthDate, gender, phoneNumber, job, department, boss, recruitDate, dismissDate, salary, email, pass);
             } catch (AddDuplicatedObjException e) {
                 e.printStackTrace();
                 System.out.println(e.getMessage());
@@ -52,7 +54,7 @@ public class EmployeeService implements ServiceI<Employee> {
 
     @Override
     public void change(Employee entity, Object... args) {
-        if (args.length == 11) {
+        if (args.length == 13) {
             HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
             if (entityHashMap.containsKey(entity.getInn())) {
                 System.out.println("job with such INN is already present!");
@@ -76,6 +78,8 @@ public class EmployeeService implements ServiceI<Employee> {
             @NotNull LocalDate recruitDate = (LocalDate) args[8];
             LocalDate dismissDate = (LocalDate) args[9];
             @NotNull int salary = (int) args[10];
+            String email = (String)  args[11];
+            String pass = (String) args[12];
 
             entity.setFullName(fullName);
             entity.setInn(inn);
@@ -88,6 +92,8 @@ public class EmployeeService implements ServiceI<Employee> {
             entity.setRecruitDate(recruitDate);
             entity.setDismissDate(dismissDate);
             entity.setSalary(salary);
+            entity.setEmail(email);
+            entity.setPassword(pass);
         }
 
     }

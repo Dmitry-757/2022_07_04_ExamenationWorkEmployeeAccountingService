@@ -15,8 +15,8 @@ import org.dng.EmployeeAccountingService.Entities.Gender;
 import org.dng.EmployeeAccountingService.Entities.Job;
 import org.jetbrains.annotations.NotNull;
 
-@WebServlet(name = "recruitServlet", value = "/recruit")
-public class RecruitEmployeeServlet extends HttpServlet {
+@WebServlet(name = "EmployeeServlet", value = "/recruit")
+public class EmployeeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
         List<Department> ld = AppContext.getDepartmentService().findAll();
@@ -121,6 +121,11 @@ public class RecruitEmployeeServlet extends HttpServlet {
         if(req.getParameter("salary")!=""){
             salary = Integer.parseInt(req.getParameter("salary"));
         }
+        @NotNull
+        String email = req.getParameter("email");//get selectDepartment parameter from http request
+        @NotNull
+        String pass = req.getParameter("pass");//get selectDepartment parameter from http request
+
 
         if (fullName.length()>0) {
             assert gender != null;
@@ -136,7 +141,9 @@ public class RecruitEmployeeServlet extends HttpServlet {
                     boss,
                     recruitDate,
                     dismissDate,
-                    salary);
+                    salary,
+                    email,
+                    pass);
         }
 
         List<Employee> le = AppContext.getEmployeeService().findAll();

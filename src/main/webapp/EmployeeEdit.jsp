@@ -62,15 +62,19 @@
             }
 
             if (rowsInTable > maxRows){
+                let headerEtalon = document.getElementsById('headerIn');
+
                 let tableH = document.getElementById('myTableHeader');
                 let wrapperH = tableH.parentNode;
                 // console.log(wrapperH.style.clientWidth);
                 // let newWidth = (wrapperH.style.width - 30)+"px";
+
                 wrapperH.style.width = (tableWith-15)+"px";// !!! need to find (((
 
                 // let columnsNumber = tableH.rows[0].cells.length;
                 // for (let j = 0; j < columnsNumber; j++) {
-                //     tableH.rows[i].width = 100/columnsNumber + "%";
+                //       .rows[j].width = "20px";
+                //         // headerEtalon.rows[j].width;
                 // }
 
             }
@@ -92,8 +96,26 @@
     <div class="label">
         <label for="fullName"> Input full name of employee
             <input type="text" id="fullName" name="fullName"
-                   <% String value = (request.getAttribute("fullName")!=null ? "\""+(String)request.getAttribute("fullName")+"\"":"");%>
-                   value=<%= value %>
+                   <% String fullNameValue = (request.getAttribute("fullName")!=null ? "\""+(String)request.getAttribute("fullName")+"\"":"");%>
+                   value=<%= fullNameValue %>
+            >
+        </label>
+    </div>
+    <br/>
+
+    <div class="label">
+        <label for="email"> Input email of employee
+            <input type="text" id="email" name="email"
+                <% String emailValue = (request.getAttribute("email")!=null ? "\""+(String)request.getAttribute("email")+"\"":"");%>
+                   value=<%= emailValue %>
+            >
+        </label>
+    </div>
+    <br/>
+
+    <div class="label">
+        <label for="pass"> Input pass of employee
+            <input type="text" id="pass" name="pass"
             >
         </label>
     </div>
@@ -101,7 +123,7 @@
 
     <div class="label">
         <label for="inn"> Input INN of employee
-            <input type="text" maxlength="10" pattern="\d{10}" id="inn" name="inn"
+            <input type="text" maxlength="9" pattern="\d{9}" id="inn" name="inn"
                    value=<%= request.getAttribute("inn")!=null ? request.getAttribute("inn"):""%>
             >
         </label>
@@ -243,13 +265,29 @@
 <div class="scrollingTable">
     <table  id="myTableHeader">
         <tr>
+<%--            <th >Id</th>--%>
+<%--            <th >Full name</th>--%>
+<%--            <th >email</th>--%>
+<%--            <th >INN</th>--%>
+<%--            <th >Department</th>--%>
+<%--            <th >Birth date</th>--%>
+<%--            <th >Gender</th>--%>
+<%--            <th >Phone number</th>--%>
+<%--            <th >Job name</th>--%>
+<%--            <th >Boss</th>--%>
+<%--            <th >Date of recruiting</th>--%>
+<%--            <th >Salary size</th>--%>
+<%--            &lt;%&ndash;            <th style="width: 5%">Status</th>&ndash;%&gt;--%>
+<%--            <th >Check for edit</th>--%>
+
             <th style="width: 5%">Id</th>
             <th style="width: 15%">Full name</th>
+            <th style="width: 10%">email</th>
             <th style="width: 7%">INN</th>
             <th style="width: 10%">Department</th>
-            <th style="width: 10%">Birth date</th>
+            <th style="width: 7%">Birth date</th>
             <th style="width: 10%">Gender</th>
-            <th style="width: 5%">Phone number</th>
+            <th style="width: 8%">Phone number</th>
             <th style="width: 10%">Job name</th>
             <th style="width: 5%">Boss</th>
             <th style="width: 5%">Date of recruiting</th>
@@ -264,6 +302,22 @@
 <form method="post">
     <div class="scrollingTable">
         <table id="myTable">
+<%--            <tr id="headerIn" style="visibility: collapse">--%>
+<%--                <th >Id</th>--%>
+<%--                <th >Full name</th>--%>
+<%--                <th >email</th>--%>
+<%--                <th >INN</th>--%>
+<%--                <th >Department</th>--%>
+<%--                <th >Birth date</th>--%>
+<%--                <th >Gender</th>--%>
+<%--                <th >Phone number</th>--%>
+<%--                <th >Job name</th>--%>
+<%--                <th >Boss</th>--%>
+<%--                <th >Date of recruiting</th>--%>
+<%--                <th >Salary size</th>--%>
+<%--                &lt;%&ndash;            <th style="width: 5%">Status</th>&ndash;%&gt;--%>
+<%--                <th >Check for edit</th>--%>
+<%--            </tr>--%>
 
             <% if (request.getAttribute("entities") != null) {
                 List<Employee> entities = (List<Employee>) request.getAttribute("entities");
@@ -272,20 +326,24 @@
                     i++;
                     //                System.out.println("i="+i);
             %>
-            <tr style="width: 460px">
-                <td style="width: 5%"><%= entity.getId() %>
+
+<%--            <tr style="width: 460px">--%>
+            <tr >
+                <td style="width: 6%"><%= entity.getId() %>
                 </td>
                 <td style="width: 17%"><%= entity.getName() %>
                 </td>
+                <td style="width: 10%"><%= entity.getEmail() %>
+                </td>
                 <td style="width: 7%"><%= entity.getInn() %>
                 </td>
-                <td style="width: 10%"><%= entity.getDepartment().getName() %>
+                <td style="width: 11%"><%= entity.getDepartment().getName() %>
                 </td>
-                <td style="width: 5%"><%= entity.getBirthDate() %>
+                <td style="width: 6%"><%= entity.getBirthDate() %>
                 </td>
-                <td style="width: 8%"><%= entity.getGender() %>
+                <td style="width: 12%"><%= entity.getGender() %>
                 </td>
-                <td style="width: 8%"><%= entity.getPhoneNumber() %>
+                <td style="width: 5%"><%= entity.getPhoneNumber() %>
                 </td>
                 <td style="width: 10%"><%= entity.getJob().getName() %>
                 </td>

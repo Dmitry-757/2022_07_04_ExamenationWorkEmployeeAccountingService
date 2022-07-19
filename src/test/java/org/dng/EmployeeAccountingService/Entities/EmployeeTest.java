@@ -29,7 +29,7 @@ class EmployeeTest {
                     job, department, null,
                     LocalDate.of(2022, 7, 8),
                     null,
-                    1000);
+                    1000, "abc@gmail.com","password=qwerty");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -43,6 +43,9 @@ public class EmployeeEditServlet extends HttpServlet {
                 editedEntityId = entity.getId();
                 //set attributes
                 req.setAttribute("fullName", entity.getName());
+                req.setAttribute("email", entity.getEmail());
+                req.setAttribute("pass", "");
+
                 req.setAttribute("inn", entity.getInn());
                 if (entity.getGender() == Gender.MALE){
                     req.setAttribute("selectedGenderId", 1);
@@ -81,6 +84,12 @@ public class EmployeeEditServlet extends HttpServlet {
         if(fullName != null) {
             System.out.println("fullName = "+ fullName);
         }
+
+        @NotNull
+        String email = req.getParameter("email");//get selectDepartment parameter from http request
+        @NotNull
+        String pass = req.getParameter("pass");//get selectDepartment parameter from http request
+
 
         @NotNull int inn = 0;
         String innP = req.getParameter("inn");
@@ -160,7 +169,9 @@ public class EmployeeEditServlet extends HttpServlet {
                             boss,
                             recruitDate,
                             dismissDate,
-                            salary);
+                            salary,
+                            email,
+                            pass);
                 }
 
 

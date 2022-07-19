@@ -78,8 +78,22 @@
     <br/>
 
     <div class="label">
+        <label for="email"> Input email of employee
+            <input type="text" id="email" name="email">
+        </label>
+    </div>
+    <br/>
+
+    <div class="label">
+        <label for="pass"> Input pass for employee
+            <input type="text" id="pass" name="pass">
+        </label>
+    </div>
+    <br/>
+
+    <div class="label">
         <label for="inn"> Input INN of employee
-            <input type="text" maxlength="10" pattern="\d{10}" id="inn" name="inn">
+            <input type="text" maxlength="9" pattern="\d{9}" id="inn" name="inn">
         </label>
     </div>
     <br/>
@@ -173,6 +187,7 @@
     <tr>
         <th>Id</th>
         <th>Full name</th>
+        <th>email</th>
         <th>INN</th>
         <th>Department</th>
         <th>Birth date</th>
@@ -194,6 +209,8 @@
         <td><%= employee.getId() %>
         </td>
         <td><%= employee.getName() %>
+        </td>
+        <td><%= employee.getEmail() %>
         </td>
         <td><%= employee.getInn() %>
         </td>
@@ -232,6 +249,14 @@
         lazy: false
     }
     let mask = new IMask(element, maskOptions);
+
+    // let element = document.getElementById('email');
+    // let maskOptions = {
+    //     mask: '0-000-0000000',
+    //     lazy: false
+    // }
+    // let mask = new IMask(element, maskOptions);
+
 </script>
 </body>
 </html>
