@@ -9,30 +9,37 @@
     <style>
         table {
             border-collapse: collapse;
-            border: 2px solid rgb(200,200,200);
+            border: 2px solid rgb(200, 200, 200);
             letter-spacing: 1px;
             font-size: 0.8rem;
         }
+
         td, th {
-            border: 1px solid rgb(190,190,190);
+            border: 1px solid rgb(190, 190, 190);
             padding: 10px 20px;
         }
+
         th {
-            background-color: rgb(235,235,235);
+            background-color: rgb(235, 235, 235);
         }
+
         td {
             text-align: center;
         }
-        div .Select{
+
+        div .Select {
             padding-: 10px 10px 10px 10px;
         }
-        div .label{
+
+        div .label {
             padding-: 10px 10px 10px 10px;
         }
-        label{
+
+        label {
             padding-: 10px 10px 10px 10px;
         }
     </style>
+
 </head>
 
 <body>
@@ -41,6 +48,7 @@
 <br>
 <hr>
 <br>
+
 <form method="post">
 
     <div class="label">
@@ -49,9 +57,10 @@
                 <% if (request.getAttribute("departments") != null) {
                     List<Department> departments = (List<Department>) request.getAttribute("departments");
                     for (Department department : departments) { %>
-                        <div class="Select">
-                            <option value=<%= department.getId() %>> <%= department.getName() %> </option>
-                        </div>
+                <div class="Select">
+                    <option value=<%= department.getId() %>><%= department.getName() %>
+                    </option>
+                </div>
                 <%
                         }
                     }
@@ -70,7 +79,7 @@
 
     <div class="label">
         <label for="inn"> Input INN of employee
-            <input type="number" id="inn" name="inn">
+            <input type="text" maxlength="10" pattern="\d{10}" id="inn" name="inn">
         </label>
     </div>
     <br/>
@@ -93,18 +102,24 @@
 
     <div class="label">
         <label for="phoneNumber"> Input phoneNumber of employee
-            <input type="text" id="phoneNumber" name="phoneNumber">
+<%--            <input type="text" class="phoneNumber" maxlength="13" placeholder="+7-912-123456" id="phoneNumber"--%>
+<%--                   name="phoneNumber" autocomplete="off">--%>
+            <input type="text"
+                   class="phoneNumber"
+                   placeholder="+7-912-123456"
+                   id="phoneNumber"
+                   name="phoneNumber">
         </label>
     </div>
 
     <br/>
 
-<%--    <div class="label">--%>
-<%--        <label for="job"> Input job name of employee--%>
-<%--            <input type="text" id="job" name="job">--%>
-<%--        </label>--%>
-<%--    </div>--%>
-<%--    <br/>--%>
+    <%--    <div class="label">--%>
+    <%--        <label for="job"> Input job name of employee--%>
+    <%--            <input type="text" id="job" name="job">--%>
+    <%--        </label>--%>
+    <%--    </div>--%>
+    <%--    <br/>--%>
 
     <div class="label">
         <label> Input job of employee
@@ -113,7 +128,8 @@
                     List<Job> jobs = (List<Job>) request.getAttribute("jobs");
                     for (Job job : jobs) { %>
                 <div class="Select">
-                    <option value=<%= job.getId() %>> <%= job.getName() %> </option>
+                    <option value=<%= job.getId() %>><%= job.getName() %>
+                    </option>
                 </div>
                 <%
                         }
@@ -125,12 +141,12 @@
     <br>
 
 
-<%--    <div class="label">--%>
-<%--        <label for="boss"> Input boss of employee--%>
-<%--            <input type="text" id="boss" name="department">--%>
-<%--        </label>--%>
-<%--    </div>--%>
-<%--    <br/>--%>
+    <%--    <div class="label">--%>
+    <%--        <label for="boss"> Input boss of employee--%>
+    <%--            <input type="text" id="boss" name="department">--%>
+    <%--        </label>--%>
+    <%--    </div>--%>
+    <%--    <br/>--%>
 
     <div class="label">
         <label for="recruitDate"> Input recruitDate of recruiting
@@ -142,13 +158,14 @@
 
     <div class="label">
         <label for="salary"> Input salary of employee
-        <input type="number" id="salary" name="salary">
+            <input type="number" id="salary" name="salary">
         </label>
     </div>
     <br/>
 
     <input type="submit" value="Recruit employee">
 </form>
+
 <%--<br>--%>
 <hr>
 
@@ -207,5 +224,14 @@
     %>
 </table>
 
+<script src="https://unpkg.com/imask"></script>
+<script>
+    let element = document.getElementById('phoneNumber');
+    let maskOptions = {
+        mask: '+0-000-0000000',
+        lazy: false
+    }
+    let mask = new IMask(element, maskOptions);
+</script>
 </body>
 </html>

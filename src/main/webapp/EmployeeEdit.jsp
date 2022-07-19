@@ -101,7 +101,7 @@
 
     <div class="label">
         <label for="inn"> Input INN of employee
-            <input type="number" id="inn" name="inn"
+            <input type="text" maxlength="10" pattern="\d{10}" id="inn" name="inn"
                    value=<%= request.getAttribute("inn")!=null ? request.getAttribute("inn"):""%>
             >
         </label>
@@ -146,7 +146,10 @@
 
     <div class="label">
         <label for="phoneNumber"> Input phoneNumber of employee
-            <input type="text" id="phoneNumber" name="phoneNumber"
+            <input type="text"
+                   id="phoneNumber"
+                   name="phoneNumber"
+                   placeholder="+7-912-123456"
                    value=<%= request.getAttribute("phoneNumber")!=null ? request.getAttribute("phoneNumber"):""%>
             >
         </label>
@@ -254,21 +257,6 @@
 <%--            <th style="width: 5%">Status</th>--%>
             <th style="width: 3%">Check for edit</th>
         </tr>
-<%--        <tr>--%>
-<%--            <th >Id</th>--%>
-<%--            <th>Full name</th>--%>
-<%--            <th >INN</th>--%>
-<%--            <th >Department</th>--%>
-<%--            <th>Birth date</th>--%>
-<%--            <th>Gender</th>--%>
-<%--            <th>Phone number</th>--%>
-<%--            <th>Job name</th>--%>
-<%--            <th>Boss</th>--%>
-<%--            <th>Date of recruiting</th>--%>
-<%--            <th>Salary size</th>--%>
-<%--            &lt;%&ndash;                <th>Status</th>&ndash;%&gt;--%>
-<%--            <th>Check for edit</th>--%>
-<%--        </tr>--%>
     </table>
 </div>
 
@@ -276,21 +264,6 @@
 <form method="post">
     <div class="scrollingTable">
         <table id="myTable">
-<%--            <tr>--%>
-<%--                <th >Id</th>--%>
-<%--                <th>Full name</th>--%>
-<%--                <th >INN</th>--%>
-<%--                <th >Department</th>--%>
-<%--                <th>Birth date</th>--%>
-<%--                <th>Gender</th>--%>
-<%--                <th>Phone number</th>--%>
-<%--                <th>Job name</th>--%>
-<%--                <th>Boss</th>--%>
-<%--                <th>Date of recruiting</th>--%>
-<%--                <th>Salary size</th>--%>
-<%--&lt;%&ndash;                <th>Status</th>&ndash;%&gt;--%>
-<%--                <th>Check for edit</th>--%>
-<%--            </tr>--%>
 
             <% if (request.getAttribute("entities") != null) {
                 List<Employee> entities = (List<Employee>) request.getAttribute("entities");
@@ -341,6 +314,16 @@
     <input type="submit" value="edit">
     <br>
 </form>
+
+<script src="https://unpkg.com/imask"></script>
+<script>
+    let element = document.getElementById('phoneNumber');
+    let maskOptions = {
+        mask: '+0-000-0000000',
+        lazy: false
+    }
+    let mask = new IMask(element, maskOptions);
+</script>
 
 </body>
 </html>
