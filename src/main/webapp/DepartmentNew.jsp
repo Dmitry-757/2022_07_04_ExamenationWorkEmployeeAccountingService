@@ -1,4 +1,5 @@
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Department" %>
+<%@ page import="org.dng.EmployeeAccountingService.Entities.Employee" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -38,6 +39,26 @@
     <label for="fullName"> Input full name of department
         <input style="margin-left: 10px;" type="text" id="fullName" name="fullName">
     </label>
+    <br>
+    <br>
+
+    <label for="fullName"> Select a boss of the department
+        <select name="selectBoss">
+            <% if (request.getAttribute("bosses") != null) {
+                List<Employee> bosses = (List<Employee>) request.getAttribute("bosses");
+                for (Employee boss : bosses) { %>
+            <div class="Select">
+                <option
+                        value=<%= boss.getId() %>
+                > <%= boss.getName() %>
+                </option>
+            </div>
+            <%
+                    }
+                }
+            %>
+        </select>
+    </label>
 
     <br/>
     <input type="submit" value="save department">
@@ -50,16 +71,19 @@
     <tr>
         <th>name of Department</th>
         <th>Id of department</th>
+        <th>Boss of department</th>
     </tr>
 
     <% if (request.getAttribute("departments") != null) {
-        List<Department> departments = (List<Department>) request.getAttribute("departments");
-        for (Department department : departments) {
+        List<Department> entities = (List<Department>) request.getAttribute("departments");
+        for (Department entity : entities) {
     %>
     <tr>
-        <td><%= department.getName() %>
+        <td><%= entity.getName() %>
         </td>
-        <td><%= department.getId() %>
+        <td><%= entity.getId() %>
+        </td>
+        <td><%=( entity.getBoss()!=null ? entity.getBoss().getName() : "")%>
         </td>
     </tr>
     <%

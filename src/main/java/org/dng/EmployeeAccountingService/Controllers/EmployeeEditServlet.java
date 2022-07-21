@@ -36,7 +36,17 @@ public class EmployeeEditServlet extends HttpServlet {
 
         //String[] numChecked = request.getParameterValues("checkedJobs");//get array parameters from http request
         String numChecked = req.getParameter("checkedEntity");//get parameter from http request
-        if(numChecked != null) {
+        String action = req.getParameter("buttonaction");
+
+        if((numChecked != null)&&("dismiss".equals(action))) {
+            if (numChecked.length() > 0) {
+                Employee entity = AppContext.getEmployeeService().getById(Integer.parseInt(numChecked));
+                entity.setDismissed(true);
+            }
+        }
+
+
+        if((numChecked != null)&&("edit".equals(action))) {
             if (numChecked.length() > 0) {
                 Employee entity = AppContext.getEmployeeService().getById(Integer.parseInt(numChecked));
                 System.out.println(entity.getName());
@@ -79,103 +89,106 @@ public class EmployeeEditServlet extends HttpServlet {
         }
 
 //        //getting attributes end save it to employee
-        @NotNull
-        String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
-        if(fullName != null) {
-            System.out.println("fullName = "+ fullName);
-        }
 
-        @NotNull
-        String email = req.getParameter("email");//get selectDepartment parameter from http request
-        @NotNull
-        String pass = req.getParameter("pass");//get selectDepartment parameter from http request
-
-
-        @NotNull int inn = 0;
-        String innP = req.getParameter("inn");
-        if(innP != null){
-            inn = Integer.parseInt(innP);
-        }
-
-
-        LocalDate birthDate = null;
-        if(req.getParameter("birthDate") != null){
-            birthDate = LocalDate.parse(req.getParameter("birthDate"));
-        }
-
-        @NotNull
-        Gender gender = null;
-        if(req.getParameter("gender") != null){
-            switch (req.getParameter("gender")){
-                case "male" -> gender = Gender.MALE;
-                case "female" -> gender = Gender.FEMALE;
+        if ("save".equals(action)) {
+            @NotNull
+            String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
+            if (fullName != null) {
+                System.out.println("fullName = " + fullName);
             }
-        }
 
-        String phoneNumber = null;
-        if(req.getParameter("phoneNumber")!= null){
-            phoneNumber = req.getParameter("phoneNumber");
-        }
-
-
-        //searching and processing of "selectDepartment" parameter
-        @NotNull Department department = null;
-        Employee boss = null;
-        String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
-        if(selectDepartment != null) {
-            int id = Integer.parseInt(selectDepartment);
-            department = AppContext.getDepartmentService().getById(id);
-            //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
-            boss = department.getBoss();
-        }
-
-        @NotNull Job job = null;
-        String selectJob = req.getParameter("selectJob");//get selectJob parameter from http request <select name="selectJob">
-        if(selectJob != null) {
-            int id = Integer.parseInt(selectJob);
-            job = AppContext.getJobService().getById(id);
-        }
+            @NotNull
+            String email = req.getParameter("email");//get selectDepartment parameter from http request
+            @NotNull
+            String pass = req.getParameter("pass");//get selectDepartment parameter from http request
 
 
-        @NotNull LocalDate recruitDate = null;
-        if(req.getParameter("recruitDate")!= null){
-            recruitDate = LocalDate.parse(req.getParameter("recruitDate"));
-        }
+            @NotNull int inn = 0;
+            String innP = req.getParameter("inn");
+            if (innP != null) {
+                inn = Integer.parseInt(innP);
+            }
 
-        LocalDate dismissDate = null;
-        @NotNull int salary = 0;
-        if(req.getParameter("salary")!= null){
-            salary = Integer.parseInt(req.getParameter("salary"));
-        }
+
+            LocalDate birthDate = null;
+            if (req.getParameter("birthDate") != null) {
+                birthDate = LocalDate.parse(req.getParameter("birthDate"));
+            }
+
+            @NotNull
+            Gender gender = null;
+            if (req.getParameter("gender") != null) {
+                switch (req.getParameter("gender")) {
+                    case "male" -> gender = Gender.MALE;
+                    case "female" -> gender = Gender.FEMALE;
+                }
+            }
+
+            String phoneNumber = null;
+            if (req.getParameter("phoneNumber") != null) {
+                phoneNumber = req.getParameter("phoneNumber");
+            }
+
+
+            //searching and processing of "selectDepartment" parameter
+            @NotNull Department department = null;
+            Employee boss = null;
+            String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
+            if (selectDepartment != null) {
+                int id = Integer.parseInt(selectDepartment);
+                department = AppContext.getDepartmentService().getById(id);
+                //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
+                boss = department.getBoss();
+            }
+
+            @NotNull Job job = null;
+            String selectJob = req.getParameter("selectJob");//get selectJob parameter from http request <select name="selectJob">
+            if (selectJob != null) {
+                int id = Integer.parseInt(selectJob);
+                job = AppContext.getJobService().getById(id);
+            }
+
+
+            @NotNull LocalDate recruitDate = null;
+            if (req.getParameter("recruitDate") != null) {
+                recruitDate = LocalDate.parse(req.getParameter("recruitDate"));
+            }
+
+            LocalDate dismissDate = null;
+            @NotNull int salary = 0;
+            if (req.getParameter("salary") != null) {
+                salary = Integer.parseInt(req.getParameter("salary"));
+            }
 
 
 //        String editedEntityId = request.getParameter("editedEntityId");//get  parameter from http request
-        if((fullName != null)&&(editedEntityId != 0)) {
-            //System.out.println("fullName = "+ fullName);
-            if (fullName.length()>0){
-                Employee entity = AppContext.getEmployeeService().getById(editedEntityId);
-                if (fullName.length()>0) {
-                    assert gender != null;
-                    assert department != null;
-                    assert recruitDate != null;
-                    AppContext.getEmployeeService().change(entity,
-                            fullName,
-                            inn,
-                            birthDate,
-                            gender,
-                            phoneNumber,
-                            job,
-                            department,
-                            boss,
-                            recruitDate,
-                            dismissDate,
-                            salary,
-                            email,
-                            pass);
+            if ((fullName != null) && (editedEntityId != 0)) {
+                //System.out.println("fullName = "+ fullName);
+                if (fullName.length() > 0) {
+                    Employee entity = AppContext.getEmployeeService().getById(editedEntityId);
+                    if (fullName.length() > 0) {
+                        assert gender != null;
+                        assert department != null;
+                        assert recruitDate != null;
+                        AppContext.getEmployeeService().change(entity,
+                                fullName,
+                                inn,
+                                birthDate,
+                                gender,
+                                phoneNumber,
+                                job,
+                                department,
+                                boss,
+                                recruitDate,
+                                dismissDate,
+                                salary,
+                                email,
+                                pass);
+                    }
+
+
+                    editedEntityId = 0;
                 }
-
-
-                editedEntityId = 0;
             }
         }
 

@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.Entities.Department;
+import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Job;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,6 +34,7 @@ public class DepartmentEditServlet extends HttpServlet {
 
         //String[] numChecked = request.getParameterValues("checkedJobs");//get array parameters from http request
         String numChecked = request.getParameter("checkedEntity");//get parameter from http request
+
         if(numChecked != null) {
             if (numChecked.length() > 0) {
                 Department entity = AppContext.getDepartmentService().getById(Integer.parseInt(numChecked));
@@ -39,16 +42,33 @@ public class DepartmentEditServlet extends HttpServlet {
                 editedEntityId = entity.getId();
                 request.setAttribute("fullName", entity.getName());
                 int a = 0;
+
+                //boss
+                List<Employee> le = AppContext.getEmployeeService().findAll();
+                if (le.size()>0){
+                    request.setAttribute("bosses", le);
+                }
+                request.setAttribute("selectedBossId", entity.getId());
             }
         }
 
+
+
         String fullName = request.getParameter("fullName");//get  parameter from http request
-//        String editedEntityId = request.getParameter("editedEntityId");//get  parameter from http request
         if((fullName != null)&&(editedEntityId != 0)) {
-            //System.out.println("fullName = "+ fullName);
             if (fullName.length()>0){
                 Department entity = AppContext.getDepartmentService().getById(editedEntityId);
                 AppContext.getDepartmentService().change(entity, fullName);
+
+                //searching and processing of "selectBoss" parameter
+                @NotNull Employee boss = null;
+                String selectBoss = request.getParameter("selectBoss");//get selectBoss parameter from http request
+                if(selectBoss != null) {
+                    int id = Integer.parseInt(selectBoss);
+                    boss = AppContext.getEmployeeService().getById(id);
+                }
+                entity.setBoss(boss);
+
                 editedEntityId = 0;
             }
         }

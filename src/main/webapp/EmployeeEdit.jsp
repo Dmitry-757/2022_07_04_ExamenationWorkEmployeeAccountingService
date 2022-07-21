@@ -256,7 +256,7 @@
     <br/>
 
     <br/>
-    <input type="submit" value="save">
+    <input type="submit" name="buttonaction" value="save">
 </form>
 
 <hr>
@@ -292,7 +292,7 @@
             <th style="width: 5%">Boss</th>
             <th style="width: 5%">Date of recruiting</th>
             <th style="width: 5%">Salary size</th>
-<%--            <th style="width: 5%">Status</th>--%>
+            <th style="width: 5%">Status</th>
             <th style="width: 3%">Check for edit</th>
         </tr>
     </table>
@@ -353,8 +353,8 @@
                 </td>
                 <td style="width: 8%"><%= entity.getSalary() %>
                 </td>
-<%--                <td><%= entity.getStatus() %>--%>
-<%--                </td>--%>
+                <td><%= entity.getStatus() %>
+                </td>
                 <td style="width: 8%">
                     <input type="radio"
                            value=<%= i%>
@@ -369,7 +369,8 @@
         </table>
     </div>
     <br>
-    <input type="submit" value="edit">
+    <input type="submit" name="buttonaction" value="edit">
+    <input type="submit" name="buttonaction" value="dismiss">
     <br>
 </form>
 

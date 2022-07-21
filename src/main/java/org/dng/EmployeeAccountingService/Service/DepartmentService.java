@@ -3,6 +3,7 @@ package org.dng.EmployeeAccountingService.Service;
 import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.Entities.AddDuplicatedObjException;
 import org.dng.EmployeeAccountingService.Entities.Department;
+import org.dng.EmployeeAccountingService.Entities.Employee;
 
 
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class DepartmentService  implements ServiceI<Department> {
     @Override
 //    public void add(String name) {
     public void add(Object ...args) {
-        if (args.length>0) {
+        if (args.length==1) {
             String name = (String) args[0];
             try {
                 new Department(name);
@@ -22,7 +23,18 @@ public class DepartmentService  implements ServiceI<Department> {
                 System.out.println(e.getMessage());
             }
         }
+        else if (args.length==2) {
+            String name = (String) args[0];
+            Employee boss = (Employee) args[1];
+            try {
+                new Department(name, boss);
+            } catch (AddDuplicatedObjException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
+
 
     @Override
     public void change(Department entity, Object ... args) {

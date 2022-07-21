@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Department" %>
+<%@ page import="org.dng.EmployeeAccountingService.Entities.Employee" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -79,6 +80,35 @@
                value=<%= request.getAttribute("fullName")!=null ? request.getAttribute("fullName"):""%>>
     </label>
 
+    <br>
+    <br>
+
+    <label for="fullName"> Select a boss of the department
+        <select name="selectBoss">
+            <% if (request.getAttribute("bosses") != null) {
+                List<Employee> bosses = (List<Employee>) request.getAttribute("bosses");
+                for (Employee boss : bosses) { %>
+            <div class="Select">
+                <option
+                        value=<%= boss.getId() %>
+                            <% String selected="";
+                                    if (request.getAttribute("selectedBossId") != null){
+                                        int selectedSubEntityId = (int)(request.getAttribute("selectedBossId"));
+                                        selected = (boss.getId() == selectedSubEntityId ? "selected" : "");
+                                }%>
+                            <%=selected%>
+
+                > <%= boss.getName() %>
+                </option>
+            </div>
+            <%
+                    }
+                }
+            %>
+        </select>
+    </label>
+
+
     <br/>
     <input type="submit" value="save">
 </form>
@@ -91,6 +121,7 @@
     <tr>
         <th >Name of Job</th>
         <th >Id</th>
+        <th >Boss</th>
         <th >Check for edit</th>
     </tr>
 </table>
@@ -100,23 +131,19 @@
 <form method="post">
     <div class="scrollingTable">
         <table id="myTable">
-<%--            <tr>--%>
-<%--                <th>Name of Job</th>--%>
-<%--                <th>Id</th>--%>
-<%--                <th>Check for edit</th>--%>
-<%--            </tr>--%>
 
             <% if (request.getAttribute("entities") != null) {
                 List<Department> entities = (List<Department>) request.getAttribute("entities");
                 int i = 0;
                 for (Department entity : entities) {
                     i++;
-                    //                System.out.println("i="+i);
             %>
             <tr style="width: 460px">
                 <td><%= entity.getName() %>
                 </td>
                 <td><%= entity.getId() %>
+                </td>
+                <td><%=( entity.getBoss()!=null ? entity.getBoss().getName() : "")%>
                 </td>
                 <td>
                     <input type="radio"
