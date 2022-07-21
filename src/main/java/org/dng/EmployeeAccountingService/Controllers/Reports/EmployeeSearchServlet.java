@@ -120,11 +120,6 @@ public class EmployeeSearchServlet extends HttpServlet {
         }//if("search".equals(action))
 
 
-//        String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
-//        if(fullName != null) {
-//            System.out.println("fullName = "+ fullName);
-//        }
-
 
         List<Department> ld = AppContext.getDepartmentService().findAll();
         if (ld.size()>0){
@@ -149,26 +144,6 @@ public class EmployeeSearchServlet extends HttpServlet {
         }
 
 
-
-
-//        if (fullName.length()>0) {
-//            assert gender != null;
-//            assert department != null;
-//            assert recruitDate != null;
-//            AppContext.getEmployeeService().add(fullName,
-//                    inn,
-//                    birthDate,
-//                    gender,
-//                    phoneNumber,
-//                    job,
-//                    department,
-//                    boss,
-//                    recruitDate,
-//                    dismissDate,
-//                    salary,
-//                    email,
-//                    pass);
-//        }
 
 
         if (le.size()>0){

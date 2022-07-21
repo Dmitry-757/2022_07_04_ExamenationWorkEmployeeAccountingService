@@ -1,6 +1,7 @@
 package org.dng.EmployeeAccountingService.Service;
 
 import org.dng.EmployeeAccountingService.AppContext;
+import org.dng.EmployeeAccountingService.DBLinksForSerializing;
 import org.dng.EmployeeAccountingService.repository.DepartmentDataBase;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.dng.EmployeeAccountingService.repository.JobDataBase;
@@ -127,15 +128,60 @@ public class SaveReadDataBase {
         }
     }
 
+
+    private static void saveDBLinksForSerializing() {
+        DBLinksForSerializing dbLinksForSerializing = AppContext.getDbLinksForSerializing();
+        try (FileOutputStream fos = new FileOutputStream(AppContext.fileNamedbLinksForSerializing);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)
+        ) {
+            oos.writeObject(dbLinksForSerializing);
+        } catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException " + e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("IOException " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    private static void readDBLinksForSerializing() {
+        DBLinksForSerializing dbLinksForSerializing = null;
+        if (!Files.exists(Path.of(AppContext.fileNamedbLinksForSerializing))){
+            System.out.println("File with save was not found! ");
+            return;
+        }
+
+        try(FileInputStream fis = new FileInputStream(AppContext.fileNamedbLinksForSerializing);
+            ObjectInputStream ois = new ObjectInputStream(fis)
+        ) {
+            dbLinksForSerializing = (DBLinksForSerializing) ois.readObject();
+            AppContext.setDbLinksForSerializing(dbLinksForSerializing);
+        } catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException "+e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("IOException "+e.getMessage());
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("ClassNotFoundException "+e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+
     public static void saveDB(){
-        saveDBDepartment();
-        saveDBJob();
-        saveDBEmployee();
+//        saveDBDepartment();
+//        saveDBJob();
+//        saveDBEmployee();
+        saveDBLinksForSerializing();
     }
 
     public static void readDB(){
-        readDBJob();
-        readDBDepartment();
-        readDBEmployee();
+//        readDBJob();
+//        readDBDepartment();
+//        readDBEmployee();
+        readDBLinksForSerializing();
     }
 }
