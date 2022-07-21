@@ -149,6 +149,17 @@ public class EmployeeService implements ServiceI<Employee> {
                 .toList();
     }
 
+    public List<Employee> findEmployee(Job job) {
+        HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+        return entityHashMap
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue().getJob().equals(job))
+                .map(Map.Entry::getValue)
+                .toList();
+    }
+
+
     public List<Employee> findEmployee(final int minSalary, final int maxSalary) {
         HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
         return entityHashMap

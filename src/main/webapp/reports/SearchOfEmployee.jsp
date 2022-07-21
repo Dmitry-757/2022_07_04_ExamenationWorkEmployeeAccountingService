@@ -196,22 +196,5 @@
     %>
 </table>
 
-<script src="https://unpkg.com/imask"></script>
-<script>
-    let element = document.getElementById('phoneNumber');
-    let maskOptions = {
-        mask: '+0-000-0000000',
-        lazy: false
-    }
-    let mask = new IMask(element, maskOptions);
-
-    // let element = document.getElementById('email');
-    // let maskOptions = {
-    //     mask: '0-000-0000000',
-    //     lazy: false
-    // }
-    // let mask = new IMask(element, maskOptions);
-
-</script>
 </body>
 </html>
