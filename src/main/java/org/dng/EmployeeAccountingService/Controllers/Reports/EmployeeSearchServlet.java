@@ -32,10 +32,6 @@ public class EmployeeSearchServlet extends HttpServlet {
             req.setAttribute("jobs", lj);
         }
 
-//        List<Employee> le = AppContext.getEmployeeService().findAll();
-//        if (le.size()>0){
-//            req.setAttribute("employees", le);
-//        }
 
         List<Employee> bosses = AppContext.getDepartmentDataBase()
                            .getEntityHashMap()
@@ -47,6 +43,11 @@ public class EmployeeSearchServlet extends HttpServlet {
                             .toList();
         if (bosses.size()>0){
             req.setAttribute("bosses", bosses);
+        }
+
+        List<Employee> le = AppContext.getEmployeeService().findAll();
+        if (le.size()>0){
+            req.setAttribute("employees", le);
         }
 
 
@@ -61,9 +62,16 @@ public class EmployeeSearchServlet extends HttpServlet {
         String action = req.getParameter("ButtonAction");
         List<Employee> le = new ArrayList<>();
 
-        if("search".equals(action)) {
+        if("ShowAll".equals(action)) {
+            le = AppContext.getEmployeeService().findAll();
+            if (le.size()>0){
+                req.setAttribute("employees", le);
+            }
+        }
 
-            //searching and processing of "selectDepartment" parameter
+        else if("search".equals(action)) {
+
+            //searching employers by department
             Department department = null;
             String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
             if ((selectDepartment != null) && (selectDepartment.length() != 0)) {
@@ -73,28 +81,41 @@ public class EmployeeSearchServlet extends HttpServlet {
                 le = AppContext.getEmployeeService().findEmployee(department);
             }
 
-            //if can`t find by previous parameter - let`s find by job (use template of chain ;))
-            if (le.size()==0){
-                Job job = null;
-                String selectJob = req.getParameter("selectJob");//get selectJob parameter from http request <select name="selectJob">
-                if ((selectJob != null) && (selectJob.length() != 0) ) {
-                    int id = Integer.parseInt(selectJob);
-                    job = AppContext.getJobService().getById(id);
-                    le = AppContext.getEmployeeService().findEmployee(job);
+            //searching employers by job
+            Job job = null;
+            String selectJob = req.getParameter("selectJob");//get selectJob parameter from http request <select name="selectJob">
+            if ((selectJob != null) && (selectJob.length() != 0) ) {
+                int id = Integer.parseInt(selectJob);
+                job = AppContext.getJobService().getById(id);
+                //if can`t find by previous parameter - let`s find by job (use template of chain ;))
+                if (le.size()==0){
+                        le = AppContext.getEmployeeService().findEmployee(job);
+                }
+                else{
+                    final Job fjob = job;
+                    le = le.stream()
+                            .filter(v -> v.getJob().equals(fjob))
+                            .toList();
                 }
             }
 
-
-            if (le.size()==0){
-                Employee boss = null;
-                String selectBoss = req.getParameter("selectBoss");//get selectBoss parameter from http request <select name="selectBoss">
-                if ((selectBoss != null) && (selectBoss.length() != 0)) {
-                    int id = Integer.parseInt(selectBoss);
-                    boss = AppContext.getEmployeeService().getById(id);
+            //searching employers by boss
+            Employee boss = null;
+            String selectBoss = req.getParameter("selectBoss");//get selectBoss parameter from http request <select name="selectBoss">
+            if ((selectBoss != null) && (selectBoss.length() != 0) ) {
+                int id = Integer.parseInt(selectBoss);
+                boss = AppContext.getEmployeeService().getById(id);
+                //if can`t find by previous parameter - let`s find by boss (use template of chain ;))
+                if (le.size()==0){
                     le = AppContext.getEmployeeService().findEmployee(boss);
                 }
+                else{
+                    final Employee fboss = boss;
+                    le = le.stream()
+                            .filter(v -> v.getBoss().equals(fboss))
+                            .toList();
+                }
             }
-
 
         }//if("search".equals(action))
 

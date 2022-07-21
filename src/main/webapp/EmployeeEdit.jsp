@@ -357,7 +357,7 @@
                 </td>
                 <td style="width: 8%">
                     <input type="radio"
-                           value=<%= i%>
+                           value=<%= entity.getId()%>
                                    name="checkedEntity"
                     >
                 </td>

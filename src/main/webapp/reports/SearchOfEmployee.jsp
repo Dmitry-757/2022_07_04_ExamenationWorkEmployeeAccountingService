@@ -133,6 +133,8 @@
 
 
     <input type="submit" name="ButtonAction" value="search">
+    <input style="padding-left: 10px" type="submit" name="ButtonAction" value="ShowAll">
+
 </form>
 
 <%--<br>--%>
