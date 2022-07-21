@@ -66,7 +66,7 @@ public class EmployeeSearchServlet extends HttpServlet {
             //searching and processing of "selectDepartment" parameter
             Department department = null;
             String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
-            if (selectDepartment != null) {
+            if ((selectDepartment != null) && (selectDepartment.length() != 0)) {
                 int id = Integer.parseInt(selectDepartment);
                 department = AppContext.getDepartmentService().getById(id);
 

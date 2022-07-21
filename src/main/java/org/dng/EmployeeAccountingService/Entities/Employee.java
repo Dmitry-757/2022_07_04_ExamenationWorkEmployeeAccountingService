@@ -30,7 +30,7 @@ public class Employee implements Serializable {
     private Job job;
     @NotNull
     private Department department;
-    private Employee boss;
+//    private Employee boss;
     @NotNull
     private LocalDate recruitDate;
     private boolean dismissed;
@@ -45,7 +45,7 @@ public class Employee implements Serializable {
                     String phoneNumber,
                     Job job,
                     @NotNull Department department,
-                    Employee boss,
+//                    Employee boss,
                     @NotNull LocalDate recruitDate,
                     LocalDate dismissDate,
 //                    @NotNull int salary) throws Exception {
@@ -60,7 +60,7 @@ public class Employee implements Serializable {
         this.phoneNumber = phoneNumber;
         this.job = job;
         this.department = department;
-        this.boss = boss;
+//        this.boss = boss;
         this.recruitDate = recruitDate;
         this.dismissDate = dismissDate;
         this.salary = salary;
@@ -113,14 +113,14 @@ public class Employee implements Serializable {
     }
 
     public Employee getBoss() {
-        return boss;
+        return this.department.getBoss();
     }
 
     public String getBossName() {
-        if(boss == null) {
+        if(this.department.getBoss() == null) {
             return "";}
 
-        return boss.fullName;
+        return getBoss().fullName;
     }
 
     public LocalDate getRecruitDate() {
@@ -163,9 +163,6 @@ public class Employee implements Serializable {
         this.department = department;
     }
 
-    public void setBoss(Employee boss) {
-        this.boss = boss;
-    }
 
     public void setRecruitDate(LocalDate recruitDate) {
         this.recruitDate = recruitDate;

@@ -26,7 +26,7 @@ class EmployeeTest {
                     LocalDate.of(1970, 6, 1),
                     Gender.MALE,
                     "912-1234567",
-                    job, department, null,
+                    job, department,
                     LocalDate.of(2022, 7, 8),
                     null,
                     1000, "abc@gmail.com","password=qwerty");

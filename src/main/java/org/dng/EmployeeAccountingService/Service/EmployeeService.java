@@ -28,7 +28,7 @@ public class EmployeeService implements ServiceI<Employee> {
 //                                       @NotNull int salary) {
     @Override
     public void add(Object... args) {
-        if (args.length == 13) {
+        if (args.length == 12) {
             @NotNull String fullName = (String) args[0];
             int inn = (int) args[1];
             LocalDate birthDate = (LocalDate) args[2];
@@ -36,15 +36,15 @@ public class EmployeeService implements ServiceI<Employee> {
             String phoneNumber = (String) args[4];
             Job job = (Job) args[5];
             @NotNull Department department = (Department) args[6];
-            Employee boss = (Employee) args[7];
-            @NotNull LocalDate recruitDate = (LocalDate) args[8];
-            LocalDate dismissDate = (LocalDate) args[9];
-            @NotNull int salary = (int) args[10];
-            String email = (String)  args[11];
-            String pass = (String) args[12];
+//            Employee boss = (Employee) args[7];
+            @NotNull LocalDate recruitDate = (LocalDate) args[7];
+            LocalDate dismissDate = (LocalDate) args[8];
+            @NotNull int salary = (int) args[9];
+            String email = (String)  args[10];
+            String pass = (String) args[11];
 
             try {
-                new Employee(fullName, inn, birthDate, gender, phoneNumber, job, department, boss, recruitDate, dismissDate, salary, email, pass);
+                new Employee(fullName, inn, birthDate, gender, phoneNumber, job, department, recruitDate, dismissDate, salary, email, pass);
             } catch (AddDuplicatedObjException e) {
                 e.printStackTrace();
                 System.out.println(e.getMessage());
@@ -54,10 +54,10 @@ public class EmployeeService implements ServiceI<Employee> {
 
     @Override
     public void change(Employee entity, Object... args) {
-        if (args.length == 13) {
+        if (args.length == 12) {
             HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
-            if (entityHashMap.containsKey(entity.getInn())) {
-                System.out.println("job with such INN is already present!");
+            if (!entityHashMap.containsKey(entity.getInn())) {
+                System.out.println("job with such INN is absent!");
                 try {
                     throw new AddDuplicatedObjException("job with such INN is already present!");
                 } catch (AddDuplicatedObjException e) {
@@ -74,12 +74,12 @@ public class EmployeeService implements ServiceI<Employee> {
             String phoneNumber = (String) args[4];
             Job job = (Job) args[5];
             @NotNull Department department = (Department) args[6];
-            Employee boss = (Employee) args[7];
-            @NotNull LocalDate recruitDate = (LocalDate) args[8];
-            LocalDate dismissDate = (LocalDate) args[9];
-            @NotNull int salary = (int) args[10];
-            String email = (String)  args[11];
-            String pass = (String) args[12];
+//            Employee boss = (Employee) args[7];
+            @NotNull LocalDate recruitDate = (LocalDate) args[7];
+            LocalDate dismissDate = (LocalDate) args[8];
+            @NotNull int salary = (int) args[9];
+            String email = (String)  args[10];
+            String pass = (String) args[11];
 
             entity.setFullName(fullName);
             entity.setInn(inn);
@@ -88,7 +88,7 @@ public class EmployeeService implements ServiceI<Employee> {
             entity.setPhoneNumber(phoneNumber);
             entity.setJob(job);
             entity.setDepartment(department);
-            entity.setBoss(boss);
+//            entity.setBoss(boss);
             entity.setRecruitDate(recruitDate);
             entity.setDismissDate(dismissDate);
             entity.setSalary(salary);
@@ -144,6 +144,7 @@ public class EmployeeService implements ServiceI<Employee> {
         return entityHashMap
                 .entrySet()
                 .stream()
+                .filter(e -> e.getValue().getBoss()!=null)
                 .filter(e -> e.getValue().getBoss().equals(boss))
                 .map(Map.Entry::getValue)
                 .toList();

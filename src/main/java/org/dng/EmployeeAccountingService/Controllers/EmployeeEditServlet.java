@@ -178,7 +178,7 @@ public class EmployeeEditServlet extends HttpServlet {
                                 phoneNumber,
                                 job,
                                 department,
-                                boss,
+//                                boss,
                                 recruitDate,
                                 dismissDate,
                                 salary,
