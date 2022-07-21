@@ -27,6 +27,11 @@
 <br>
 <hr>
 <br>
+<a href="reports/reports.jsp">Reports</a>
+<br>
+<hr>
+<br>
+
 <a href="SaveRead">save / read   condition</a>
 
 </body>
