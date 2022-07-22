@@ -6,6 +6,10 @@ import org.dng.EmployeeAccountingService.DBReferenceKeeper;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class SaveReadDataBase {
@@ -58,9 +62,20 @@ public class SaveReadDataBase {
 
     public static void saveDB(){
         saveDBReferenceKeeper();
+        try {
+            AppContext.getMyLogger(SaveReadDataBase.class.getName()).info("conditions was saved");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void readDB(){
         readDBReferenceKeeper();
+        try {
+            AppContext.getMyLogger(SaveReadDataBase.class.getName()).info("conditions was read");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
