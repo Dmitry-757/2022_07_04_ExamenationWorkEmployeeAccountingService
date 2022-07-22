@@ -29,7 +29,7 @@ public class JobServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String fullName = request.getParameter("fullName");//get  parameter from http request
         if(fullName != null) {
-            System.out.println("fullName = "+ fullName);
+//            System.out.println("fullName = "+ fullName);
             if (fullName.length()>0){
                 AppContext.getJobService().add(fullName);
             }

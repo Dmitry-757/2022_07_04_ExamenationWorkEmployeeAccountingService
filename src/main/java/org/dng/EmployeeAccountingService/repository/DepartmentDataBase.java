@@ -1,7 +1,10 @@
 package org.dng.EmployeeAccountingService.repository;
 
+import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.Entities.Department;
+import org.dng.EmployeeAccountingService.Service.SaveReadDataBase;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -27,13 +30,14 @@ public class DepartmentDataBase extends DataBaseAbstract<Department> implements 
 //    }
 
 
-    public void put(Department department) {
+    public void put(Department entity) {
         //сначала проверим нет ли уже с таким id
-        if (entityHashMap.containsKey(department.getId())) {
+        if (entityHashMap.containsKey(entity.getId())) {
             System.out.println("department with such Id is already present!");
             return;
         }
-        entityHashMap.put(department.getId(),department);
+        entityHashMap.put(entity.getId(),entity);
+        AppContext.getMyLogger(this.getClass().getName()).info("department "+entity.getName()+" was put to HashMap");
     }
 
 }

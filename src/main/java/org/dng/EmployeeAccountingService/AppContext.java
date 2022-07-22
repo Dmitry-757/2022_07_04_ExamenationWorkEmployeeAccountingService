@@ -3,7 +3,6 @@ package org.dng.EmployeeAccountingService;
 import org.dng.EmployeeAccountingService.Service.DepartmentService;
 import org.dng.EmployeeAccountingService.Service.EmployeeService;
 import org.dng.EmployeeAccountingService.Service.JobService;
-import org.dng.EmployeeAccountingService.Service.SaveReadDataBase;
 import org.dng.EmployeeAccountingService.repository.DepartmentDataBase;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.dng.EmployeeAccountingService.repository.JobDataBase;
@@ -25,15 +24,26 @@ public class AppContext {
 
     private static final DBReferenceKeeper dbReferenceKeeper = new DBReferenceKeeper();//for serializing
 
+    //** for logging ***
+    //lets make anonymous class ;)
     private static final Formatter myFormatter = new Formatter() {
         @Override
         public String format(LogRecord record) {
-            return "Thread id="+record.getLongThreadID()+"::"+record.getSourceClassName()+"::"
-                    +record.getSourceMethodName()+"::"+"\n"
+//            return "Thread id="+record.getLongThreadID()+"::"+record.getSourceClassName()+"::"
+//                    +record.getSourceMethodName()+"::"+"\n"
+//                    +"    "+new Date(record.getMillis())+"::"
+//                    +record.getMessage()+"\n";
+//            return record.getSourceClassName()+"::"
+//                    +record.getSourceMethodName()+"::"+"\n"
+//                    +"    "+new Date(record.getMillis())+"::"
+//                    +record.getMessage()+"\n";
+            return record.getSourceMethodName()+"::"+"\n"
                     +"    "+new Date(record.getMillis())+"::"
                     +record.getMessage()+"\n";
         }
     };
+
+    private static final Logger logger = getLogger();
 
     //references to db
     public static DBReferenceKeeper getDbReferenceKeeper() {
@@ -79,12 +89,23 @@ public class AppContext {
     }
 
     //**for logging ***
-    public static Logger getMyLogger(String className) throws IOException {
-        Handler fileHandler = new FileHandler("d:\\myLog.log");
+//    private static Logger getLogger(String className) {
+    private static Logger getLogger() {
+        Handler fileHandler = null;
+        try {
+            fileHandler = new FileHandler("d:\\myLog.log");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         fileHandler.setFormatter(myFormatter);
-        Logger logger = Logger.getLogger(className);
+//        Logger logger = Logger.getLogger(className);
+        Logger logger = Logger.getLogger("");
         //logger.setUseParentHandlers(false);
         logger.addHandler(fileHandler);
+        return logger;
+    }
+
+    public static Logger getMyLogger(String className){
         return logger;
     }
 }

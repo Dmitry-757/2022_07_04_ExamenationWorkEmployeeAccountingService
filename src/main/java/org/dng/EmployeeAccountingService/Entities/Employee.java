@@ -168,13 +168,21 @@ public class Employee implements Serializable {
         this.recruitDate = recruitDate;
     }
 
-    public void setDismissed(boolean dismissed) {
-        this.dismissed = dismissed;
-    }
-
     public void setDismissDate(LocalDate dismissDate) {
         this.dismissDate = dismissDate;
+        AppContext.getMyLogger(this.getClass().getName()).info("Employee "+this.fullName+" was dismissed by date "+dismissDate);
     }
+
+    public void setDismissed(boolean dismissed) {
+        this.dismissed = dismissed;
+        AppContext.getMyLogger(this.getClass().getName()).info("Employee "+this.fullName+" was dismissed");
+    }
+    public void dismiss(LocalDate dismissDate){
+        dismissed = true;
+        this.dismissDate = dismissDate;
+        AppContext.getMyLogger(this.getClass().getName()).info("Employee "+this.fullName+" was dismissed");
+    }
+
 
     public void setSalary(int salary) {
         this.salary = salary;
@@ -188,10 +196,6 @@ public class Employee implements Serializable {
         this.password = password;
     }
 
-    public void dismiss(LocalDate dismissDate){
-        dismissed = true;
-        this.dismissDate = dismissDate;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -212,4 +216,5 @@ public class Employee implements Serializable {
         }
         return "in service";
     }
+
 }

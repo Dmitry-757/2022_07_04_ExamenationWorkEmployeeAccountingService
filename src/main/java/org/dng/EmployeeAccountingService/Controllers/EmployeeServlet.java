@@ -57,9 +57,9 @@ public class EmployeeServlet extends HttpServlet {
 //        }
         @NotNull
         String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
-        if(fullName != null) {
-            System.out.println("fullName = "+ fullName);
-        }
+//        if(fullName != null) {
+//            System.out.println("fullName = "+ fullName);
+//        }
 
         @NotNull int inn = 0;
         if(req.getParameter("inn")!=""){

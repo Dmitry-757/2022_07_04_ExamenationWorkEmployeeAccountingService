@@ -62,20 +62,11 @@ public class SaveReadDataBase {
 
     public static void saveDB(){
         saveDBReferenceKeeper();
-        try {
-            AppContext.getMyLogger(SaveReadDataBase.class.getName()).info("conditions was saved");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        AppContext.getMyLogger(SaveReadDataBase.class.getName()).info("conditions was saved");
     }
 
     public static void readDB(){
         readDBReferenceKeeper();
-        try {
-            AppContext.getMyLogger(SaveReadDataBase.class.getName()).info("conditions was read");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
+        AppContext.getMyLogger(SaveReadDataBase.class.getName()).info("conditions was read");
     }
 }

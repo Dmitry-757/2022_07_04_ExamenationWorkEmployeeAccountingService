@@ -7,12 +7,7 @@ import org.dng.EmployeeAccountingService.Entities.Job;
 import java.util.HashMap;
 import java.util.List;
 
-//public class JobService extends ServiceAbstract<Job>{
 public class JobService implements ServiceI<Job> {
-
-    @Override
-//    public void add(String name) {
-
 
     public void add(Object ...args) {
         if (args.length>0) {
@@ -20,7 +15,8 @@ public class JobService implements ServiceI<Job> {
             try {
                 new Job(name);
             } catch (AddDuplicatedObjException e) {
-                System.out.println(e.getMessage());
+//                System.out.println(e.getMessage());
+                AppContext.getMyLogger(this.getClass().getName()).warning("Exception during creating new Job "+name+" "+e.getMessage());
             }
         }
     }
@@ -30,12 +26,18 @@ public class JobService implements ServiceI<Job> {
         if (args.length==1){
             String name = (String) args[0];
             entity.setName(name);
+            AppContext.getMyLogger(this.getClass().getName()).info("Job "+entity.getName()+" was changed to "+name);
+        }
+        else{
+            AppContext.getMyLogger(this.getClass().getName()).warning("error during changing "+entity.getName()+" number of arguments is different from  expected!");
         }
     }
 
 
-    public static void remove(Job job) {
+    public static void remove(Job entity) {
         System.out.println("may be in future ... ;))");
+//        AppContext.getMyLogger(this.getClass().getName()).info("Job "+entity.getName()+" was removed");
+
     }
 
     @Override

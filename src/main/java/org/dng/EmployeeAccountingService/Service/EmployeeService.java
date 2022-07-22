@@ -10,33 +10,19 @@ import java.util.List;
 import java.util.Map;
 
 
-//public class EmployeeService implements IEmployeeService{
-//public class EmployeeService extends ServiceAbstract<Employee> {
 public class EmployeeService implements ServiceI<Employee> {
 
-    //    public void add(@NotNull String fullName,
-//                                       int inn,
-//                                       LocalDate birthDate,
-//                                       @NotNull
-//                                               Gender gender,
-//                                       String phoneNumber,
-//                                       Job job,
-//                                       @NotNull Department department,
-//                                       Employee boss,
-//                                       @NotNull LocalDate recruitDate,
-//                                       LocalDate dismissDate,
-//                                       @NotNull int salary) {
     @Override
     public void add(Object... args) {
         if (args.length == 12) {
             int inn = (int) args[1];
             HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
             if (entityHashMap.containsKey(inn)) {
-                System.out.println("Employee with such INN is already present!");
+                //System.out.println("Employee with such INN is already present!");
+                AppContext.getMyLogger(this.getClass().getName()).warning("Exception during adding new Employee with INN="+inn);
                 try {
                     throw new AddDuplicatedObjException("Employee with such INN is already present!");
                 } catch (AddDuplicatedObjException e) {
-//                    e.printStackTrace();
                     System.out.println(e.getMessage());
                 }
             }
@@ -58,7 +44,8 @@ public class EmployeeService implements ServiceI<Employee> {
                 new Employee(fullName, inn, birthDate, gender, phoneNumber, job, department, recruitDate, dismissDate, salary, email, pass);
             } catch (AddDuplicatedObjException e) {
                 e.printStackTrace();
-                System.out.println(e.getMessage());
+//                System.out.println(e.getMessage());
+                AppContext.getMyLogger(this.getClass().getName()).warning("Exception during adding new Employee "+fullName+" "+e.getMessage());
             }
         }
     }
@@ -69,11 +56,13 @@ public class EmployeeService implements ServiceI<Employee> {
             HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
             if (!entityHashMap.containsKey(entity.getInn())) {
                 System.out.println("Employee with such INN is absent!");
+
                 try {
                     throw new AddDuplicatedObjException("Employee with such INN is absent!");
                 } catch (AddDuplicatedObjException e) {
                     e.printStackTrace();
-                    System.out.println(e.getMessage());
+//                    System.out.println(e.getMessage());
+                    AppContext.getMyLogger(this.getClass().getName()).warning("Exception during changing Employee "+entity.getName()+" "+e.getMessage());
                 }
             }
 
@@ -105,14 +94,15 @@ public class EmployeeService implements ServiceI<Employee> {
             entity.setSalary(salary);
             entity.setEmail(email);
             entity.setPassword(pass);
+            AppContext.getMyLogger(this.getClass().getName()).info("Employee "+entity.getName()+" was changed");
         }
 
     }
 
 
 
-    public void dismissEmployee(Employee employee, LocalDate dismissDate) {
-        employee.dismiss(dismissDate);
+    public void dismissEmployee(Employee entity, LocalDate dismissDate) {
+        entity.dismiss(dismissDate);
     }
 
     @Override
