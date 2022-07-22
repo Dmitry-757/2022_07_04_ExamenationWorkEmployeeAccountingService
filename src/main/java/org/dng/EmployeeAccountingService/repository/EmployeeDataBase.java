@@ -7,12 +7,14 @@ import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 
 
 
 
 public class EmployeeDataBase extends DataBaseAbstract<Employee> implements Serializable {
+//public class EmployeeDataBase implements Serializable {
     private static final long serialVersionUID = 3L;
 //    private DepartmentDataBase departmentDataBase = AppContext.getDepartmentDataBase();
 //    private JobDataBase jobDataBase = AppContext.getJobDataBase();
@@ -47,6 +49,7 @@ public class EmployeeDataBase extends DataBaseAbstract<Employee> implements Seri
 //    public static HashMap<String, Employee> getEmployeeHashMap() {
 //        return employeeHashMap;
 //    }
+
 
     //    public static void add(Employee employee) throws DataBaseAddException {
     public void put(Employee entity) throws AddDuplicatedObjException {
