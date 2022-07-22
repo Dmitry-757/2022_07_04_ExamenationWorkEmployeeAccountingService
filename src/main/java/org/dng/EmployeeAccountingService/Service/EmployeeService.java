@@ -150,7 +150,18 @@ public class EmployeeService implements ServiceI<Employee> {
                 .toList();
     }
 
-    public List<Employee> findEmployee(Employee boss) {
+    public List<Employee> findEmployee(Employee employee) {
+        HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+        return entityHashMap
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue()!=null)
+                .filter(e -> e.getValue().equals(employee))
+                .map(Map.Entry::getValue)
+                .toList();
+    }
+
+    public List<Employee> findEmployeeByBoss(Employee boss) {
         HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
         return entityHashMap
                 .entrySet()
@@ -160,6 +171,7 @@ public class EmployeeService implements ServiceI<Employee> {
                 .map(Map.Entry::getValue)
                 .toList();
     }
+
 
     public List<Employee> findEmployee(Job job) {
         HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();

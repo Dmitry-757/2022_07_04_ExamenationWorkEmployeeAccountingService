@@ -96,12 +96,34 @@
 
 
 
+<%--    <div class="label">--%>
+<%--        <label for="fullName"> Input full name of employee--%>
+<%--            <input type="text" id="fullName" name="fullName">--%>
+<%--        </label>--%>
+<%--    </div>--%>
+<%--    <br/>--%>
+
     <div class="label">
-        <label for="fullName"> Input full name of employee
-            <input type="text" id="fullName" name="fullName">
+        <label> Input employee
+            <select name="selectEmployee">
+                <option value="" > </option>
+
+                <% if (request.getAttribute("employeesForChoice") != null) {
+                    List<Employee> employees = (List<Employee>) request.getAttribute("employeesForChoice");
+                    for (Employee employee : employees) { %>
+                <div class="Select">
+                    <option value=<%= (employee != null ? employee.getId() : "-1" ) %>><%= ( employee != null ? employee.getName() : "") %>
+                    </option>
+                </div>
+                <%
+                        }
+                    }
+                %>
+            </select>
         </label>
     </div>
-    <br/>
+    <br>
+
 
 
     <br/>

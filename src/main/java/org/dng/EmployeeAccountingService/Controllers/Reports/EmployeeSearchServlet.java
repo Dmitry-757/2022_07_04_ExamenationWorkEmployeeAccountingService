@@ -48,6 +48,7 @@ public class EmployeeSearchServlet extends HttpServlet {
         List<Employee> le = AppContext.getEmployeeService().findAll();
         if (le.size()>0){
             req.setAttribute("employees", le);
+            req.setAttribute("employeesForChoice", le);
         }
 
 
@@ -107,7 +108,7 @@ public class EmployeeSearchServlet extends HttpServlet {
                 boss = AppContext.getEmployeeService().getById(id);
                 //if can`t find by previous parameter - let`s find by boss (use template of chain ;))
                 if (le.size()==0){
-                    le = AppContext.getEmployeeService().findEmployee(boss);
+                    le = AppContext.getEmployeeService().findEmployeeByBoss(boss);
                 }
                 else{
                     final Employee fboss = boss;
@@ -116,6 +117,24 @@ public class EmployeeSearchServlet extends HttpServlet {
                             .toList();
                 }
             }
+
+            Employee currentEmployee = null;
+            String selectEmployee = req.getParameter("selectEmployee");//get selectBoss parameter from http request <select name="selectEmployee">
+            if ((selectEmployee != null) && (selectEmployee.length() != 0) ) {
+                int id = Integer.parseInt(selectEmployee);
+                currentEmployee = AppContext.getEmployeeService().getById(id);
+                //if can`t find by previous parameter
+                if (le.size()==0){
+                    le = AppContext.getEmployeeService().findEmployee(currentEmployee);
+                }
+                else{
+                    final Employee femployee = currentEmployee;
+                    le = le.stream()
+                            .filter(v -> v.equals(femployee))
+                            .toList();
+                }
+            }
+
 
         }//if("search".equals(action))
 
@@ -143,6 +162,10 @@ public class EmployeeSearchServlet extends HttpServlet {
             req.setAttribute("bosses", bosses);
         }
 
+        List<Employee> leChoice = AppContext.getEmployeeService().findAll();
+        if (leChoice.size()>0){
+            req.setAttribute("employeesForChoice", leChoice);
+        }
 
 
 
