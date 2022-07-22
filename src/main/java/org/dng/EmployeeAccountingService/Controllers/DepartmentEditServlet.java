@@ -63,7 +63,7 @@ public class DepartmentEditServlet extends HttpServlet {
                 //searching and processing of "selectBoss" parameter
                 @NotNull Employee boss = null;
                 String selectBoss = request.getParameter("selectBoss");//get selectBoss parameter from http request
-                if(selectBoss != null) {
+                if((selectBoss != null)&&(selectBoss.length()>0)) {
                     int id = Integer.parseInt(selectBoss);
                     boss = AppContext.getEmployeeService().getById(id);
                 }

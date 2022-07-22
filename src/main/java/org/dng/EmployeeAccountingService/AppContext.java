@@ -16,6 +16,12 @@ public class AppContext {
     private static JobService jobService = new JobService();
     private static EmployeeService employeeService = new EmployeeService();
 
+    private static DBReferenceKeeper dbReferenceKeeper = new DBReferenceKeeper();
+
+    //references to db
+    public static DBReferenceKeeper getDbReferenceKeeper() {
+        return dbReferenceKeeper;
+    }
 
     public static DepartmentDataBase getDepartmentDataBase() {
         return departmentDataBase;
@@ -29,6 +35,8 @@ public class AppContext {
         return employeeDataBase;
     }
 
+
+    //Services
     public static DepartmentService getDepartmentService() {
         return departmentService;
     }
@@ -43,19 +51,19 @@ public class AppContext {
 
 
     //**serialize/deserialize ***
-    public static final String fileNameDBDepartment = "d:\\Department.sav";
-    public static final String fileNameDBJob = "d:\\Job.sav";
-    public static final String fileNameDBEmployee = "d:\\Employee.sav";
+//    public static final String fileNameDBDepartment = "d:\\Department.sav";
+//    public static final String fileNameDBJob = "d:\\Job.sav";
+//    public static final String fileNameDBEmployee = "d:\\Employee.sav";
+//    public static final String fileNameDBReferenceKeeper = "d:\\DBReferenceKeeper.sav";
 
     public static void setDepartmentDataBase(DepartmentDataBase departmentDataBase) {
         AppContext.departmentDataBase = departmentDataBase;
     }
-
     public static void setJobDataBase(JobDataBase jobDataBase) {
         AppContext.jobDataBase = jobDataBase;
     }
-
     public static void setEmployeeDataBase(EmployeeDataBase employeeDataBase) {
         AppContext.employeeDataBase = employeeDataBase;
     }
+
 }

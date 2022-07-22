@@ -66,12 +66,6 @@ public class EmployeeServlet extends HttpServlet {
             inn = Integer.parseInt(req.getParameter("inn"));
         }
 
-//        @NotNull
-//        String strGender = req.getParameter("gender");//get selectDepartment parameter from http request
-//        if(fullName != null) {
-//            System.out.println("gender = "+ strGender);
-//        }
-
         LocalDate birthDate = null;
         if(req.getParameter("birthDate")!=""){
             birthDate = LocalDate.parse(req.getParameter("birthDate"));
@@ -127,10 +121,11 @@ public class EmployeeServlet extends HttpServlet {
         String pass = req.getParameter("pass");//get selectDepartment parameter from http request
 
 
-        if (fullName.length()>0) {
-            assert gender != null;
-            assert department != null;
-            assert recruitDate != null;
+        if ((fullName.length()>0)&&(gender != null)&&(department != null)&&(recruitDate != null))
+        {
+//            assert gender != null;
+//            assert department != null;
+//            assert recruitDate != null;
             AppContext.getEmployeeService().add(fullName,
                     inn,
                     birthDate,
@@ -138,7 +133,7 @@ public class EmployeeServlet extends HttpServlet {
                     phoneNumber,
                     job,
                     department,
-                    boss,
+//                    boss,
                     recruitDate,
                     dismissDate,
                     salary,
@@ -153,38 +148,6 @@ public class EmployeeServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/EmployeeNew.jsp");//get jsp-maket context
         dispatcher.forward(req, resp);//forward our data to jsp-page
-
-        /*
-        //searching and processing of "tax rate" parameter
-        String sTaxRate = req.getParameter("taxRate");//get taxRate parameter from http request
-        if(sTaxRate != null) {
-            double tax = Double.parseDouble(sTaxRate);//cast it to double
-            CarsRepository.setTax(tax);//set new tax rate to cars
-
-            req.setAttribute("taxRate", Car.getTaxRate());//set new value of tax rate to request attribute
-
-            List<Car> lc = CarsRepository.findAll();//get list of cars-objects
-            req.setAttribute("cars", lc);//pass it to jsp-attribute
-            RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/cars.jsp");//get jsp-maket context
-            dispatcher.forward(req, resp);//forward our data to jsp-page
-        }
-
-        //searching and processing of "number of created cars" parameter
-        String sNumCar = req.getParameter("numCar");
-        if(sNumCar != null) {
-            int nCars = Integer.parseInt(sNumCar);
-            if(nCars >= 0) {
-                CarsRepository.makeNCars(nCars);//creat nCars objects of Cars
-
-                //renew data for user in http
-                req.setAttribute("taxRate", Car.getTaxRate());
-                List<Car> lc = CarsRepository.findAll();
-                req.setAttribute("cars", lc);
-            }
-            RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/jsp/cars.jsp");
-            dispatcher.forward(req, resp);
-        }
-    */
     }
 
 

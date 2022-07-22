@@ -45,6 +45,11 @@
     <label for="fullName"> Select a boss of the department
         <select name="selectBoss">
             <% if (request.getAttribute("bosses") != null) {
+                %>
+                <div class="Select">
+                    <option value="-1" > </option>
+                </div>
+            <%
                 List<Employee> bosses = (List<Employee>) request.getAttribute("bosses");
                 for (Employee boss : bosses) { %>
             <div class="Select">

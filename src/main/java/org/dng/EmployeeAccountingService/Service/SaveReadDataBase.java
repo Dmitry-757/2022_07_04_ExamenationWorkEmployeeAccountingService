@@ -1,6 +1,7 @@
 package org.dng.EmployeeAccountingService.Service;
 
 import org.dng.EmployeeAccountingService.AppContext;
+import org.dng.EmployeeAccountingService.DBReferenceKeeper;
 import org.dng.EmployeeAccountingService.repository.DepartmentDataBase;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.dng.EmployeeAccountingService.repository.JobDataBase;
@@ -9,13 +10,19 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+
 public class SaveReadDataBase {
-    private static void saveDBDepartment() {
-        DepartmentDataBase dataBase = AppContext.getDepartmentDataBase();
-        try (FileOutputStream fos = new FileOutputStream(AppContext.fileNameDBDepartment);
+
+    private static void saveDBReferenceKeeper() {
+        DBReferenceKeeper dbReferenceKeeper = AppContext.getDbReferenceKeeper();
+        dbReferenceKeeper.setJobDataBase(AppContext.getJobDataBase());
+        dbReferenceKeeper.setDepartmentDataBase(AppContext.getDepartmentDataBase());
+        dbReferenceKeeper.setEmployeeDataBase(AppContext.getEmployeeDataBase());
+
+        try (FileOutputStream fos = new FileOutputStream(DBReferenceKeeper.fileNameDBReferenceKeeper);
              ObjectOutputStream oos = new ObjectOutputStream(fos)
         ) {
-            oos.writeObject(dataBase);
+            oos.writeObject(dbReferenceKeeper);
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException " + e.getMessage());
             e.printStackTrace();
@@ -25,96 +32,21 @@ public class SaveReadDataBase {
         }
     }
 
-    private static void saveDBJob() {
-        JobDataBase dataBase = AppContext.getJobDataBase();
-        try (FileOutputStream fos = new FileOutputStream(AppContext.fileNameDBJob);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)
-        ) {
-            oos.writeObject(dataBase);
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException " + e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("IOException " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 
-    private static void saveDBEmployee() {
-        EmployeeDataBase dataBase = AppContext.getEmployeeDataBase();
-        try (FileOutputStream fos = new FileOutputStream(AppContext.fileNameDBEmployee);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)
-        ) {
-            oos.writeObject(dataBase);
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException " + e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("IOException " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private static void readDBDepartment() {
-        DepartmentDataBase dataBase = null;
-        if (!Files.exists(Path.of(AppContext.fileNameDBDepartment))){
-            System.out.println("File with save was not found! Create new pet.");
-        }
-
-        try(FileInputStream fis = new FileInputStream(AppContext.fileNameDBDepartment);
-            ObjectInputStream ois = new ObjectInputStream(fis)
-        ) {
-            dataBase = (DepartmentDataBase) ois.readObject();
-            AppContext.setDepartmentDataBase(dataBase);
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException "+e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("IOException "+e.getMessage());
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("ClassNotFoundException "+e.getMessage());
-            e.printStackTrace();
-        }
-
-    }
-
-    private static void readDBJob() {
-        JobDataBase dataBase = null;
-        if (!Files.exists(Path.of(AppContext.fileNameDBJob))){
-            System.out.println("File with save was not found! Create new pet.");
-        }
-
-        try(FileInputStream fis = new FileInputStream(AppContext.fileNameDBJob);
-            ObjectInputStream ois = new ObjectInputStream(fis)
-        ) {
-            dataBase = (JobDataBase) ois.readObject();
-            AppContext.setJobDataBase(dataBase);
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException "+e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("IOException "+e.getMessage());
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("ClassNotFoundException "+e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-
-    private static void readDBEmployee() {
-        EmployeeDataBase dataBase = null;
-        if (!Files.exists(Path.of(AppContext.fileNameDBEmployee))){
+    private static void readDBReferenceKeeper() {
+        DBReferenceKeeper dataBase = null;
+        if (!Files.exists(Path.of(DBReferenceKeeper.fileNameDBReferenceKeeper))){
             System.out.println("File with save was not found! ");
             return;
         }
 
-        try(FileInputStream fis = new FileInputStream(AppContext.fileNameDBEmployee);
+        try(FileInputStream fis = new FileInputStream(DBReferenceKeeper.fileNameDBReferenceKeeper);
             ObjectInputStream ois = new ObjectInputStream(fis)
         ) {
-            dataBase = (EmployeeDataBase) ois.readObject();
-            AppContext.setEmployeeDataBase(dataBase);
+            dataBase = (DBReferenceKeeper) ois.readObject();
+            AppContext.setDepartmentDataBase(dataBase.getDepartmentDataBase());
+            AppContext.setJobDataBase(dataBase.getJobDataBase());
+            AppContext.setEmployeeDataBase(dataBase.getEmployeeDataBase());
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException "+e.getMessage());
             e.printStackTrace();
@@ -128,14 +60,10 @@ public class SaveReadDataBase {
     }
 
     public static void saveDB(){
-        saveDBDepartment();
-        saveDBJob();
-        saveDBEmployee();
+        saveDBReferenceKeeper();
     }
 
     public static void readDB(){
-        readDBJob();
-        readDBDepartment();
-        readDBEmployee();
+        readDBReferenceKeeper();
     }
 }

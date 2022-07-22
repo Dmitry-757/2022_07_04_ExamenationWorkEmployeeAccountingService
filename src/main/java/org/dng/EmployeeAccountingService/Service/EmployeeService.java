@@ -29,8 +29,19 @@ public class EmployeeService implements ServiceI<Employee> {
     @Override
     public void add(Object... args) {
         if (args.length == 12) {
-            @NotNull String fullName = (String) args[0];
             int inn = (int) args[1];
+            HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+            if (entityHashMap.containsKey(inn)) {
+                System.out.println("Employee with such INN is already present!");
+                try {
+                    throw new AddDuplicatedObjException("Employee with such INN is already present!");
+                } catch (AddDuplicatedObjException e) {
+//                    e.printStackTrace();
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            @NotNull String fullName = (String) args[0];
             LocalDate birthDate = (LocalDate) args[2];
             @NotNull Gender gender = (Gender) args[3];
             String phoneNumber = (String) args[4];
@@ -57,9 +68,9 @@ public class EmployeeService implements ServiceI<Employee> {
         if (args.length == 12) {
             HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
             if (!entityHashMap.containsKey(entity.getInn())) {
-                System.out.println("job with such INN is absent!");
+                System.out.println("Employee with such INN is absent!");
                 try {
-                    throw new AddDuplicatedObjException("job with such INN is already present!");
+                    throw new AddDuplicatedObjException("Employee with such INN is absent!");
                 } catch (AddDuplicatedObjException e) {
                     e.printStackTrace();
                     System.out.println(e.getMessage());
@@ -190,7 +201,7 @@ public class EmployeeService implements ServiceI<Employee> {
                 .filter(v-> (v.getValue().getId()==id))
                 .map(e -> e.getValue())
                 .findFirst()
-                .get();
+                .orElse(null);
 
     }
 

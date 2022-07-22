@@ -15,28 +15,22 @@
             letter-spacing: 1px;
             font-size: 0.8rem;
         }
-
         td, th {
             border: 1px solid rgb(190, 190, 190);
             padding: 10px 20px;
         }
-
         th {
             background-color: rgb(235, 235, 235);
         }
-
         td {
             text-align: center;
         }
-
         div .Select {
             padding-: 10px 10px 10px 10px;
         }
-
         div .label {
             padding-: 10px 10px 10px 10px;
         }
-
         label {
             padding-: 10px 10px 10px 10px;
         }
@@ -85,11 +79,11 @@
                 <% if (request.getAttribute("bosses") != null) {
                     List<Employee> bosses = (List<Employee>) request.getAttribute("bosses");
                     for (Employee boss : bosses) { %>
-                        <div class="Select">
-                            <option
-                                value=<%= (boss != null ? boss.getId() : "-1") %>><%= (boss != null ? boss.getName() : "") %>
-                            </option>
-                        </div>
+                <div class="Select">
+                    <option
+                            value=<%= (boss != null ? boss.getId() : "-1") %>><%= (boss != null ? boss.getName() : "") %>
+                    </option>
+                </div>
                 <%
                         }
                     }
@@ -133,6 +127,8 @@
 
 
     <input type="submit" name="ButtonAction" value="search">
+    <input style="padding-left: 10px" type="submit" name="ButtonAction" value="ShowAll">
+
 </form>
 
 <%--<br>--%>
