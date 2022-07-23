@@ -22,7 +22,8 @@ public class EmployeeEditServlet extends HttpServlet {
     private int editedEntityId = 0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Employee> lst = AppContext.getEmployeeService().findAll();
+        //there it needs to show all, including dismissed
+        List<Employee> lst = AppContext.getEmployeeService().findAll(true);
         if (lst.size()>0){
             request.setAttribute("entities", lst);
         }
@@ -68,14 +69,14 @@ public class EmployeeEditServlet extends HttpServlet {
                 req.setAttribute("phoneNumber", entity.getPhoneNumber());
 
                 //department
-                List<Department> ld = AppContext.getDepartmentService().findAll();
+                List<Department> ld = AppContext.getDepartmentService().findAll(false);
                 if (ld.size()>0){
                     req.setAttribute("departments", ld);
                 }
                 req.setAttribute("selectedDepartmentId", entity.getDepartment().getId());
 
                 //job
-                List<Job> lj = AppContext.getJobService().findAll();
+                List<Job> lj = AppContext.getJobService().findAll(false);
                 if (lj.size()>0){
                     req.setAttribute("jobs", lj);
                 }
@@ -138,7 +139,10 @@ public class EmployeeEditServlet extends HttpServlet {
                 int id = Integer.parseInt(selectDepartment);
                 department = AppContext.getDepartmentService().getById(id);
                 //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
-                boss = department.getBoss();
+//                boss = department.getBoss();
+                if (department.isDeprecated()){
+                    AppContext.getMyLogger("").warning(this.getClass().getName()+":: Exception during creating new Employee "+department.getName()+" is deprecated ! ");
+                }
             }
 
             @NotNull Job job = null;
@@ -195,7 +199,7 @@ public class EmployeeEditServlet extends HttpServlet {
 
 
 
-        List<Employee> lst = AppContext.getEmployeeService().findAll();
+        List<Employee> lst = AppContext.getEmployeeService().findAll(true);
         if (lst.size()>0){
             req.setAttribute("entities", lst);
         }

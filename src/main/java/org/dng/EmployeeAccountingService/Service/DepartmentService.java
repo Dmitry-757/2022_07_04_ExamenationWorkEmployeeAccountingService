@@ -64,12 +64,20 @@ public class DepartmentService  implements ServiceI<Department> {
 
 
     @Override
-    public List<Department> findAll() {
+    public List<Department> findAll(boolean showDeprecated) {
         HashMap<Integer, Department> entityHashMap = AppContext.getDepartmentDataBase().getEntityHashMap();
-        return entityHashMap.entrySet()
+        if (showDeprecated)
+            return entityHashMap.entrySet()
                 .stream()
                 .map(e -> e.getValue())
+//                .filter(e->!e.isDeprecated())
                 .toList();
+        else
+            return entityHashMap.entrySet()
+                    .stream()
+                    .map(e -> e.getValue())
+                    .filter(e->!e.isDeprecated())
+                    .toList();
     }
 
     @Override

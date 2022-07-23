@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.dng.EmployeeAccountingService.AppContext;
+import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Job;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class JobEditServlet extends HttpServlet {
     private int editedEntityId = 0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Job> lj = AppContext.getJobService().findAll();
+        List<Job> lj = AppContext.getJobService().findAll(true);
         if (lj.size()>0){
             request.setAttribute("jobs", lj);
         }
@@ -31,30 +32,37 @@ public class JobEditServlet extends HttpServlet {
 
         //String[] numChecked = request.getParameterValues("checkedJobs");//get array parameters from http request
         String numChecked = request.getParameter("checkedJob");//get parameter from http request
-        if(numChecked != null) {
+        String buttonAction = request.getParameter("buttonAction");
+
+        if ("edit".equals(buttonAction)) {
+            if (numChecked != null) {
+                if (numChecked.length() > 0) {
+                    Job job = AppContext.getJobService().getById(Integer.parseInt(numChecked));
+                    System.out.println(job.getName());
+                    editedEntityId = job.getId();
+                    request.setAttribute("fullName", job.getName());
+                    //int a = 0;
+                }
+            }
+
+            String fullName = request.getParameter("fullName");//get  parameter from http request
+            if ((fullName != null) && (editedEntityId != 0)) {
+                if (fullName.length() > 0) {
+                    Job job = AppContext.getJobService().getById(editedEntityId);
+                    AppContext.getJobService().change(job, fullName);
+                    editedEntityId = 0;
+                }
+            }
+
+        }
+        else if((numChecked != null)&&("dismiss".equals(buttonAction))) {
             if (numChecked.length() > 0) {
-                Job job = AppContext.getJobService().getById(Integer.parseInt(numChecked));
-                System.out.println(job.getName());
-                editedEntityId = job.getId();
-                request.setAttribute("fullName", job.getName());
-                //int a = 0;
+                Job entity = AppContext.getJobService().getById(Integer.parseInt(numChecked));
+                entity.setDeprecated(true);
             }
         }
 
-        String fullName = request.getParameter("fullName");//get  parameter from http request
-//        String editedEntityId = request.getParameter("editedEntityId");//get  parameter from http request
-        if((fullName != null)&&(editedEntityId != 0)) {
-            //System.out.println("fullName = "+ fullName);
-            if (fullName.length()>0){
-                Job job = AppContext.getJobService().getById(editedEntityId);
-                AppContext.getJobService().change(job, fullName);
-                editedEntityId = 0;
-            }
-        }
-
-
-
-        List<Job> lj = AppContext.getJobService().findAll();
+        List<Job> lj = AppContext.getJobService().findAll(true);
         if (lj.size()>0){
             request.setAttribute("jobs", lj);
         }

@@ -15,13 +15,13 @@ import java.util.List;
 public class DepartmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Department> ld = AppContext.getDepartmentService().findAll();
+        List<Department> ld = AppContext.getDepartmentService().findAll(true);
         if (ld.size()>0){
             request.setAttribute("departments", ld);
         }
 
         //boss
-        List<Employee> le = AppContext.getEmployeeService().findAll();
+        List<Employee> le = AppContext.getEmployeeService().findAll(false);
         if (le.size()>0){
             request.setAttribute("bosses", le);
         }
@@ -52,13 +52,15 @@ public class DepartmentServlet extends HttpServlet {
             }
         }
 
-        List<Department> ld = AppContext.getDepartmentService().findAll();
+        //for choice in property
+        List<Department> ld = AppContext.getDepartmentService().findAll(false);
         if (ld.size()>0){
             request.setAttribute("departments", ld);
         }
 
+        //for choice in property
         //boss
-        List<Employee> le = AppContext.getEmployeeService().findAll();
+        List<Employee> le = AppContext.getEmployeeService().findAll(false);
         if (le.size()>0){
             request.setAttribute("bosses", le);
         }

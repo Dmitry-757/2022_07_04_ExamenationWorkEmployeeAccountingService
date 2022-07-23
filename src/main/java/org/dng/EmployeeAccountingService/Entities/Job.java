@@ -12,6 +12,8 @@ public class Job implements Serializable {
 
     private String name;
     private int id;
+    private boolean deprecated;
+
 
     public Job(String name) throws AddDuplicatedObjException {
 //        if(AppContext.getJobDataBase().isExist(name))
@@ -36,5 +38,11 @@ public class Job implements Serializable {
         return id;
     }
 
+    public boolean isDeprecated() {
+        return deprecated;
+    }
 
+    public void setDeprecated(boolean deprecated) {
+        this.deprecated = deprecated;
+    }
 }

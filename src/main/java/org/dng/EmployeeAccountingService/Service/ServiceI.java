@@ -27,7 +27,7 @@ interface ServiceI<T> {
 
     public abstract void change(T entity, Object... args);
 
-    public abstract List<T> findAll();
+    public abstract List<T> findAll(boolean showDeprecated);
 
     public abstract T getById(int id);
 

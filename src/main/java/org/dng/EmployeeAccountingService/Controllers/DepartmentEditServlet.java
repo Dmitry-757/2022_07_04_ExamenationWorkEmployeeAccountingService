@@ -20,7 +20,8 @@ public class DepartmentEditServlet extends HttpServlet {
     private int editedEntityId = 0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Department> lst = AppContext.getDepartmentService().findAll();
+        //there it needs to show all, including dismissed
+        List<Department> lst = AppContext.getDepartmentService().findAll(true);
         if (lst.size()>0){
             request.setAttribute("entities", lst);
         }
@@ -34,48 +35,58 @@ public class DepartmentEditServlet extends HttpServlet {
 
         //String[] numChecked = request.getParameterValues("checkedJobs");//get array parameters from http request
         String numChecked = request.getParameter("checkedEntity");//get parameter from http request
+        String buttonAction = request.getParameter("buttonAction");
 
-        if(numChecked != null) {
+
+        if ("edit".equals(buttonAction)) {
+            if (numChecked != null) {
+                if (numChecked.length() > 0) {
+                    Department entity = AppContext.getDepartmentService().getById(Integer.parseInt(numChecked));
+                    System.out.println(entity.getName());
+                    editedEntityId = entity.getId();
+                    request.setAttribute("fullName", entity.getName());
+                    int a = 0;
+
+                    //boss
+                    List<Employee> le = AppContext.getEmployeeService().findAll(false);
+                    if (le.size() > 0) {
+                        request.setAttribute("bosses", le);
+                    }
+                    request.setAttribute("selectedBossId", entity.getId());
+                }
+            }
+
+
+            String fullName = request.getParameter("fullName");//get  parameter from http request
+            if ((fullName != null) && (editedEntityId != 0)) {
+                if (fullName.length() > 0) {
+                    Department entity = AppContext.getDepartmentService().getById(editedEntityId);
+                    AppContext.getDepartmentService().change(entity, fullName);
+
+                    //searching and processing of "selectBoss" parameter
+                    @NotNull Employee boss = null;
+                    String selectBoss = request.getParameter("selectBoss");//get selectBoss parameter from http request
+                    if ((selectBoss != null) && (selectBoss.length() > 0)) {
+                        int id = Integer.parseInt(selectBoss);
+                        boss = AppContext.getEmployeeService().getById(id);
+                    }
+                    entity.setBoss(boss);
+
+                    editedEntityId = 0;
+                }
+            }
+        }
+        else if((numChecked != null)&&("dismiss".equals(buttonAction))) {
             if (numChecked.length() > 0) {
                 Department entity = AppContext.getDepartmentService().getById(Integer.parseInt(numChecked));
-                System.out.println(entity.getName());
-                editedEntityId = entity.getId();
-                request.setAttribute("fullName", entity.getName());
-                int a = 0;
-
-                //boss
-                List<Employee> le = AppContext.getEmployeeService().findAll();
-                if (le.size()>0){
-                    request.setAttribute("bosses", le);
-                }
-                request.setAttribute("selectedBossId", entity.getId());
+                entity.setDeprecated(true);
             }
         }
 
 
 
-        String fullName = request.getParameter("fullName");//get  parameter from http request
-        if((fullName != null)&&(editedEntityId != 0)) {
-            if (fullName.length()>0){
-                Department entity = AppContext.getDepartmentService().getById(editedEntityId);
-                AppContext.getDepartmentService().change(entity, fullName);
-
-                //searching and processing of "selectBoss" parameter
-                @NotNull Employee boss = null;
-                String selectBoss = request.getParameter("selectBoss");//get selectBoss parameter from http request
-                if((selectBoss != null)&&(selectBoss.length()>0)) {
-                    int id = Integer.parseInt(selectBoss);
-                    boss = AppContext.getEmployeeService().getById(id);
-                }
-                entity.setBoss(boss);
-
-                editedEntityId = 0;
-            }
-        }
-
-
-
-        List<Department> lst = AppContext.getDepartmentService().findAll();
+        //there it needs to show all, including dismissed
+        List<Department> lst = AppContext.getDepartmentService().findAll(true);
         if (lst.size()>0){
             request.setAttribute("entities", lst);
         }

@@ -128,6 +128,7 @@
         <th >Name of Job</th>
         <th >Id</th>
         <th >Boss</th>
+        <th >Deprecated</th>
         <th >Check for edit</th>
     </tr>
 </table>
@@ -151,6 +152,8 @@
                 </td>
                 <td><%=( entity.getBoss()!=null ? entity.getBoss().getName() : "")%>
                 </td>
+                <td><%=( entity.isDeprecated() ? "Deprecated" : "")%>
+                </td>
                 <td>
                     <input type="radio"
                            value=<%= i%>
@@ -165,7 +168,8 @@
         </table>
     </div>
     <br>
-    <input type="submit" value="edit">
+    <input type="submit" name="buttonAction" value="edit">
+    <input type="submit" name="buttonAction" value="dismiss">
     <br>
 </form>
 

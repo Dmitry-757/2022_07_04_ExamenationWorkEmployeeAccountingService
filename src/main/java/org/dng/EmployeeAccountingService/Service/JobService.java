@@ -52,12 +52,19 @@ public class JobService implements ServiceI<Job> {
 
 
     @Override
-    public List<Job> findAll() {
+    public List<Job> findAll(boolean showDeprecated) {
         HashMap<Integer, Job> entityHashMap = AppContext.getJobDataBase().getEntityHashMap();
-        return entityHashMap.entrySet()
+        if (showDeprecated)
+            return entityHashMap.entrySet()
                 .stream()
                 .map(e -> e.getValue())
                 .toList();
+        else
+            return entityHashMap.entrySet()
+                    .stream()
+                    .map(e -> e.getValue())
+                    .toList();
+
     }
 
     @Override

@@ -184,13 +184,21 @@ public class EmployeeService implements ServiceI<Employee> {
                 .toList();
     }
 
-    public List<Employee> findAll() {
+    @Override
+    public List<Employee> findAll(boolean showDeprecated) {
         HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
 
-        return entityHashMap.entrySet()
+        if (showDeprecated)
+            return entityHashMap.entrySet()
                 .stream()
                 .map(e -> e.getValue())
                 .toList();
+        else
+            return entityHashMap.entrySet()
+                    .stream()
+                    .map(e -> e.getValue())
+                    .filter(e->!e.isDismissed())
+                    .toList();
     }
 
     @Override

@@ -16,7 +16,7 @@ import java.util.List;
 public class JobServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Job> lj = AppContext.getJobService().findAll();
+        List<Job> lj = AppContext.getJobService().findAll(true);
         if (lj.size()>0){
             request.setAttribute("jobs", lj);
         }
@@ -35,7 +35,7 @@ public class JobServlet extends HttpServlet {
             }
         }
 
-        List<Job> lj = AppContext.getJobService().findAll();
+        List<Job> lj = AppContext.getJobService().findAll(true);
         if (lj.size()>0){
             request.setAttribute("jobs", lj);
         }

@@ -19,17 +19,21 @@ import org.jetbrains.annotations.NotNull;
 public class EmployeeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
-        List<Department> ld = AppContext.getDepartmentService().findAll();
+
+        //for choice department
+        List<Department> ld = AppContext.getDepartmentService().findAll(false);
         if (ld.size()>0){
             req.setAttribute("departments", ld);
         }
 
-        List<Job> lj = AppContext.getJobService().findAll();
+        //for choice job
+        List<Job> lj = AppContext.getJobService().findAll(false);
         if (lj.size()>0){
             req.setAttribute("jobs", lj);
         }
 
-        List<Employee> le = AppContext.getEmployeeService().findAll();
+        //there it needs to show all employees, including dismissed
+        List<Employee> le = AppContext.getEmployeeService().findAll(true);
         if (le.size()>0){
             req.setAttribute("employees", le);
         }
@@ -40,12 +44,12 @@ public class EmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Department> ld = AppContext.getDepartmentService().findAll();
+        List<Department> ld = AppContext.getDepartmentService().findAll(false);
         if (ld.size()>0){
             req.setAttribute("departments", ld);
         }
 
-        List<Job> lj = AppContext.getJobService().findAll();
+        List<Job> lj = AppContext.getJobService().findAll(false);
         if (lj.size()>0){
             req.setAttribute("jobs", lj);
         }
@@ -57,9 +61,6 @@ public class EmployeeServlet extends HttpServlet {
 //        }
         @NotNull
         String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
-//        if(fullName != null) {
-//            System.out.println("fullName = "+ fullName);
-//        }
 
         @NotNull int inn = 0;
         if(req.getParameter("inn")!=""){
@@ -93,8 +94,11 @@ public class EmployeeServlet extends HttpServlet {
         if(selectDepartment != null) {
             int id = Integer.parseInt(selectDepartment);
             department = AppContext.getDepartmentService().getById(id);
+            if (department.isDeprecated()){
+                AppContext.getMyLogger("").warning(this.getClass().getName()+":: Exception during creating new Employee "+department.getName()+" is deprecated ! ");
+            }
             //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
-            boss = department.getBoss();
+//            boss = department.getBoss();
         }
 
         @NotNull Job job = null;
@@ -116,12 +120,12 @@ public class EmployeeServlet extends HttpServlet {
             salary = Integer.parseInt(req.getParameter("salary"));
         }
         @NotNull
-        String email = req.getParameter("email");//get selectDepartment parameter from http request
+        String email = req.getParameter("email");
         @NotNull
-        String pass = req.getParameter("pass");//get selectDepartment parameter from http request
+        String pass = req.getParameter("pass");
 
 
-        if ((fullName.length()>0)&&(gender != null)&&(department != null)&&(recruitDate != null))
+        if ((fullName.length()>0)&&(gender != null)&&(department != null)&&(!department.isDeprecated())&&(recruitDate != null))
         {
 //            assert gender != null;
 //            assert department != null;
@@ -141,7 +145,8 @@ public class EmployeeServlet extends HttpServlet {
                     pass);
         }
 
-        List<Employee> le = AppContext.getEmployeeService().findAll();
+        //there it needs to show all employees, including dismissed
+        List<Employee> le = AppContext.getEmployeeService().findAll(true);
         if (le.size()>0){
             req.setAttribute("employees", le);
         }

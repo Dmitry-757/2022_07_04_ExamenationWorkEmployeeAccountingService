@@ -123,6 +123,10 @@ public class Employee implements Serializable {
         return getBoss().fullName;
     }
 
+    public boolean isDismissed() {
+        return dismissed;
+    }
+
     public LocalDate getRecruitDate() {
         return recruitDate;
     }

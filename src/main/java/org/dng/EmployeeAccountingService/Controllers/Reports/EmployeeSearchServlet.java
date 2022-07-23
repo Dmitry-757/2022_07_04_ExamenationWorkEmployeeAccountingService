@@ -22,12 +22,15 @@ import java.util.List;
 public class EmployeeSearchServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
-        List<Department> ld = AppContext.getDepartmentService().findAll();
+
+        //there it needs to show all, including dismissed
+        List<Department> ld = AppContext.getDepartmentService().findAll(true);
         if (ld.size()>0){
             req.setAttribute("departments", ld);
         }
 
-        List<Job> lj = AppContext.getJobService().findAll();
+        //there it needs to show all, including dismissed
+        List<Job> lj = AppContext.getJobService().findAll(true);
         if (lj.size()>0){
             req.setAttribute("jobs", lj);
         }
@@ -45,7 +48,8 @@ public class EmployeeSearchServlet extends HttpServlet {
             req.setAttribute("bosses", bosses);
         }
 
-        List<Employee> le = AppContext.getEmployeeService().findAll();
+        //there it needs to show all, including dismissed
+        List<Employee> le = AppContext.getEmployeeService().findAll(true);
         if (le.size()>0){
             req.setAttribute("employees", le);
             req.setAttribute("employeesForChoice", le);
@@ -64,7 +68,7 @@ public class EmployeeSearchServlet extends HttpServlet {
         List<Employee> le = new ArrayList<>();
 
         if("ShowAll".equals(action)) {
-            le = AppContext.getEmployeeService().findAll();
+            le = AppContext.getEmployeeService().findAll(true);
             if (le.size()>0){
                 req.setAttribute("employees", le);
             }
@@ -140,12 +144,14 @@ public class EmployeeSearchServlet extends HttpServlet {
 
 
 
-        List<Department> ld = AppContext.getDepartmentService().findAll();
+        //there it needs to show all, including dismissed
+        List<Department> ld = AppContext.getDepartmentService().findAll(true);
         if (ld.size()>0){
             req.setAttribute("departments", ld);
         }
 
-        List<Job> lj = AppContext.getJobService().findAll();
+        //there it needs to show all, including dismissed
+        List<Job> lj = AppContext.getJobService().findAll(true);
         if (lj.size()>0){
             req.setAttribute("jobs", lj);
         }
@@ -162,7 +168,8 @@ public class EmployeeSearchServlet extends HttpServlet {
             req.setAttribute("bosses", bosses);
         }
 
-        List<Employee> leChoice = AppContext.getEmployeeService().findAll();
+        //there it needs to show all, including dismissed
+        List<Employee> leChoice = AppContext.getEmployeeService().findAll(true);
         if (leChoice.size()>0){
             req.setAttribute("employeesForChoice", leChoice);
         }

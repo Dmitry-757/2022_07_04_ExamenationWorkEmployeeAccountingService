@@ -74,6 +74,7 @@
     <tr>
         <th>Name of Job</th>
         <th>Id </th>
+        <th>Deprecated </th>
         <th>Check for edit </th>
     </tr>
 </table>
@@ -99,6 +100,9 @@
                     </td>
                     <td><%= job.getId() %>
                     </td>
+                    <td><%=( job.isDeprecated() ? "Deprecated" : "")%>
+                    </td>
+
                     <td>
                         <input type="radio"
                                value=<%= i%>
@@ -113,7 +117,9 @@
     </table>
     </div>
     <br>
-    <input type="submit" value="edit job">
+    <input type="submit" name="buttonAction" value="edit">
+    <input type="submit" name="buttonAction" value="dismiss">
+
     <br>
 </form>
 
