@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "EmployeeEditServlet", value = "/editemployee")
@@ -39,12 +40,12 @@ public class EmployeeEditServlet extends HttpServlet {
         String numChecked = req.getParameter("checkedEntity");//get parameter from http request
         String action = req.getParameter("buttonaction");
 
-        if((numChecked != null)&&("dismiss".equals(action))) {
-            if (numChecked.length() > 0) {
-                Employee entity = AppContext.getEmployeeService().getById(Integer.parseInt(numChecked));
-                entity.setDismissed(true);
-            }
-        }
+//        if((numChecked != null)&&("dismiss".equals(action))) {
+//            if (numChecked.length() > 0) {
+//                Employee entity = AppContext.getEmployeeService().getById(Integer.parseInt(numChecked));
+//                entity.setDismissed(true);
+//            }
+//        }
 
 
         if((numChecked != null)&&("edit".equals(action))) {
@@ -86,12 +87,19 @@ public class EmployeeEditServlet extends HttpServlet {
                 req.setAttribute("recruitDate", entity.getRecruitDate());
                 req.setAttribute("salary", entity.getSalary());
                 //int a = 0;
+
+                if (entity.isDismissed()){
+                    req.setAttribute("selectDeprecatedId", 1);
+                }
+                else {
+                    req.setAttribute("selectDeprecatedId", 2);
+                }
+
             }
         }
 
-//        //getting attributes end save it to employee
 
-        if ("save".equals(action)) {
+        else if ("save".equals(action)) {
             @NotNull
             String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
             if (fullName != null) {
@@ -133,13 +141,10 @@ public class EmployeeEditServlet extends HttpServlet {
 
             //searching and processing of "selectDepartment" parameter
             @NotNull Department department = null;
-            Employee boss = null;
             String selectDepartment = req.getParameter("selectDepartment");//get selectDepartment parameter from http request
             if (selectDepartment != null) {
                 int id = Integer.parseInt(selectDepartment);
                 department = AppContext.getDepartmentService().getById(id);
-                //System.out.println("selectDepartment = "+ DepartmentDataBase.getById(id).getName());
-//                boss = department.getBoss();
                 if (department.isDeprecated()){
                     AppContext.getMyLogger("").warning(this.getClass().getName()+":: Exception during creating new Employee "+department.getName()+" is deprecated ! ");
                 }
@@ -165,7 +170,17 @@ public class EmployeeEditServlet extends HttpServlet {
             }
 
 
-//        String editedEntityId = request.getParameter("editedEntityId");//get  parameter from http request
+            if (req.getParameter("selectDeprecatedId") != null) {
+                Employee entity = AppContext.getEmployeeService().getById(editedEntityId);
+                if ("deprecated".equals(req.getParameter("selectDeprecatedId"))) {
+                    entity.setDismissed(true);
+                }
+                else{
+                    entity.setDismissed(false);
+                }
+            }
+
+
             if ((fullName != null) && (editedEntityId != 0)) {
                 //System.out.println("fullName = "+ fullName);
                 if (fullName.length() > 0) {
@@ -189,7 +204,6 @@ public class EmployeeEditServlet extends HttpServlet {
                                 email,
                                 pass);
                     }
-
 
                     editedEntityId = 0;
                 }

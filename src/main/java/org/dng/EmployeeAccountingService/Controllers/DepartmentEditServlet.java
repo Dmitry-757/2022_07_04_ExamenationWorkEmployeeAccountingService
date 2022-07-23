@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
+import org.dng.EmployeeAccountingService.Entities.Gender;
 import org.dng.EmployeeAccountingService.Entities.Job;
 import org.jetbrains.annotations.NotNull;
 
@@ -53,6 +54,14 @@ public class DepartmentEditServlet extends HttpServlet {
                         request.setAttribute("bosses", le);
                     }
                     request.setAttribute("selectedBossId", entity.getId());
+
+                    if (entity.isDeprecated()){
+                        request.setAttribute("selectDeprecatedId", 1);
+                    }
+                    else {
+                        request.setAttribute("selectDeprecatedId", 2);
+                    }
+
                 }
             }
 
@@ -62,25 +71,35 @@ public class DepartmentEditServlet extends HttpServlet {
                 if (fullName.length() > 0) {
                     Department entity = AppContext.getDepartmentService().getById(editedEntityId);
                     AppContext.getDepartmentService().change(entity, fullName);
-
-                    //searching and processing of "selectBoss" parameter
-                    @NotNull Employee boss = null;
-                    String selectBoss = request.getParameter("selectBoss");//get selectBoss parameter from http request
-                    if ((selectBoss != null) && (selectBoss.length() > 0)) {
-                        int id = Integer.parseInt(selectBoss);
-                        boss = AppContext.getEmployeeService().getById(id);
-                    }
-                    entity.setBoss(boss);
-
-                    editedEntityId = 0;
+//                    editedEntityId = 0;
                 }
             }
         }
-        else if((numChecked != null)&&("dismiss".equals(buttonAction))) {
-            if (numChecked.length() > 0) {
-                Department entity = AppContext.getDepartmentService().getById(Integer.parseInt(numChecked));
-                entity.setDeprecated(true);
-            }
+
+        else if((editedEntityId != 0)&&("save".equals(buttonAction))) {
+                Department entity = AppContext.getDepartmentService().getById(editedEntityId);
+
+                //searching and processing of "selectBoss" parameter
+                @NotNull Employee boss = null;
+                String selectBoss = request.getParameter("selectBoss");//get selectBoss parameter from http request
+                if ((selectBoss != null) && (selectBoss.length() > 0)) {
+                    int id = Integer.parseInt(selectBoss);
+                    boss = AppContext.getEmployeeService().getById(id);
+                }
+                entity.setBoss(boss);
+
+                if (request.getParameter("selectDeprecatedId") != null) {
+                    if ("deprecated".equals(request.getParameter("selectDeprecatedId"))) {
+                        entity.setDeprecated(true);
+                    }
+                    else{
+                        entity.setDeprecated(false);
+                    }
+                }
+
+
+
+                editedEntityId = 0;
         }
 
 

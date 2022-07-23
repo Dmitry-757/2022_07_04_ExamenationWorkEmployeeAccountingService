@@ -79,6 +79,34 @@
         <input style="margin-left: 10px;" type="text" id="fullName" name="fullName"
                value=<%= request.getAttribute("fullName")!=null ? request.getAttribute("fullName"):""%>>
     </label>
+    <br><br>
+
+    <div class="label">
+        <label> Input status of department
+            <%String checked="";%>
+            <input type="radio" value="deprecated"
+            <%--                   checked--%>
+                    <% checked="";
+                        if (request.getAttribute("selectDeprecatedId") != null){
+                            int selectedSubEntityId = (int)(request.getAttribute("selectDeprecatedId"));
+                            checked = (selectedSubEntityId == 1 ? "checked" : "");
+                        }%>
+                    <%=checked%>
+                   name="selectDeprecatedId"
+            />Deprecated
+            <input type="radio" value="active"
+                    <% checked="";
+                        if (request.getAttribute("selectDeprecatedId") != null){
+                            int selectedSubEntityId = (int)(request.getAttribute("selectDeprecatedId"));
+                            checked = (selectedSubEntityId == 2 ? "checked" : "");
+                        }%>
+                    <%=checked%>
+                   name="selectDeprecatedId"
+            />Active
+        </label>
+    </div>
+    <br/>
+
 
     <br>
     <br>
@@ -114,9 +142,9 @@
         </select>
     </label>
 
-
-    <br/>
-    <input type="submit" value="save">
+    <br>
+    <br>
+    <input type="submit" name="buttonAction" value="save">
 </form>
 
 <hr>
@@ -169,7 +197,7 @@
     </div>
     <br>
     <input type="submit" name="buttonAction" value="edit">
-    <input type="submit" name="buttonAction" value="dismiss">
+<%--    <input type="submit" name="buttonAction" value="dismiss">--%>
     <br>
 </form>
 

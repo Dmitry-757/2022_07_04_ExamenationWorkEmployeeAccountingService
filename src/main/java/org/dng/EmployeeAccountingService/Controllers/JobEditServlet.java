@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.dng.EmployeeAccountingService.AppContext;
+import org.dng.EmployeeAccountingService.Entities.Department;
 import org.dng.EmployeeAccountingService.Entities.Employee;
 import org.dng.EmployeeAccountingService.Entities.Job;
 
@@ -37,30 +38,48 @@ public class JobEditServlet extends HttpServlet {
         if ("edit".equals(buttonAction)) {
             if (numChecked != null) {
                 if (numChecked.length() > 0) {
-                    Job job = AppContext.getJobService().getById(Integer.parseInt(numChecked));
-                    System.out.println(job.getName());
-                    editedEntityId = job.getId();
-                    request.setAttribute("fullName", job.getName());
+                    Job entity = AppContext.getJobService().getById(Integer.parseInt(numChecked));
+                    System.out.println(entity.getName());
+                    editedEntityId = entity.getId();
+                    request.setAttribute("fullName", entity.getName());
                     //int a = 0;
+
+                    if (entity.isDeprecated()) {
+                        request.setAttribute("selectDeprecatedId", 1);
+                    } else {
+                        request.setAttribute("selectDeprecatedId", 2);
+                    }
+
                 }
             }
+        }
+        else if((editedEntityId != 0)&&("save".equals(buttonAction))) {
 
             String fullName = request.getParameter("fullName");//get  parameter from http request
             if ((fullName != null) && (editedEntityId != 0)) {
                 if (fullName.length() > 0) {
-                    Job job = AppContext.getJobService().getById(editedEntityId);
-                    AppContext.getJobService().change(job, fullName);
+                    Job entity = AppContext.getJobService().getById(editedEntityId);
+                    AppContext.getJobService().change(entity, fullName);
+
+                    if (request.getParameter("selectDeprecatedId") != null) {
+                        if ("deprecated".equals(request.getParameter("selectDeprecatedId"))) {
+                            entity.setDeprecated(true);
+                        }
+                        else{
+                            entity.setDeprecated(false);
+                        }
+                    }
+
                     editedEntityId = 0;
                 }
             }
-
         }
-        else if((numChecked != null)&&("dismiss".equals(buttonAction))) {
-            if (numChecked.length() > 0) {
-                Job entity = AppContext.getJobService().getById(Integer.parseInt(numChecked));
-                entity.setDeprecated(true);
-            }
-        }
+//        else if((numChecked != null)&&("dismiss".equals(buttonAction))) {
+//            if (numChecked.length() > 0) {
+//                Job entity = AppContext.getJobService().getById(Integer.parseInt(numChecked));
+//                entity.setDeprecated(true);
+//            }
+//        }
 
         List<Job> lj = AppContext.getJobService().findAll(true);
         if (lj.size()>0){

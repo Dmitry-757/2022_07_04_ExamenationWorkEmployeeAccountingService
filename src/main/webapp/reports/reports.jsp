@@ -5,7 +5,7 @@
     <title>Employee Accounting Service Reports</title>
 </head>
 <body>
-<h1><%= "Employee Accounting Service Reports" %>
+<h1>"Employee Accounting Service Reports"
 </h1>
 <hr>
 <br/>

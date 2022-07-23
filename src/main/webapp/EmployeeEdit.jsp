@@ -248,12 +248,41 @@
 
     <div class="label">
         <label for="salary"> Input salary of employee
-            <input type="number" id="salary" name="salary"
+            <input type="text" id="salary" name="salary"
                    value=<%= request.getAttribute("salary")!=null ? request.getAttribute("salary"):""%>
             >
         </label>
     </div>
     <br/>
+
+
+    <div class="label">
+        <label> Input status of employee
+            <%String checked2="";%>
+            <input type="radio" value="deprecated"
+            <%--                   checked--%>
+                    <% checked2="";
+                        if (request.getAttribute("selectDeprecatedId") != null){
+                            int selectedSubEntityId = (int)(request.getAttribute("selectDeprecatedId"));
+                            checked2 = (selectedSubEntityId == 1 ? "checked" : "");
+                        }%>
+                    <%=checked2%>
+                   name="selectDeprecatedId"
+            />Dismissed
+            <input type="radio" value="active"
+                    <% checked2="";
+                        if (request.getAttribute("selectDeprecatedId") != null){
+                            int selectedSubEntityId = (int)(request.getAttribute("selectDeprecatedId"));
+                            checked2 = (selectedSubEntityId == 2 ? "checked" : "");
+                        }%>
+                    <%=checked2%>
+                   name="selectDeprecatedId"
+            />Active
+        </label>
+    </div>
+    <br/>
+
+
 
     <br/>
     <input type="submit" name="buttonaction" value="save">
@@ -370,7 +399,7 @@
     </div>
     <br>
     <input type="submit" name="buttonaction" value="edit">
-    <input type="submit" name="buttonaction" value="dismiss">
+<%--    <input type="submit" name="buttonaction" value="dismiss">--%>
     <br>
 </form>
 
