@@ -5,9 +5,7 @@ import org.dng.EmployeeAccountingService.Entities.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class EmployeeService implements ServiceI<Employee> {
@@ -219,5 +217,50 @@ public class EmployeeService implements ServiceI<Employee> {
         HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
         return entityHashMap.get(inn);
     }
+
+
+    public IntSummaryStatistics getSummaryStatistics() {
+        IntSummaryStatistics stats =
+                findAll(false)
+                        .stream()
+                        .map(e->e.getSalary())
+                        .mapToInt(Integer::intValue)
+                        .summaryStatistics();
+        return stats;
+    }
+
+    public List<Employee> getTopExpensiveEmployee(boolean showDeprecated) {
+        HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+
+        if (showDeprecated)
+            return entityHashMap.entrySet()
+                    .stream()
+                    .map(e -> e.getValue())
+                    .sorted(new Comparator<Employee>() {
+                                @Override
+                                public int compare(Employee o1, Employee o2) {
+                                    return o2.getSalary()-o1.getSalary();
+                                }
+                            }
+                    )
+                    .limit(10)
+                    .toList();
+        else
+            return entityHashMap.entrySet()
+                    .stream()
+                    .map(e -> e.getValue())
+                    .filter(e->!e.isDismissed())
+                    .sorted(new Comparator<Employee>() {
+                                @Override
+                                public int compare(Employee o1, Employee o2) {
+                                    return o1.getSalary()-o2.getSalary();
+                                }
+                            }
+                    )
+                    .limit(10)
+                    .toList();
+
+    }
+
 
 }

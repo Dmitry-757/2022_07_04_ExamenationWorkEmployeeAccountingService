@@ -106,6 +106,6 @@ public class DepartmentService  implements ServiceI<Department> {
                 .mapToInt(Integer::intValue)
                 .summaryStatistics();
         return stats;
-
     }
+
 }

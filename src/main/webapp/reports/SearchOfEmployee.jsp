@@ -3,7 +3,6 @@
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Employee" %>
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Job" %>
 <%@ page import="org.dng.EmployeeAccountingService.AppContext" %>
-<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

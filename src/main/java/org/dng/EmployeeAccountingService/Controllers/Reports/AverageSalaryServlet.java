@@ -15,10 +15,10 @@ public class AverageSalaryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //there it needs to show all, including dismissed
-        List<Department> ld = AppContext.getDepartmentService().findAll(true);
-        if (ld.size()>0){
-            request.setAttribute("departments", ld);
-        }
+//        List<Department> ld = AppContext.getDepartmentService().findAll(true);
+//        if (ld.size()>0){
+//            request.setAttribute("departments", ld);
+//        }
 
 
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/reports/AverageSalary.jsp");

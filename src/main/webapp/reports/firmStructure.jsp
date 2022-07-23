@@ -35,7 +35,7 @@
 <br>
 <a style="font-size: x-large" href="/">main menu</a>
 <br>
-<a style="font-size: xx-large" href="/reports.jsp">Reports</a>
+<a style="font-size: xx-large" href="reports.jsp">Reports</a>
 <br>
 <hr>
 <br>
