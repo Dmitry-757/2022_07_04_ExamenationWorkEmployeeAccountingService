@@ -7,6 +7,7 @@ import org.dng.EmployeeAccountingService.Entities.Employee;
 
 
 import java.util.HashMap;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 public class DepartmentService  implements ServiceI<Department> {
@@ -95,5 +96,16 @@ public class DepartmentService  implements ServiceI<Department> {
                 .map(e -> e.getValue())
                 .findFirst()
                 .get();
+    }
+
+    public IntSummaryStatistics getSummaryStatistics(Department entity) {
+        IntSummaryStatistics stats =
+                AppContext.getEmployeeService().findEmployee(entity)
+                .stream()
+                .map(e->e.getSalary())
+                .mapToInt(Integer::intValue)
+                .summaryStatistics();
+        return stats;
+
     }
 }

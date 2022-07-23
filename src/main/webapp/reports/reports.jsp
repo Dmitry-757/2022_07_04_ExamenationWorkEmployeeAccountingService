@@ -20,7 +20,7 @@
 <a href="firmStructure">Structure of firm</a>
 <br>
 <br>
-<a href="salarySize">Salary size</a>
+<a href="averageSalary">Salary size</a>
 <br>
 <br>
 <a href="expenciveEmployers">Most expencive employers</a>
