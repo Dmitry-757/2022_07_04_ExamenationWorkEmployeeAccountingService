@@ -2,12 +2,10 @@ package org.dng.EmployeeAccountingService.Entities;
 
 
 import org.dng.EmployeeAccountingService.AppContext;
-import org.dng.EmployeeAccountingService.Service.EmployeeService;
-import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
 
 import java.time.LocalDate;
 
@@ -45,7 +43,7 @@ class EmployeeTest {
 
     @Test
     void findEmployeeTest(){
-        AppContext.getEmployeeService().getByName("Pupkin Ivan Ivanovich");
+        Assertions.assertSame(AppContext.getEmployeeService().getByName("Pupkin Ivan Ivanovich"), empl);
     }
 
 }

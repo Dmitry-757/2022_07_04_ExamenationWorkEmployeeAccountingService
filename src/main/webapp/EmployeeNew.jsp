@@ -44,7 +44,7 @@
 
 <body>
 
-<a style="font-size: x-large" href="/">main menu</a>
+<a style="font-size: x-large" href="/MainMenu">main menu</a>
 <br>
 <hr>
 <br>

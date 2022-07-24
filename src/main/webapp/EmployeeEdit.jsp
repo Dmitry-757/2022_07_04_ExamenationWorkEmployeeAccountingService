@@ -84,7 +84,7 @@
     </script>
 </head>
 <body onload="makeTableScroll();">
-<a style="font-size: x-large" href="/">main menu</a>
+<a style="font-size: x-large" href="/MainMenu">main menu</a>
 <br>
 <br>
 <hr>

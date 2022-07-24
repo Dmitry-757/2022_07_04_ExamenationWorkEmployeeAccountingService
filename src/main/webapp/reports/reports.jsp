@@ -10,11 +10,11 @@
 <hr>
 <br/>
 
-<a style="font-size: x-large" href="/">main menu</a>
+<a style="font-size: x-large" href="/MainMenu">main menu</a>
 <hr>
 <br/>
 
-<a href="search">search employee by different parameters</a>
+<a href="searchsearch">search employee by different parameters</a>
 <br>
 <br>
 <a href="firmStructure">Structure of firm</a>
@@ -28,9 +28,13 @@
 <br>
 <a href="mostLoyalEmployees">Most loyal employees</a>
 <br>
-<br>
 <hr>
 <br>
+<br>
+
+<a href="/LogOut">logout from service</a>
+
+
 <%--<a href="SaveRead">save / read   condition</a>--%>
 
 </body>

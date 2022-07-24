@@ -9,6 +9,7 @@ import org.dng.EmployeeAccountingService.repository.JobDataBase;
 
 import java.io.IOException;
 import java.util.Date;
+//import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.*;
 
 public class AppContext {
@@ -16,6 +17,9 @@ public class AppContext {
     private static DepartmentDataBase departmentDataBase = new DepartmentDataBase();
     private static JobDataBase jobDataBase = new JobDataBase();
     private static EmployeeDataBase employeeDataBase = new EmployeeDataBase();
+//    private static AtomicReference<DepartmentDataBase> departmentDataBase = new AtomicReference<>(new DepartmentDataBase());
+//    private static AtomicReference<JobDataBase> jobDataBase = new AtomicReference<>(new JobDataBase());
+//    private static AtomicReference<EmployeeDataBase> employeeDataBase = new AtomicReference<>(new EmployeeDataBase());
 
 
     private static final DepartmentService departmentService = new DepartmentService();
