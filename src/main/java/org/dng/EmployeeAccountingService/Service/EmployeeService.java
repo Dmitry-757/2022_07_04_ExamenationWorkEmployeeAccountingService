@@ -5,6 +5,8 @@ import org.dng.EmployeeAccountingService.Entities.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
@@ -263,4 +265,55 @@ public class EmployeeService implements ServiceI<Employee> {
     }
 
 
+    public List<Employee> getTopLoyalEmployee(boolean showDeprecated) {
+        HashMap<Integer, Employee> entityHashMap = AppContext.getEmployeeDataBase().getEntityHashMap();
+
+        if (showDeprecated)
+            return entityHashMap.entrySet()
+                    .stream()
+                    .map(e -> e.getValue())
+                    .sorted(new Comparator<Employee>() {
+                                @Override
+                                public int compare(Employee o1, Employee o2) {
+                                    LocalDate o1DismissedDate = (o1.getDismissDate()==null) ? LocalDate.now() : o1.getDismissDate();
+                                    LocalDate o2DismissedDate = (o2.getDismissDate()==null) ? LocalDate.now() : o2.getDismissDate();
+
+                                    long o1DurationWork = ChronoUnit.DAYS.between(o1.getRecruitDate(), o1DismissedDate);
+                                    long o2DurationWork = ChronoUnit.DAYS.between(o2.getRecruitDate(), o2DismissedDate);
+
+                                    return (int)(o2DurationWork - o1DurationWork);
+                                }
+                            }
+                    )
+                    .limit(10)
+                    .toList();
+        else
+            return entityHashMap.entrySet()
+                    .stream()
+                    .map(e -> e.getValue())
+                    .filter(e->!e.isDismissed())
+                    .sorted(new Comparator<Employee>() {
+                                @Override
+                                public int compare(Employee o1, Employee o2) {
+                                    LocalDate o1DismissedDate = (o1.getDismissDate()==null) ? LocalDate.now() : o1.getDismissDate();
+                                    LocalDate o2DismissedDate = (o2.getDismissDate()==null) ? LocalDate.now() : o2.getDismissDate();
+
+                                    long o1DurationWork = ChronoUnit.DAYS.between(o1.getRecruitDate(), o1DismissedDate);
+                                    long o2DurationWork = ChronoUnit.DAYS.between(o2.getRecruitDate(), o2DismissedDate);
+
+                                    return (int)(o2DurationWork - o1DurationWork);
+                                }
+                            }
+                    )
+                    .limit(10)
+                    .toList();
+    }
+
+    public String getWorkDuration(Employee entity) {
+        LocalDate startDate = entity.getRecruitDate();
+        LocalDate endDate = (entity.getDismissDate()==null) ? LocalDate.now() : entity.getDismissDate();
+        Period period = Period.between(startDate, endDate);
+
+        return (""+period.getYears()+" years  ||  "+period.getMonths()+" months  ||  "+period.getDays()+" days");
+    }
 }

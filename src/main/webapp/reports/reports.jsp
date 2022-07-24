@@ -23,10 +23,10 @@
 <a href="averageSalary">Salary size</a>
 <br>
 <br>
-<a href="mostExpensiveEmployers">Most expensive employers</a>
+<a href="mostExpensiveEmployees">Most expensive employees</a>
 <br>
 <br>
-<a href="loyalEmployers">Most loyal employers</a>
+<a href="mostLoyalEmployees">Most loyal employees</a>
 <br>
 <br>
 <hr>

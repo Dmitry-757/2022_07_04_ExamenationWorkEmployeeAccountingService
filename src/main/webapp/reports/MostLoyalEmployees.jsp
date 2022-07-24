@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Most expensive employees</title>
+    <title>Most loyal employees</title>
     <style>
         table {
             border-collapse: collapse;
@@ -29,7 +29,7 @@
 </head>
 
 <body>
-<h1>Top 10 most expensive employees</h1>
+<h1>Top 10 most loyal employees</h1>
 <br>
 <a style="font-size: x-large" href="/">main menu</a>
 <br>
@@ -47,18 +47,22 @@
     <%--    header--%>
     <tr>
         <th>Employee</th>
-        <th>Salary</th>
+        <th>Recruit date</th>
+        <th>Dismiss date</th>
+        <th>duration of work</th>
     </tr>
 
     <%--    table--%>
-    <% List<Employee> entities = AppContext.getEmployeeService().getTopExpensiveEmployee(true);
+    <% List<Employee> entities = AppContext.getEmployeeService().getTopLoyalEmployee(true);
         for (Employee entity : entities) {
     %>
 
     <%--    about department--%>
     <tr>
         <td><%= entity.getName() %> </td>
-        <td> <%=entity.getSalary()%>></td>
+        <td> <%=entity.getRecruitDate()%>></td>
+        <td> <%=entity.getDismissDate()%>></td>
+        <td> <%=AppContext.getEmployeeService().getWorkDuration(entity)%>></td>
     </tr>
 
     <%
