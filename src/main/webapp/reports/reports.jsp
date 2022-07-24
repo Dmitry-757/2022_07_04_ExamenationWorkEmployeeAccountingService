@@ -14,7 +14,7 @@
 <hr>
 <br/>
 
-<a href="searchsearch">search employee by different parameters</a>
+<a href="search">search employee by different parameters</a>
 <br>
 <br>
 <a href="firmStructure">Structure of firm</a>
