@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<a style="font-size: x-large" href="/">main menu</a>
+<a style="font-size: x-large" href="/MainMenu">main menu</a>
 <hr>
 <br>
 <form method="post">
