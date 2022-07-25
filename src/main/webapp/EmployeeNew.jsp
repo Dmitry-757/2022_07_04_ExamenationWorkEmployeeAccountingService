@@ -12,6 +12,7 @@
             border: 2px solid rgb(200, 200, 200);
             letter-spacing: 1px;
             font-size: 0.8rem;
+            table-layout: fixed;
         }
 
         td, th {
@@ -128,12 +129,6 @@
 
     <br/>
 
-    <%--    <div class="label">--%>
-    <%--        <label for="job"> Input job name of employee--%>
-    <%--            <input type="text" id="job" name="job">--%>
-    <%--        </label>--%>
-    <%--    </div>--%>
-    <%--    <br/>--%>
 
     <div class="label">
         <label> Input job of employee
@@ -155,12 +150,6 @@
     <br>
 
 
-    <%--    <div class="label">--%>
-    <%--        <label for="boss"> Input boss of employee--%>
-    <%--            <input type="text" id="boss" name="department">--%>
-    <%--        </label>--%>
-    <%--    </div>--%>
-    <%--    <br/>--%>
 
     <div class="label">
         <label for="recruitDate"> Input recruitDate of recruiting

@@ -10,6 +10,7 @@
             border: 2px solid rgb(200, 200, 200);
             letter-spacing: 1px;
             font-size: 0.8rem;
+            table-layout: fixed;
         }
 
         td, th {

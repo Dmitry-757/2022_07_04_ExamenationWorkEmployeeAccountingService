@@ -3,6 +3,8 @@
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Job" %>
 <%@ page import="org.dng.EmployeeAccountingService.Entities.Employee" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Edit Employee</title>
@@ -13,11 +15,9 @@
             letter-spacing: 1px;
             font-size: 0.8rem;
             width: 100%;
+            table-layout: fixed;
         }
 
-        /*tr{*/
-        /*    width: 100%;*/
-        /*}*/
         td, th {
             border: 1px solid rgb(190, 190, 190);
             padding: 10px 20px;
@@ -34,7 +34,7 @@
 
         .scrollingTable {
             /*width: 30em;*/
-            width: 100%;
+            /*width: 100%;*/
             overflow-y: auto;
         }
     </style>
@@ -55,35 +55,31 @@
                 }
                 wrapper.style.height = height + "px";
 
-                // let columnsNumber = table.rows[0].cells.length;
-                // for (let j = 0; j < columnsNumber; j++) {
-                //     table.rows[i].width = Math.floor(100/columnsNumber) + "%";
-                // }
             }
+            // console.log("tableWith="+tableWith);
 
             if (rowsInTable > maxRows){
-                let headerEtalon = document.getElementsById('headerIn');
 
                 let tableH = document.getElementById('myTableHeader');
+                let tableHWith = tableH.clientWidth;
                 let wrapperH = tableH.parentNode;
-                // console.log(wrapperH.style.clientWidth);
-                // let newWidth = (wrapperH.style.width - 30)+"px";
+                // console.log("tableHWith = "+tableHWith);
 
-                wrapperH.style.width = (tableWith-15)+"px";// !!! need to find (((
+                wrapperH.style.width = (tableHWith-17)+"px";// !!! need to find (((
+                // console.log("tableH.clientWidth = "+tableH.clientWidth);
 
                 // let columnsNumber = tableH.rows[0].cells.length;
                 // for (let j = 0; j < columnsNumber; j++) {
-                //       .rows[j].width = "20px";
+                //       //table.rows[j].style.width = "20px";
                 //         // headerEtalon.rows[j].width;
                 // }
 
             }
-
-
         }
     </script>
 </head>
 <body onload="makeTableScroll();">
+<%--<body>--%>
 <a style="font-size: x-large" href="/MainMenu">main menu</a>
 <br>
 <br>
@@ -294,35 +290,20 @@
 <div class="scrollingTable">
     <table  id="myTableHeader">
         <tr>
-<%--            <th >Id</th>--%>
-<%--            <th >Full name</th>--%>
-<%--            <th >email</th>--%>
-<%--            <th >INN</th>--%>
-<%--            <th >Department</th>--%>
-<%--            <th >Birth date</th>--%>
-<%--            <th >Gender</th>--%>
-<%--            <th >Phone number</th>--%>
-<%--            <th >Job name</th>--%>
-<%--            <th >Boss</th>--%>
-<%--            <th >Date of recruiting</th>--%>
-<%--            <th >Salary size</th>--%>
-<%--            &lt;%&ndash;            <th style="width: 5%">Status</th>&ndash;%&gt;--%>
-<%--            <th >Check for edit</th>--%>
-
-            <th style="width: 5%">Id</th>
-            <th style="width: 15%">Full name</th>
-            <th style="width: 10%">email</th>
-            <th style="width: 7%">INN</th>
-            <th style="width: 10%">Department</th>
-            <th style="width: 7%">Birth date</th>
-            <th style="width: 10%">Gender</th>
-            <th style="width: 8%">Phone number</th>
-            <th style="width: 10%">Job name</th>
-            <th style="width: 5%">Boss</th>
-            <th style="width: 5%">Date of recruiting</th>
-            <th style="width: 5%">Salary size</th>
-            <th style="width: 5%">Status</th>
-            <th style="width: 3%">Check for edit</th>
+                <th class="clmn_1">Id</th>
+                <th class="clmn_2">Full name</th>
+                <th class="clmn_3">email</th>
+                <th class="clmn_4">INN</th>
+                <th class="clmn_5">Department</th>
+                <th class="clmn_6">Birth date</th>
+                <th class="clmn_7">Gender</th>
+                <th class="clmn_8">Phone number</th>
+                <th class="clmn_9">Job name</th>
+                <th class="clmn_10">Boss</th>
+                <th class="clmn_11">Date of recruiting</th>
+                <th class="clmn_12">Salary size</th>
+                <th class="clmn_13">Status</th>
+                <th class="clmn_14">Check for edit</th>
         </tr>
     </table>
 </div>
@@ -353,38 +334,36 @@
                 int i = 0;
                 for (Employee entity : entities) {
                     i++;
-                    //                System.out.println("i="+i);
             %>
 
-<%--            <tr style="width: 460px">--%>
             <tr >
-                <td style="width: 6%"><%= entity.getId() %>
+                <td class="clmn_1"><%= entity.getId() %>
                 </td>
-                <td style="width: 17%"><%= entity.getName() %>
+                <td class="clmn_2"><%= entity.getName() %>
                 </td>
-                <td style="width: 10%"><%= entity.getEmail() %>
+                <td class="clmn_3"><%= entity.getEmail() %>
                 </td>
-                <td style="width: 7%"><%= entity.getInn() %>
+                <td class="clmn_4"><%= entity.getInn() %>
                 </td>
-                <td style="width: 11%"><%= entity.getDepartment().getName() %>
+                <td class="clmn_5"><%= entity.getDepartment().getName() %>
                 </td>
-                <td style="width: 6%"><%= entity.getBirthDate() %>
+                <td class="clmn_6"><%= entity.getBirthDate() %>
                 </td>
-                <td style="width: 12%"><%= entity.getGender() %>
+                <td class="clmn_7"><%= entity.getGender() %>
                 </td>
-                <td style="width: 5%"><%= entity.getPhoneNumber() %>
+                <td sclass="clmn_8"><%= entity.getPhoneNumber() %>
                 </td>
-                <td style="width: 10%"><%= entity.getJob().getName() %>
+                <td sclass="clmn_9"><%= entity.getJob().getName() %>
                 </td>
-                <td style="width: 7%"><%= entity.getBossName() %>
+                <td sclass="clmn_10"><%= entity.getBossName() %>
                 </td>
-                <td style="width: 3%"><%= entity.getRecruitDate() %>
+                <td class="clmn_11"><%= entity.getRecruitDate() %>
                 </td>
-                <td style="width: 8%"><%= entity.getSalary() %>
+                <td class="clmn_12"><%= entity.getSalary() %>
                 </td>
-                <td><%= entity.getStatus() %>
+                <td class="clmn_13"><%= entity.getStatus() %>
                 </td>
-                <td style="width: 8%">
+                <td class="clmn_14">
                     <input type="radio"
                            value=<%= entity.getId()%>
                                    name="checkedEntity"

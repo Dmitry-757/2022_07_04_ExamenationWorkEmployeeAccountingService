@@ -11,6 +11,7 @@
             letter-spacing: 1px;
             font-size: 0.8rem;
             width: 100%;
+            table-layout: fixed;
         }
 
         td, th {
@@ -30,17 +31,17 @@
         .myTable{
             overflow-y: auto;
             height: 150px;
-            width: 460px;
+            width: 500px;
         }
         .myTableHeader{
             /*height: 200px;*/
-            width: 460px;
+            width: 500px;
         <%
-            int width=460;
+            int width=500;
             if (request.getAttribute("jobs") != null) {
                         List<Job> jobs = (List<Job>) request.getAttribute("jobs");
                         if (jobs.size()>=4){
-                            width=445;
+                            width-=17;
                         }
                 }
         %>
@@ -112,12 +113,6 @@
 <form method="post">
     <div class="myTable">
     <table>
-<%--        <tr>--%>
-<%--            <th>Name of Job</th>--%>
-<%--            <th>Id </th>--%>
-<%--            <th>Check for edit </th>--%>
-<%--        </tr>--%>
-
         <% if (request.getAttribute("jobs") != null) {
             List<Job> jobs = (List<Job>) request.getAttribute("jobs");
             int i = 0;

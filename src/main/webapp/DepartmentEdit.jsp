@@ -12,6 +12,7 @@
             letter-spacing: 1px;
             font-size: 0.8rem;
             width: 100%;
+            table-layout: fixed;
         }
 
         /*tr{*/
@@ -33,7 +34,7 @@
 
         .scrollingTable {
             /*width: 30em;*/
-            width: 460px;
+            width: 550px;
             overflow-y: auto;
         }
     </style>
@@ -54,12 +55,16 @@
                 wrapper.style.height = height + "px";
             }
 
+            // if (rowsInTable > maxRows){
+            //     let tableH = document.getElementById('myTableHeader');
+            //     let wrapperH = tableH.parentNode;
+            //     wrapperH.style.width = "442px";
+            // }
             if (rowsInTable > maxRows){
                 let tableH = document.getElementById('myTableHeader');
+                let tableHWith = tableH.clientWidth;
                 let wrapperH = tableH.parentNode;
-                // console.log(wrapperH.style.clientWidth);
-                // let newWidth = wrapperH.style.width - 30;
-                wrapperH.style.width = "442px";
+                wrapperH.style.width = (tableHWith-17)+"px";// !!! need to find (((
             }
 
 
