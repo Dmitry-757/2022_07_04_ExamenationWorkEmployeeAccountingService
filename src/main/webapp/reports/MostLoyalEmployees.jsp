@@ -31,7 +31,7 @@
 <body>
 <h1>Top 10 most loyal employees</h1>
 <br>
-<a style="font-size: x-large" href="/">main menu</a>
+<a style="font-size: x-large" href="/MainMenu">main menu</a>
 <br>
 <a style="font-size: xx-large" href="reports.jsp">Reports</a>
 <%--<a style="font-size: xx-large" href="reports.jsp">Reports</a>--%>
