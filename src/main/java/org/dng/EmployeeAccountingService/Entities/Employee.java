@@ -4,6 +4,7 @@ import org.dng.EmployeeAccountingService.AppContext;
 import org.dng.EmployeeAccountingService.repository.EmployeeDataBase;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -12,12 +13,12 @@ import java.util.Objects;
  * Сотрудник
  */
 public class Employee implements Serializable {
+    @Serial
     private static final long serialVersionUID = 8L;
 
 
-    @NotNull
+
     private final int id;
-    @NotNull
     private int inn;
     @NotNull
     private String fullName;
@@ -35,7 +36,6 @@ public class Employee implements Serializable {
     private LocalDate recruitDate;
     private boolean dismissed;
     private LocalDate dismissDate;
-    @NotNull
     private int salary;
 
     public Employee(@NotNull String fullName,
@@ -43,13 +43,13 @@ public class Employee implements Serializable {
                     LocalDate birthDate,
                     Gender gender,
                     String phoneNumber,
-                    Job job,
+                    @NotNull Job job,
                     @NotNull Department department,
 //                    Employee boss,
                     @NotNull LocalDate recruitDate,
                     LocalDate dismissDate,
 //                    @NotNull int salary) throws Exception {
-                    @NotNull int salary,
+                    int salary,
                     String email,
                     String password
                     ) throws AddDuplicatedObjException {
@@ -86,10 +86,6 @@ public class Employee implements Serializable {
 
     public String getEmail() {
         return email;
-    }
-
-    public boolean testPassword(String pass) {
-        return password.equals(pass);
     }
 
     public LocalDate getBirthDate() {

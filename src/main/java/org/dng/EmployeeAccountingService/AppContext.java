@@ -41,8 +41,9 @@ public class AppContext {
 //                    +record.getSourceMethodName()+"::"+"\n"
 //                    +"    "+new Date(record.getMillis())+"::"
 //                    +record.getMessage()+"\n";
-            return record.getSourceMethodName()+"::"+"\n"
-                    +"    "+new Date(record.getMillis())+"::"
+            return "\n"+record.getLevel()+"\n"
+                    +new Date(record.getMillis())+"\n"
+                    +record.getSourceClassName()+"::"+record.getSourceMethodName()+"\n"
                     +record.getMessage()+"\n";
         }
     };
@@ -101,6 +102,7 @@ public class AppContext {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        assert fileHandler != null;
         fileHandler.setFormatter(myFormatter);
 //        Logger logger = Logger.getLogger(className);
         Logger logger = Logger.getLogger("");
