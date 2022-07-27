@@ -102,9 +102,9 @@ public class EmployeeEditServlet extends HttpServlet {
         else if ("save".equals(action)) {
             @NotNull
             String fullName = req.getParameter("fullName");//get selectDepartment parameter from http request
-            if (fullName != null) {
-                System.out.println("fullName = " + fullName);
-            }
+//            if (fullName != null) {
+//                System.out.println("fullName = " + fullName);
+//            }
 
             @NotNull
             String email = req.getParameter("email");//get selectDepartment parameter from http request
@@ -172,12 +172,28 @@ public class EmployeeEditServlet extends HttpServlet {
 
             if (req.getParameter("selectDeprecatedId") != null) {
                 Employee entity = AppContext.getEmployeeService().getById(editedEntityId);
-                if ("deprecated".equals(req.getParameter("selectDeprecatedId"))) {
+                if(
+                        ("deprecated".equals(req.getParameter("selectDeprecatedId")))
+                                &&
+                        !entity.isDismissed()
+                ){
                     entity.setDismissed(true);
                 }
-                else{
+                else if(
+                        (!"deprecated".equals(req.getParameter("selectDeprecatedId")))
+                                &&
+                                entity.isDismissed()
+                ){
                     entity.setDismissed(false);
                 }
+
+
+//                if ("deprecated".equals(req.getParameter("selectDeprecatedId"))) {
+//                    entity.setDismissed(true);
+//                }
+//                else{
+//                    entity.setDismissed(false);
+//                }
             }
 
 

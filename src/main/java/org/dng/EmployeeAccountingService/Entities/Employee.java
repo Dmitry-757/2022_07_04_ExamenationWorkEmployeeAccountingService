@@ -169,8 +169,12 @@ public class Employee implements Serializable {
     }
 
     public void setDismissDate(LocalDate dismissDate) {
-        this.dismissDate = dismissDate;
-        AppContext.getMyLogger(this.getClass().getName()).info("Employee "+this.fullName+" was dismissed by date "+dismissDate);
+        if(this.dismissDate != dismissDate) {
+            this.dismissDate = dismissDate;
+            if (dismissDate != null) {
+                AppContext.getMyLogger(this.getClass().getName()).info("Employee " + this.fullName + " was dismissed by date " + dismissDate);
+            }
+        }
     }
 
     public void setDismissed(boolean dismissed) {
